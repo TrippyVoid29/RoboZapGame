@@ -1,177 +1,177 @@
 *** Start analyzing build configuration ***
-INFO: Auto-config - Scanning: /student/trys/Documents/Vivado/RobboZap
-INFO: Auto-config - VLOG: /student/trys/Documents/Vivado/RobboZap
-INFO: Auto-config - VHDL: /student/trys/Documents/Vivado/RobboZap
+INFO: Auto-config - Scanning: /home/student/lperczynski/Vivado/RoboZapGame
+INFO: Auto-config - VLOG: /home/student/lperczynski/Vivado/RoboZapGame
+INFO: Auto-config - VHDL: /home/student/lperczynski/Vivado/RoboZapGame
 INFO: Auto-config - Wrote:
     .dvt/default.build.auto.1
 *** List of included argument files ***
-    Build configuration file:  /student/trys/Documents/Vivado/RobboZap/.dvt/default.build
-    -f /home/student/trys/Documents/Vivado/RobboZap/.dvt/default.build.auto.1
+    Build configuration file:  /home/student/lperczynski/Vivado/RoboZapGame/.dvt/default.build
+    -f /home/student/lperczynski/Vivado/RoboZapGame/.dvt/default.build.auto.1
 *** List of invocations ***
-Invocation #1 +dvt_init+dvt in /home/student/trys/Documents/Vivado/RobboZap/.dvt/default.build.auto.1 at line 9
-*** Done analyzing build configuration [231 ms] ***
+Invocation #1 +dvt_init+dvt in /home/student/lperczynski/Vivado/RoboZapGame/.dvt/default.build.auto.1 at line 9
+*** Done analyzing build configuration [269 ms] ***
 *** Start VHDL build ***
 Total number of lines [0]
 Performing post full build step 1 (VHDL - RU) [7 ms] ...
-*** Done VHDL build [540 ms] ***
+*** Done VHDL build [533 ms] ***
 *** Start SystemVerilog build ***
 *** Invocation #1***
-Loading (1) /student/trys/Documents/Vivado/RobboZap/fpga/rtl/top_vga_basys3.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/fpga/rtl/top_vga_basys3.sv [188 ms, 131 lines, SystemVerilog_2012] ...
-Loading (2) /student/trys/Documents/Vivado/RobboZap/rtl/top_vga.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/rtl/top_vga.sv [3 ms, 75 lines, SystemVerilog_2012] ...
-Loading (3) /student/trys/Documents/Vivado/RobboZap/rtl/vga_if.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/rtl/vga_if.sv [6 ms, 32 lines, SystemVerilog_2012] ...
-Loading (4) /student/trys/Documents/Vivado/RobboZap/sim/common/tiff_writer.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/sim/common/tiff_writer.sv [51 ms, 405 lines, SystemVerilog_2012] ...
-Loading (5) /student/trys/Documents/Vivado/RobboZap/sim/top_fpga/top_fpga_tb.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/sim/top_fpga/top_fpga_tb.sv [5 ms, 106 lines, SystemVerilog_2012] ...
-Loading (6) /student/trys/Documents/Vivado/RobboZap/sim/top_vga/top_vga_tb.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/sim/top_vga/top_vga_tb.sv [3 ms, 104 lines, SystemVerilog_2012] ...
-Loading (7) /student/trys/Documents/Vivado/RobboZap/rtl/vga_pkg.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/rtl/vga_pkg.sv [2 ms, 27 lines, SystemVerilog_2012] ...
-Loading (8) /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [4 ms, 103 lines, SystemVerilog_2012] ...
-Loading (9) /student/trys/Documents/Vivado/RobboZap/rtl/vga_timing.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/rtl/vga_timing.sv [6 ms, 102 lines, SystemVerilog_2012] ...
-Loading (10) /student/trys/Documents/Vivado/RobboZap/rtl/draw_rect.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/rtl/draw_rect.sv [5 ms, 62 lines, SystemVerilog_2012] ...
-Loading (11) /student/trys/Documents/Vivado/RobboZap/rtl/draw_bg.sv ...
-Done /student/trys/Documents/Vivado/RobboZap/rtl/draw_bg.sv [8 ms, 100 lines, SystemVerilog_2012] ...
-Loading (12) /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v ...
-Done /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [5 ms, 85 lines, Verilog_2001] ...
-*** Done invocation #1 [131 ms] ***
-*** Total number of lines [1 332] ***
+Loading (1) /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv [219 ms, 131 lines, SystemVerilog_2012] ...
+Loading (2) /home/student/lperczynski/Vivado/RoboZapGame/rtl/top_vga.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/rtl/top_vga.sv [4 ms, 75 lines, SystemVerilog_2012] ...
+Loading (3) /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv [4 ms, 32 lines, SystemVerilog_2012] ...
+Loading (4) /home/student/lperczynski/Vivado/RoboZapGame/sim/common/tiff_writer.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/sim/common/tiff_writer.sv [44 ms, 405 lines, SystemVerilog_2012] ...
+Loading (5) /home/student/lperczynski/Vivado/RoboZapGame/sim/top_fpga/top_fpga_tb.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/sim/top_fpga/top_fpga_tb.sv [5 ms, 106 lines, SystemVerilog_2012] ...
+Loading (6) /home/student/lperczynski/Vivado/RoboZapGame/sim/top_vga/top_vga_tb.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/sim/top_vga/top_vga_tb.sv [3 ms, 102 lines, SystemVerilog_2012] ...
+Loading (7) /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_pkg.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_pkg.sv [1 ms, 27 lines, SystemVerilog_2012] ...
+Loading (8) /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [4 ms, 103 lines, SystemVerilog_2012] ...
+Loading (9) /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_timing.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_timing.sv [5 ms, 102 lines, SystemVerilog_2012] ...
+Loading (10) /home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_lever.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_lever.sv [6 ms, 72 lines, SystemVerilog_2012] ...
+Loading (11) /home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_bg.sv ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_bg.sv [7 ms, 100 lines, SystemVerilog_2012] ...
+Loading (12) /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v ...
+Done /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [4 ms, 85 lines, Verilog_2001] ...
+*** Done invocation #1 [120 ms] ***
+*** Total number of lines [1 340] ***
 Performing post full build actions ...
-Performing post full build step 1 (SRI) [1 ms] ...
+Performing post full build step 1 (SRI) [0 ms] ...
 Performing post full build step 2 (RI) [2 ms] ...
 Performing post full build step 3 (RCP) [0 ms] ...
-*** Done SystemVerilog build [304 ms] ***
+*** Done SystemVerilog build [321 ms] ***
 *** Start mixed mode extension build ***
-Performing mixed post full build step (VHDL - RU) [7 ms] ...
-Performing mixed post full build step (VHDL - RT) [101 ms] ...
-Performing mixed post full build step (VHDL - RD) [4 ms] ...
-Performing mixed post full build step (VHDL - FSC) [102 ms] ...
-Performing mixed post full build step (VLOG - RI) [1 ms] ...
+Performing mixed post full build step (VHDL - RU) [3 ms] ...
+Performing mixed post full build step (VHDL - RT) [100 ms] ...
+Performing mixed post full build step (VHDL - RD) [6 ms] ...
+Performing mixed post full build step (VHDL - FSC) [109 ms] ...
+Performing mixed post full build step (VLOG - RI) [0 ms] ...
 *** Warning: UNSPECIFIED_TOP: Please specify a -top module/entity/configuration in the project build file
 *** Top design candidates: work.top_fpga_tb, work.top_vga_tb, work.vga_timing_tb
-Performing mixed post full build step (MIXED - ELAB) [320 ms] ...
+Performing mixed post full build step (MIXED - ELAB) [297 ms] ...
 Performing mixed post full build step (MIXED - UNEL) [52 ms] ...
 *** Warning: UNDECLARED_MODULE: Module 'IBUF' is not declared
-    at line 56 in /student/trys/Documents/Vivado/RobboZap/fpga/rtl/top_vga_basys3.sv [compile index 1]
+    at line 56 in /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv [compile index 1]
 *** Warning: UNDECLARED_MODULE: Module 'MMCME2_BASE' is not declared
-    at line 61 in /student/trys/Documents/Vivado/RobboZap/fpga/rtl/top_vga_basys3.sv [compile index 1]
+    at line 61 in /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv [compile index 1]
 *** Warning: UNDECLARED_MODULE: Module 'BUFH' is not declared
-    at line 86 in /student/trys/Documents/Vivado/RobboZap/fpga/rtl/top_vga_basys3.sv [compile index 1]
+    at line 86 in /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv [compile index 1]
 *** Warning: UNDECLARED_MODULE: Module 'BUFGCE' is not declared
-    at line 94 in /student/trys/Documents/Vivado/RobboZap/fpga/rtl/top_vga_basys3.sv [compile index 1]
+    at line 94 in /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv [compile index 1]
 *** Warning: UNDECLARED_MODULE: Module 'ODDR' is not declared
-    at line 105 in /student/trys/Documents/Vivado/RobboZap/fpga/rtl/top_vga_basys3.sv [compile index 1]
+    at line 105 in /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv [compile index 1]
 *** Error: NON_EXISTING_PORT: Non existing port 'vcount' of module 'vga_timing'
-    at line 65 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 65 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Error: NON_EXISTING_PORT: Non existing port 'vsync' of module 'vga_timing'
-    at line 66 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 66 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Error: NON_EXISTING_PORT: Non existing port 'vblnk' of module 'vga_timing'
-    at line 67 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 67 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Error: NON_EXISTING_PORT: Non existing port 'hcount' of module 'vga_timing'
-    at line 68 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 68 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Error: NON_EXISTING_PORT: Non existing port 'hsync' of module 'vga_timing'
-    at line 69 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 69 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Error: NON_EXISTING_PORT: Non existing port 'hblnk' of module 'vga_timing'
-    at line 70 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 70 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Warning: MISSING_PORT_CONNECTION: Instance 'dut' of module 'vga_timing' is missing port connection to interface 'vga_tim'
-    at line 62 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 62 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Warning: UNELABORATED_MODULE: Module 'work.glbl' is not elaborated
-    at line 6 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
-Performing mixed post full build step (VHDL - ELPC) [0 ms] ...
+    at line 6 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
+Performing mixed post full build step (VHDL - ELPC) [1 ms] ...
 Performing mixed post full build step (VHDL - US) [0 ms] ...
-Performing mixed post full build step (VHDL - USBD) [51 ms] ...
-Performing mixed post full build step (VLOG - RD) [8 ms] ...
+Performing mixed post full build step (VHDL - USBD) [50 ms] ...
+Performing mixed post full build step (VLOG - RD) [5 ms] ...
 Performing mixed post full build step (VLOG - FSC) [51 ms] ...
-Performing mixed post full build step (VLOG - EV) [51 ms] ...
-Performing mixed post full build step (VLOG - ELPC) [53 ms] ...
-Performing mixed post full build step (VLOG - US) [50 ms] ...
+Performing mixed post full build step (VLOG - EV) [50 ms] ...
+Performing mixed post full build step (VLOG - ELPC) [52 ms] ...
+Performing mixed post full build step (VLOG - US) [51 ms] ...
 *** Warning: INTERNAL_GENERATED_CLOCK: Clock signal 'clk_ss' is not an input port
-    at line 91 in /student/trys/Documents/Vivado/RobboZap/fpga/rtl/top_vga_basys3.sv [compile index 1]
+    at line 91 in /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv [compile index 1]
 *** Warning: INTERNAL_GENERATED_RESET: Reset signal 'file_open' is not an input port
-    at line 388 in /student/trys/Documents/Vivado/RobboZap/sim/common/tiff_writer.sv [compile index 4]
+    at line 388 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/tiff_writer.sv [compile index 4]
 *** Warning: MULTIPLE_CLOCKS_BLOCK: Procedural block driven by multiple clocks (go_delayed, go)
-    at line 395 in /student/trys/Documents/Vivado/RobboZap/sim/common/tiff_writer.sv [compile index 4]
+    at line 395 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/tiff_writer.sv [compile index 4]
 *** Warning: SIGNAL_NEVER_READ: Signal 'hs' is never read (connected to sub-instance output port)
-    at line 41 in /student/trys/Documents/Vivado/RobboZap/sim/top_fpga/top_fpga_tb.sv [compile index 5]
+    at line 41 in /home/student/lperczynski/Vivado/RoboZapGame/sim/top_fpga/top_fpga_tb.sv [compile index 5]
 *** Warning: SIGNAL_NEVER_READ: Signal 'hs' is never read (connected to sub-instance output port)
-    at line 40 in /student/trys/Documents/Vivado/RobboZap/sim/top_vga/top_vga_tb.sv [compile index 6]
+    at line 38 in /home/student/lperczynski/Vivado/RoboZapGame/sim/top_vga/top_vga_tb.sv [compile index 6]
 *** Warning: SIGNAL_NEVER_USED: Signal 'vcount' is never used
-    at line 31 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 31 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Warning: SIGNAL_NEVER_USED: Signal 'hcount' is never used
-    at line 31 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 31 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Warning: SIGNAL_NEVER_WRITTEN: Signal 'vsync' is never written
-    at line 32 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 32 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Warning: SIGNAL_NEVER_USED: Signal 'hsync' is never used
-    at line 32 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 32 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Warning: SIGNAL_NEVER_USED: Signal 'vblnk' is never used
-    at line 33 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 33 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Warning: SIGNAL_NEVER_USED: Signal 'hblnk' is never used
-    at line 33 in /student/trys/Documents/Vivado/RobboZap/sim/vga_timing/vga_timing_tb.sv [compile index 8]
+    at line 33 in /home/student/lperczynski/Vivado/RoboZapGame/sim/vga_timing/vga_timing_tb.sv [compile index 8]
 *** Warning: SIGNAL_NEVER_READ: Signal 'GSR' is never read
-    at line 14 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 14 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'GTS' is never read
-    at line 15 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 15 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'GWE' is never used
-    at line 16 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 16 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'PRLD' is never read
-    at line 17 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 17 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'GRESTORE' is never read
-    at line 18 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 18 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_WRITTEN: Signal 'p_up_tmp' is never written
-    at line 19 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 19 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'PLL_LOCKG' is never read
-    at line 20 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 20 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'PROGB_GLBL' is never used
-    at line 22 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 22 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'CCLKO_GLBL' is never used
-    at line 23 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 23 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'FCSBO_GLBL' is never used
-    at line 24 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 24 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'DO_GLBL' is never used
-    at line 25 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 25 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'DI_GLBL' is never used
-    at line 26 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 26 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_TDO_GLBL' is never used
-    at line 34 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 34 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_TCK_GLBL' is never used
-    at line 35 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 35 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_TDI_GLBL' is never used
-    at line 36 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 36 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_TMS_GLBL' is never used
-    at line 37 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 37 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_TRST_GLBL' is never used
-    at line 38 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 38 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_CAPTURE_GLBL' is never used
-    at line 40 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 40 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_RESET_GLBL' is never used
-    at line 41 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 41 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_SHIFT_GLBL' is never used
-    at line 42 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 42 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_UPDATE_GLBL' is never used
-    at line 43 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 43 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_USED: Signal 'JTAG_RUNTEST_GLBL' is never used
-    at line 44 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 44 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'JTAG_SEL1_GLBL' is never read
-    at line 46 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 46 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'JTAG_SEL2_GLBL' is never read
-    at line 47 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 47 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'JTAG_SEL3_GLBL' is never read
-    at line 48 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 48 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'JTAG_SEL4_GLBL' is never read
-    at line 49 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 49 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'JTAG_USER_TDO1_GLBL' is never read
-    at line 51 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 51 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'JTAG_USER_TDO2_GLBL' is never read
-    at line 52 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 52 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'JTAG_USER_TDO3_GLBL' is never read
-    at line 53 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
+    at line 53 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
 *** Warning: SIGNAL_NEVER_READ: Signal 'JTAG_USER_TDO4_GLBL' is never read
-    at line 54 in /student/trys/Documents/Vivado/RobboZap/sim/common/glbl.v [compile index 12]
-*** Done mixed mode extension build [866 ms] ***
-*** Total build time [1s.948ms] ***
+    at line 54 in /home/student/lperczynski/Vivado/RoboZapGame/sim/common/glbl.v [compile index 12]
+*** Done mixed mode extension build [841 ms] ***
+*** Total build time [1s.972ms] ***

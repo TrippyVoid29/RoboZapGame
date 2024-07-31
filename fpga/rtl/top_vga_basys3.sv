@@ -16,13 +16,17 @@
 
 module top_vga_basys3 (
     input  wire clk,
-    input  wire btnC,
+    input  wire btnC, btnU,
+    input  wire sw1,
+    input  wire RsRx,
+    output wire RsTx,
     output wire Vsync,
     output wire Hsync,
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
     output wire [3:0] vgaBlue,
-    output wire JA1
+    output wire JA1,
+    output wire JA2
 );
 
 
@@ -35,6 +39,9 @@ wire locked;
 wire pclk;
 wire pclk_mirror;
 
+wire rxmonitor;
+wire txmonitor;
+
 (* KEEP = "TRUE" *)
 (* ASYNC_REG = "TRUE" *)
 logic [7:0] safe_start = 0;
@@ -46,8 +53,8 @@ logic [7:0] safe_start = 0;
  * Signals assignments
  */
 
-assign JA1 = pclk_mirror;
-
+ assign JA1 = rxmonitor;
+ assign JA2 = txmonitor;
 
 /**
  * FPGA submodules placement
@@ -125,6 +132,21 @@ top_vga u_top_vga (
     .b(vgaBlue),
     .hs(Hsync),
     .vs(Vsync)
+);
+
+top_uart u_top_uart (
+    .clk,
+    .rst(btnC),
+    .btnU,
+    .rx(RsRx),
+    .loopback_enable(sw1),
+    //.tx_in,
+    .tx(RsTx),   
+    .rx_monitor(rxmonitor),
+    .tx_monitor(txmonitor)
+    //.tx_done_tick,
+    //.rx_out,
+    //.rx_done_tick
 );
 
 endmodule

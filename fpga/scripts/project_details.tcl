@@ -33,9 +33,17 @@ set xdc_files {
 set sv_files {
     ../rtl/vga_pkg.sv
     ../rtl/vga_timing.sv
+    ../rtl/vga_if.sv
     ../rtl/draw_bg.sv
+    ../rtl/draw_lever.sv
     ../rtl/top_vga.sv
     rtl/top_vga_basys3.sv
+    ../rtl/top_uart.sv
+    ../rtl/uart_files/uart_clock.sv
+    ../rtl/uart_files/uart_rx.sv
+    ../rtl/uart_files/uart_tx.sv
+    ../rtl/uart_files/uart.sv
+
 }
 
 # Specify Verilog design files location         -- EDIT

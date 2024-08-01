@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/fpga/build/vga_project.runs/synth_1'
+HD_PWD='/home/student/lperczynski/Vivado/RoboZapGame/fpga/build/vga_project.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

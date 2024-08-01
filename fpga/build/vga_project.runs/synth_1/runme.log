@@ -9,7 +9,6 @@
     ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 
 source top_vga_basys3.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2717.695 ; gain = 10.926 ; free physical = 3246 ; free virtual = 18101
 Command: synth_design -top top_vga_basys3 -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -17,11 +16,11 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 11312
+INFO: [Synth 8-7075] Helper process launched with PID 9237
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 1632 ; free virtual = 16487
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 7866 ; free virtual = 18197
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'top_vga_basys3' [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/fpga/rtl/top_vga_basys3.sv:17]
+INFO: [Synth 8-6157] synthesizing module 'top_vga_basys3' [/home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv:17]
 INFO: [Synth 8-6157] synthesizing module 'IBUF' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:55204]
 INFO: [Synth 8-6155] done synthesizing module 'IBUF' (1#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:55204]
 INFO: [Synth 8-6157] synthesizing module 'MMCME2_BASE' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:63630]
@@ -36,87 +35,176 @@ INFO: [Synth 8-6157] synthesizing module 'BUFGCE' [/home_local/Xilinx/Vivado/202
 INFO: [Synth 8-6155] done synthesizing module 'BUFGCE' (4#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1093]
 INFO: [Synth 8-6157] synthesizing module 'ODDR' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:74749]
 INFO: [Synth 8-6155] done synthesizing module 'ODDR' (5#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:74749]
-INFO: [Synth 8-6157] synthesizing module 'top_vga' [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/rtl/top_vga.sv:17]
-INFO: [Synth 8-6157] synthesizing module 'vga_timing' [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/rtl/vga_timing.sv:12]
-INFO: [Synth 8-6155] done synthesizing module 'vga_timing' (6#1) [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/rtl/vga_timing.sv:12]
-INFO: [Synth 8-6157] synthesizing module 'draw_bg' [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/rtl/draw_bg.sv:13]
-INFO: [Synth 8-6155] done synthesizing module 'draw_bg' (7#1) [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/rtl/draw_bg.sv:13]
-INFO: [Synth 8-6155] done synthesizing module 'top_vga' (8#1) [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/rtl/top_vga.sv:17]
-INFO: [Synth 8-6155] done synthesizing module 'top_vga_basys3' (9#1) [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/fpga/rtl/top_vga_basys3.sv:17]
+INFO: [Synth 8-6157] synthesizing module 'top_vga' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/top_vga.sv:17]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv:10]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (5#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv:10]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv:10]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (5#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv:10]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv:10]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (5#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv:10]
+INFO: [Synth 8-6157] synthesizing module 'vga_timing' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_timing.sv:13]
+WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_timing.sv:16]
+INFO: [Synth 8-6155] done synthesizing module 'vga_timing' (6#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_timing.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'draw_bg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_bg.sv:13]
+INFO: [Synth 8-6155] done synthesizing module 'draw_bg' (7#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_bg.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'draw_lever' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_lever.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'draw_lever' (8#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_lever.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'top_vga' (9#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/top_vga.sv:17]
+INFO: [Synth 8-6157] synthesizing module 'top_uart' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/top_uart.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'uart' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart.sv:4]
+INFO: [Synth 8-6155] done synthesizing module 'uart' (10#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'uart_clock' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_clock.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'uart_clock' (11#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_clock.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_rx.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (12#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_rx.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_tx.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (13#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_tx.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'top_uart' (14#1) [/home/student/lperczynski/Vivado/RoboZapGame/rtl/top_uart.sv:3]
+WARNING: [Synth 8-7071] port 'tx_in' of module 'top_uart' is unconnected for instance 'u_top_uart' [/home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv:137]
+WARNING: [Synth 8-7071] port 'tx_done_tick' of module 'top_uart' is unconnected for instance 'u_top_uart' [/home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv:137]
+WARNING: [Synth 8-7071] port 'rx_out' of module 'top_uart' is unconnected for instance 'u_top_uart' [/home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv:137]
+WARNING: [Synth 8-7071] port 'rx_done_tick' of module 'top_uart' is unconnected for instance 'u_top_uart' [/home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv:137]
+WARNING: [Synth 8-7023] instance 'u_top_uart' of module 'top_uart' has 12 connections declared, but only 8 given [/home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv:137]
+INFO: [Synth 8-6155] done synthesizing module 'top_vga_basys3' (15#1) [/home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv:17]
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[11] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[10] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[9] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[8] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[7] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[6] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[5] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[4] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[3] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[2] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[1] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[0] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[11] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[10] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[9] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[8] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[7] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[6] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[5] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[4] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[3] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[2] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[1] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[0] in module vga_timing is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 2616 ; free virtual = 17474
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 8495 ; free virtual = 18826
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 2611 ; free virtual = 17468
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 8555 ; free virtual = 18886
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 2611 ; free virtual = 17468
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 8555 ; free virtual = 18886
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 2603 ; free virtual = 17460
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 8547 ; free virtual = 18878
 INFO: [Netlist 29-17] Analyzing 3 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/fpga/constraints/top_vga_basys3.xdc]
-Finished Parsing XDC File [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/fpga/constraints/top_vga_basys3.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/fpga/constraints/top_vga_basys3.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_vga_basys3_propImpl.xdc].
+Parsing XDC File [/home/student/lperczynski/Vivado/RoboZapGame/fpga/constraints/top_vga_basys3.xdc]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [/home/student/lperczynski/Vivado/RoboZapGame/fpga/constraints/top_vga_basys3.xdc:14]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/student/lperczynski/Vivado/RoboZapGame/fpga/constraints/top_vga_basys3.xdc:14]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [/home/student/lperczynski/Vivado/RoboZapGame/fpga/constraints/top_vga_basys3.xdc:15]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/student/lperczynski/Vivado/RoboZapGame/fpga/constraints/top_vga_basys3.xdc:15]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/student/lperczynski/Vivado/RoboZapGame/fpga/constraints/top_vga_basys3.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/student/lperczynski/Vivado/RoboZapGame/fpga/constraints/top_vga_basys3.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_vga_basys3_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_vga_basys3_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 2517 ; free virtual = 17373
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.723 ; gain = 0.000 ; free physical = 8461 ; free virtual = 18792
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 2 instances were transformed.
   BUFGCE => BUFGCTRL: 1 instance 
   MMCME2_BASE => MMCME2_ADV: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 2517 ; free virtual = 17373
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2781.723 ; gain = 0.000 ; free physical = 8461 ; free virtual = 18792
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2577 ; free virtual = 17436
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 8534 ; free virtual = 18865
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2573 ; free virtual = 17432
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 8534 ; free virtual = 18865
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2583 ; free virtual = 17443
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 8534 ; free virtual = 18865
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'uart_rx'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'uart_tx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                               00 |                               00
+                   start |                               01 |                               01
+                    data |                               10 |                               10
+                    stop |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'uart_rx'
+WARNING: [Synth 8-327] inferring latch for variable 'rx_done_tick_next_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_rx.sv:63]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                               00 |                               00
+                   start |                               01 |                               01
+                    data |                               10 |                               10
+                    stop |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'uart_tx'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2576 ; free virtual = 17435
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 8525 ; free virtual = 18857
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   32 Bit       Adders := 3     
+	   2 Input   32 Bit       Adders := 4     
 	   2 Input   11 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 2     
+	   2 Input    3 Bit       Adders := 2     
 +---Registers : 
-	               12 Bit    Registers := 1     
-	               11 Bit    Registers := 4     
-	                8 Bit    Registers := 1     
-	                1 Bit    Registers := 8     
+	               32 Bit    Registers := 1     
+	               12 Bit    Registers := 2     
+	               11 Bit    Registers := 6     
+	                8 Bit    Registers := 3     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 18    
 +---Multipliers : 
 	              32x32  Multipliers := 2     
 +---Muxes : 
-	   2 Input   12 Bit        Muxes := 4     
+	   2 Input   32 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 5     
 	  11 Input   12 Bit        Muxes := 1     
 	   3 Input   12 Bit        Muxes := 2     
-	   2 Input   11 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 3     
+	   5 Input   11 Bit        Muxes := 1     
+	   4 Input    8 Bit        Muxes := 1     
 	   3 Input    4 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 4     
+	   4 Input    4 Bit        Muxes := 2     
+	   4 Input    3 Bit        Muxes := 2     
 	   3 Input    2 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 14    
+	   4 Input    1 Bit        Muxes := 12    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -157,8 +245,11 @@ DSP Report: operator u_top_vga/u_draw_bg/rgb_nxt3 is absorbed into DSP u_top_vga
 DSP Report: Generating DSP u_top_vga/u_draw_bg/rgb_nxt3, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator u_top_vga/u_draw_bg/rgb_nxt3 is absorbed into DSP u_top_vga/u_draw_bg/rgb_nxt3.
 DSP Report: operator u_top_vga/u_draw_bg/rgb_nxt3 is absorbed into DSP u_top_vga/u_draw_bg/rgb_nxt3.
+WARNING: [Synth 8-3332] Sequential element (u_top_uart/u_uart_rx/FSM_sequential_state_reg_reg[1]) is unused and will be removed from module top_vga_basys3.
+WARNING: [Synth 8-3332] Sequential element (u_top_uart/u_uart_rx/FSM_sequential_state_reg_reg[0]) is unused and will be removed from module top_vga_basys3.
+WARNING: [Synth 8-3332] Sequential element (u_top_uart/u_uart_rx/rx_done_tick_next_reg) is unused and will be removed from module top_vga_basys3.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2560 ; free virtual = 17423
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 8507 ; free virtual = 18843
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -186,19 +277,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2411 ; free virtual = 17274
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 8358 ; free virtual = 18694
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2485 ; free virtual = 17305
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 8355 ; free virtual = 18691
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2473 ; free virtual = 17292
+Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 8352 ; free virtual = 18688
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -215,93 +306,62 @@ Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2483 ; free virtual = 17304
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Renaming Generated Instances
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2483 ; free virtual = 17304
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Rebuilding User Hierarchy
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2483 ; free virtual = 17304
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Renaming Generated Ports
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2483 ; free virtual = 17304
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Handling Custom Attributes
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2483 ; free virtual = 17304
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Renaming Generated Nets
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2483 ; free virtual = 17304
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Writing Synthesis Report
----------------------------------------------------------------------------------
+ERROR: [Synth 8-5535] port <clk> has illegal connections. It is illegal to have a port connected to an input buffer and other components. The following are the port connections :
+Input Buffer:
+	Port I of instance clk_ibuf(IBUF) in module <top_vga_basys3>
+Other Components:
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[31] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[30] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[29] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[28] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[27] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[26] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[25] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[24] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[23] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[22] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[21] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[20] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[19] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[18] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[17] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[16] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[15] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[14] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[13] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[12] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[11] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[10] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[9] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[8] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[7] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[6] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[5] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[4] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[3] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[2] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[1] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/counter_reg[0] (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/n_reg_reg[2] (FDC) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/n_reg_reg[1] (FDC) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/n_reg_reg[0] (FDC) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart/rx_monitor_reg (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/FSM_sequential_state_reg_reg[0] (FDC) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/FSM_sequential_state_reg_reg[1] (FDC) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart/tx_reg (FDS) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart/tx_monitor_reg (FDR) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/s_reg_reg[0] (FDCE) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/s_reg_reg[1] (FDCE) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/s_reg_reg[2] (FDCE) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/s_reg_reg[3] (FDCE) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_tx/tx_reg_reg (FDP) in module top_vga_basys3
+	Port C of instance \u_top_uart/u_uart_clock/uclk_reg (FDR) in module top_vga_basys3
 
-Report BlackBoxes: 
-+-+--------------+----------+
-| |BlackBox name |Instances |
-+-+--------------+----------+
-+-+--------------+----------+
-
-Report Cell Usage: 
-+------+------------+------+
-|      |Cell        |Count |
-+------+------------+------+
-|1     |BUFGCE      |     1|
-|2     |BUFH        |     1|
-|3     |CARRY4      |    16|
-|4     |DSP48E1     |     6|
-|5     |LUT1        |     2|
-|6     |LUT2        |    78|
-|7     |LUT3        |    18|
-|8     |LUT4        |    19|
-|9     |LUT5        |    40|
-|10    |LUT6        |    54|
-|11    |MMCME2_BASE |     1|
-|12    |ODDR        |     1|
-|13    |FDCE        |    26|
-|14    |FDRE        |    21|
-|15    |IBUF        |     2|
-|16    |OBUF        |    15|
-+------+------------+------+
----------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2483 ; free virtual = 17304
----------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 2553 ; free virtual = 17374
-Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 2553 ; free virtual = 17374
-INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 2549 ; free virtual = 17370
-INFO: [Netlist 29-17] Analyzing 25 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 2582 ; free virtual = 17403
-INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 2 instances were transformed.
-  BUFGCE => BUFGCTRL: 1 instance 
-  MMCME2_BASE => MMCME2_ADV: 1 instance 
-
-Synth Design complete, checksum: ac7b54b
+ERROR: [Synth 8-2918] Failing due to illegal port connections
+ERROR: synthesis optimization failed, fatal insert_io failure.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 2781.723 ; gain = 0.000 ; free physical = 8352 ; free virtual = 18688
 INFO: [Common 17-83] Releasing license: Synthesis
-36 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
-synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:32 . Memory (MB): peak = 2781.727 ; gain = 64.031 ; free physical = 2791 ; free virtual = 17612
-INFO: [Common 17-1381] The checkpoint '/home/student/trys/Documents/Vivado/Lab_II_1/uec2_lab1_student/fpga/build/vga_project.runs/synth_1/top_vga_basys3.dcp' has been generated.
-INFO: [runtcl-4] Executing : report_utilization -file top_vga_basys3_utilization_synth.rpt -pb top_vga_basys3_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Mar 21 17:05:58 2024...
+52 Infos, 37 Warnings, 2 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Wed Jul 31 23:31:58 2024...

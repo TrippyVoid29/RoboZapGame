@@ -97,6 +97,7 @@ read_verilog -library xil_defaultlib -sv {
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_timing.sv
   /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv
 }
+read_verilog -library xil_defaultlib /home/student/lperczynski/Vivado/RoboZapGame/rtl/clk_wiz_0_clk_wiz.v
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

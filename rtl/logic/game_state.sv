@@ -12,8 +12,9 @@
 
 module game_state #(
 
-    logic uart_state = 8'b00000000, 
-    logic tableselected = 3'b000 // for now 8 tables
+    logic [7:0] uart_state = 8'b00000000, 
+    logic [2:0] tableselected = 3'b000, // for now 8 tables
+    logic current_player = 1'b0 // saved which player i am
 
     )(
     input wire clk,
@@ -32,15 +33,12 @@ module game_state #(
 
 //STATES
     localparam [2:0]
-    init = 3'b000, // wait for action, starts clock for table selector
-    start = 3'b001, // sends info who is player0 and player1, open menu on dispaly ---IS THIS STATE NEEDED?---
-    menu = 3'b011, // wait for start, table selector clock
-    setup = 3'b010, // send table with level data
-    player0 = 3'b110, // turn of player0
-    player1 = 3'b100, // turn of player1
-    gameend = 3'b101, // game end
-    newgame = 3'b111; // new game
-
+    init = 3'b000, // wait for action (button) = sends info who is player0 and player1, starts counter for table selector
+    menu = 3'b001, // open menu on dispaly, wait for button to start game = get value for table counter, send/receive table with level data
+    player0 = 3'b011, // turn of player0
+    player1 = 3'b010, // turn of player1
+    gameend = 3'b110, // game end
+    newgame = 3'b100; // new game
 
     // signal declaration
     logic [2:0] state_current, state_next;
@@ -52,6 +50,7 @@ module game_state #(
           state_current <= init;
           //add signals
           uart_state <= 8'b00000000;
+          current_player <= 1'b0;
        end
     else
        begin
@@ -63,13 +62,20 @@ module game_state #(
         begin
             state_next = state_current;
             //send info to uart
+            uart_state = 8'b10000000; //I'm player_0 u re player_1
             //add signals
             case(state_current)
                 init:
                     begin
-                        if(/*any button used TO DO*/0)
+                        if( buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1) //button pressed
                             begin
-                                state_next = start;
+                                state_next = menu;
+                                current_player = 1'b0;
+                            end
+                        else if(uart_rx == 8'b10000000) //uart signal recived
+                            begin
+                                current_player = 1'b1; // I'm player_1
+                                state_next = menu;
                             end
                         else
                             begin
@@ -77,17 +83,34 @@ module game_state #(
                                 tableselected = tableselected + 1;
                             end
                     end
-                start:
-                    begin
-                        uart_state = 8'b10000000; //to output for uart
-                        state_next = menu;
-                    end
                 menu:
                     begin
-                    end            
-                setup:
-                    begin
-                    end                
+                        if(current_player == 1'b0) //for player_0
+                            begin
+                            if(buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1) //any button pressed
+                                begin
+                                    uart_state [0] = tableselected [0]; //code information to output for uart 
+                                    uart_state [1] = tableselected [1];
+                                    uart_state [2] = tableselected [2];
+                                    state_next = player0;
+                                end
+                            else
+                                begin
+                                    state_next = menu;
+                                end
+                            end
+                        else if(current_player == 1'b1) //for player_1
+                            begin
+                                    tableselected [0] = uart_rx [0]; //code information to the memory
+                                    tableselected [1] = uart_rx [1];
+                                    tableselected [2] = uart_rx [2];
+                                    state_next = player0;
+                            end
+                        else    //added for safety
+                            begin
+                                state_next = menu;
+                            end
+                    end                    
                 player0:
                     begin
                     end 

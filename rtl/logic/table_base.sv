@@ -3,8 +3,6 @@
 module table_base #(
 
     )(
-    input wire clk,
-    input wire rst,
     input logic [2:0] tablecode,
 
     output reg [7:0] tablelethality

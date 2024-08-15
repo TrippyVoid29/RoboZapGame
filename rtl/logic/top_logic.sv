@@ -35,5 +35,13 @@ module top_logic (
         .rst
     );
 
+    decoder u_decoder(
+
+    );
+    
+    table_base u_table_base(
+        
+    );
+
 
 endmodule

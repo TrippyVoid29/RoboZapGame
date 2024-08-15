@@ -21,7 +21,8 @@ module game_state #(
     input wire rst,
     //input wire gtablein,
     input wire [7:0] uart_rx,
-    input logic [7:0] leverusedin, // which lever was used: 1- when unused, 0 - when used
+    input logic [7:0] lever_used_in, // which lever was used: 1- when unused, 0 - when used
+    input reg [7:0] table_lethality,
     input wire buttonC, //middle button
     input wire buttonU, //upper button
     input wire buttonD, //down button
@@ -29,7 +30,7 @@ module game_state #(
     input wire buttonR, //right button
 
     //output wire gtableout,
-    output logic [7:0] leverusedout,
+    output logic [7:0] lever_used_out,
     output wire [7:0] data_output,
     output logic [2:0] tablecode
     );

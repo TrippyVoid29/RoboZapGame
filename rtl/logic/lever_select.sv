@@ -2,7 +2,9 @@
 
 module lever_select #(
     
-    logic position [2:0]
+    logic [2:0] position ,
+    logic target
+    
 
     )(
     input wire clk,
@@ -11,13 +13,14 @@ module lever_select #(
     input wire buttonD, //down button
     input wire buttonL, //left button
     input wire buttonR, //right button
-    input reg [7:0] tablelethality,
-    input logic [7:0] leverusedin, 
+    input wire current_player,
+    input logic [7:0] lever_used_in, 
 
-    output logic [7:0] leverusedout,
-    output wire [3:0] leverselect
+    output wire [3:0] lever_select
 
     );
+
+    logic turn = ^lever_used_in;
 
     //STATES
     localparam [2:0]
@@ -66,26 +69,45 @@ module lever_select #(
                             begin
                                 state_next = down;
                             end
+                        else if(current_player == turn)
+                            begin
+                                state_next = locked;
+                            end
                         else
                             state_next = idle;
                     end
                 left:
                     begin
-
+                        position = position - 1;
+                        state_next = locked;
                     end
                 right:
                     begin
+                        position = position + 1;
+                        state_next = locked;
                     end
                 up:
                     begin
+                        target = 1'b1;
+                        state_next = locked;
                     end
                 down:
                     begin
+                        target = 1'b0;
+                        state_next = locked;
                     end
                 locked:
                     begin
-                        
+                        if(current_player != turn)
+                            begin
+                                state_next = idle;
+                            end
+                            else
+                                state_next = locked;
                     end
             endcase 
         end
+
+        assign lever_select = {position, target};
+
 endmodule

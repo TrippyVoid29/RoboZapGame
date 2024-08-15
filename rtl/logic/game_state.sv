@@ -19,16 +19,19 @@ module game_state #(
     )(
     input wire clk,
     input wire rst,
-    input wire gtablein,
+    //input wire gtablein,
     input wire [7:0] uart_rx,
-    input wire buttonC, //middle button RST?
+    input logic [7:0] leverusedin, // which lever was used: 1- when unused, 0 - when used
+    input wire buttonC, //middle button
     input wire buttonU, //upper button
     input wire buttonD, //down button
     input wire buttonL, //left button
     input wire buttonR, //right button
 
-    output wire gtableout,
-    output wire [7:0] data_output
+    //output wire gtableout,
+    output logic [7:0] leverusedout,
+    output wire [7:0] data_output,
+    output logic [2:0] tablecode
     );
 
 //STATES
@@ -48,6 +51,7 @@ module game_state #(
     if (rst)
        begin
           state_current <= init;
+          tablecode <= 3'b000;
           //add signals
           uart_state <= 8'b00000000;
           current_player <= 1'b0;
@@ -60,9 +64,8 @@ module game_state #(
     
     always @*
         begin
-            state_next = state_current;
             //send info to uart
-            uart_state = 8'b10000000; //I'm player_0 u re player_1
+            
             //add signals
             case(state_current)
                 init:
@@ -71,6 +74,7 @@ module game_state #(
                             begin
                                 state_next = menu;
                                 current_player = 1'b0;
+                                uart_state = 8'b10000000; //I'm player_0 u re player_1
                             end
                         else if(uart_rx == 8'b10000000) //uart signal recived
                             begin
@@ -110,6 +114,7 @@ module game_state #(
                             begin
                                 state_next = menu;
                             end
+                        tablecode [0:2] = tableselected [2:0]; // send info about lever pos to lever selected
                     end                    
                 player0:
                     begin

@@ -18,11 +18,21 @@ module top_logic (
     game_state u_game_state(
         .clk,
         .rst,
-        .gtablein,
+        .gtablein(),
         .uart_rx,
-    
-        .gtableout,
+        .buttonU(),
+        .buttonD(),
+        .buttonL(),
+        .buttonR(),
+        .buttonC(),
+        
+        .gtableout(),
         .data_output
+    );
+
+    lever_select u_lever_select(
+        .clk,
+        .rst
     );
 
 

@@ -2,7 +2,7 @@
 
 // microcode
 // 0000 0000
-// 0 - parity bit
+// 0 - parity bit <-- maybe lever_lethality?? 1 - damage, 0 - heal
 // 1,2,3 - turn
 // 4,5,6 - which switch
 // 7 - who was targeted
@@ -14,7 +14,9 @@ module game_state #(
 
     logic [7:0] uart_state = 8'b00000000, 
     logic [2:0] tableselected = 3'b000, // for now 8 tables
-    logic current_player = 1'b0 // saved which player i am
+    logic current_player = 1'b0, // saved which player i am
+    logic player0_health = 2'b10,
+    logic player1_health = 2'b10
 
     )(
     input wire clk,
@@ -119,9 +121,39 @@ module game_state #(
                     end                    
                 player0:
                     begin
+                        if(uart_state == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
+                            begin
+                                state_next = gameend;
+                            end
+                        else
+                            begin
+                            if(current_player == 1'b0)
+                                begin
+
+                                end 
+                            else if(current_player == 1'b1) 
+                                begin
+
+                                end
+                        end
                     end 
                 player1:
                     begin
+                        if(uart_state == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
+                            begin
+                                state_next = gameend;
+                            end
+                        else
+                            begin
+                            if(current_player == 1'b0)
+                                begin
+
+                                end 
+                            else if(current_player == 1'b1) 
+                                begin
+
+                                end
+                        end
                     end
                 gameend:
                     begin

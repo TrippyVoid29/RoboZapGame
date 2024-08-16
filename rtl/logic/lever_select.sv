@@ -14,9 +14,11 @@ module lever_select #(
     input wire buttonL, //left button
     input wire buttonR, //right button
     input wire current_player,
-    input logic [7:0] lever_used_in, 
+    input logic [7:0] lever_used_in,
+    input reg [7:0] table_lethality, 
 
-    output wire [3:0] lever_select
+    output wire [3:0] lever_select,
+    output logic lever_lethality
 
     );
 
@@ -79,20 +81,22 @@ module lever_select #(
                 left:
                     begin
                         position = position - 1;
-                        state_next = locked;
+                        state_next = idle;
                     end
                 right:
                     begin
                         position = position + 1;
-                        state_next = locked;
+                        state_next = idle;
                     end
                 up:
                     begin
+                        lever_lethality = table_lethality[position - 1];
                         target = 1'b1;
                         state_next = locked;
                     end
                 down:
                     begin
+                        lever_lethality = table_lethality[position - 1];
                         target = 1'b0;
                         state_next = locked;
                     end

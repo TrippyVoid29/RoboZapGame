@@ -18,7 +18,7 @@ module top_logic (
     game_state u_game_state(
         .clk,
         .rst,
-        .gtablein(),
+        //.gtablein(),
         .uart_rx,
         .buttonU(),
         .buttonD(),
@@ -26,7 +26,7 @@ module top_logic (
         .buttonR(),
         .buttonC(),
         
-        .gtableout(),
+        //.gtableout(),
         .data_output
     );
 

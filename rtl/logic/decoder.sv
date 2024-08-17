@@ -13,4 +13,6 @@ always @(*) begin
     lever_used_out = 8'b00000001 << temporary_position; // Przesunięcie bitu o ilość pozycji równą input_val
 end
 
+//gej
+
 endmodule

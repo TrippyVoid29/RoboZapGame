@@ -3,8 +3,9 @@
 module lever_select #(
     
     logic [2:0] position ,
-    logic target
-    
+    logic target,
+    logic turn_done_flag,
+    logic lever_lethality
 
     )(
     input wire clk,
@@ -17,8 +18,8 @@ module lever_select #(
     input logic [7:0] lever_used_in,
     input reg [7:0] table_lethality, 
 
-    output wire [3:0] lever_select,
-    output logic lever_lethality
+    output wire [4:0] lever_select,
+    output wire turn_done
 
     );
 
@@ -49,7 +50,6 @@ module lever_select #(
 
     always @*
         begin
-            //send info to uart
             
             //add signals
             case(state_current)
@@ -90,18 +90,21 @@ module lever_select #(
                     end
                 up:
                     begin
-                        lever_lethality = table_lethality[position - 1];
+                        lever_lethality = table_lethality[position];
                         target = 1'b1;
                         state_next = locked;
+                        turn_done_flag = 1'b1;
                     end
                 down:
                     begin
-                        lever_lethality = table_lethality[position - 1];
+                        lever_lethality = table_lethality[position];
                         target = 1'b0;
                         state_next = locked;
+                        turn_done_flag = 1'b1;
                     end
                 locked:
                     begin
+                        turn_done_flag = 1'b0;
                         if(current_player != turn)
                             begin
                                 state_next = idle;
@@ -112,6 +115,6 @@ module lever_select #(
             endcase 
         end
 
-        assign lever_select = {position, target};
-
+        assign lever_select = {lever_lethality, position, target};
+        assign turn_done = turn_done_flag;
 endmodule

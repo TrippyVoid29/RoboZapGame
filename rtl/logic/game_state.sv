@@ -2,8 +2,8 @@
 
 // microcode
 // 0000 0000
-// 0 - parity bit <-- maybe lever_lethality?? 1 - damage, 0 - heal
-// 1,2,3 - turn
+// 0,1,2 - turn
+// 3 - lever lethality
 // 4,5,6 - which switch
 // 7 - who was targeted
 
@@ -12,37 +12,41 @@
 
 module game_state #(
 
-    logic [7:0] uart_state = 8'b00000000, 
+    logic [7:0] uart_state = 8'b00000000, //for updating changes in uart
     logic [2:0] tableselected = 3'b000, // for now 8 tables
     logic current_player = 1'b0, // saved which player i am
-    logic player0_health = 2'b10,
-    logic player1_health = 2'b10
+    logic [1:0] player0_health = 2'b10,
+    logic [1:0] player1_health = 2'b10,
+    logic [2:0] turn = 3'b000
 
     )(
     input wire clk,
     input wire rst,
     //input wire gtablein,
-    input wire [7:0] uart_rx,
-    input logic [7:0] lever_used_in, // which lever was used: 1- when unused, 0 - when used
-    input reg [7:0] table_lethality,
+    input wire [7:0] uart_rx,        //info received from uart
+    //input logic [7:0] lever_used_in, // which lever was used: 1- when unused, 0 - when used
+    //input reg [7:0] table_lethality,
+    input wire [4:0] lever_select,
     input wire buttonC, //middle button
     input wire buttonU, //upper button
     input wire buttonD, //down button
     input wire buttonL, //left button
     input wire buttonR, //right button
+    input wire turn_done, // if turn was done 1-Y, 0-N
 
     //output wire gtableout,
+    output logic who_won, //info for display (1 - I won)
     output logic [7:0] lever_used_out,
-    output wire [7:0] data_output,
-    output logic [2:0] tablecode
+    output wire [7:0] data_output, //send info to uart
+    output logic [2:0] tablecode   //code for table selector
     );
 
 //STATES
     localparam [2:0]
     init = 3'b000, // wait for action (button) = sends info who is player0 and player1, starts counter for table selector
     menu = 3'b001, // open menu on dispaly, wait for button to start game = get value for table counter, send/receive table with level data
-    player0 = 3'b011, // turn of player0
-    player1 = 3'b010, // turn of player1
+    player0 = 3'b011, // turn of player0, even turns
+    player1 = 3'b010, // turn of player1, odd turns
     gameend = 3'b110, // game end
     newgame = 3'b100; // new game
 
@@ -62,6 +66,9 @@ module game_state #(
     else
        begin
           state_current <= state_next;
+          uart_state <= uart_state;
+          current_player <= current_player;
+          tablecode <= tablecode;
           //add signals
        end
     
@@ -129,37 +136,174 @@ module game_state #(
                             begin
                             if(current_player == 1'b0)
                                 begin
+                                    if(turn_done == 1'b1)
+                                        begin
+                                            turn = turn + 1;// increment turn
+                                            uart_state [0:7] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
 
+                                            if(uart_state[3] == 1'b0 && uart_state[7] == 1'b0)
+                                                begin
+                                                    player0_health = player0_health + 1;
+                                                end
+                                            else if(uart_state[3] == 1'b1 && uart_state[7] == 1'b0)
+                                                begin
+                                                    player0_health = player0_health - 1;
+                                                end
+                                            else if(uart_state[3] == 1'b0 && uart_state[7] == 1'b1)
+                                                begin
+                                                    player1_health = player1_health + 1;
+                                                end
+                                            else if(uart_state[3] == 1'b1 && uart_state[7] == 1'b1)
+                                                begin
+                                                    player1_health = player1_health - 1;
+                                                end
+                                            
+                                            state_next = player1;
+                                        end
+                                    else
+                                        begin
+                                            state_next = player0;
+                                        end
                                 end 
                             else if(current_player == 1'b1) 
                                 begin
+                                    if(uart_rx[0:2] > turn)
+                                        begin
+                                            turn = uart_rx[0:2]; // update turn on this device
+                                            lever_used_out[uart_rx[4:6]] = 1'b0; //update which lever was pulled for lever_select module
 
+                                            if(uart_rx[3] == 1'b0 && uart_rx[7] == 1'b0)
+                                                begin
+                                                    player0_health = player0_health + 1;
+                                                end
+                                            else if(uart_rx[3] == 1'b1 && uart_rx[7] == 1'b0)
+                                                begin
+                                                    player0_health = player0_health - 1;
+                                                end
+                                            else if(uart_rx[3] == 1'b0 && uart_rx[7] == 1'b1)
+                                                begin
+                                                    player1_health = player1_health + 1;
+                                                end
+                                            else if(uart_rx[3] == 1'b1 && uart_rx[7] == 1'b1)
+                                                begin
+                                                    player1_health = player1_health - 1;
+                                                end
+                                            
+                                            
+                                            state_next = player1;
+                                        end
+                                    else
+                                        begin
+                                            state_next = player0;
+                                        end
                                 end
                         end
                     end 
                 player1:
-                    begin
-                        if(uart_state == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
+                begin
+                    if(uart_state == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
+                        begin
+                            state_next = gameend;
+                        end
+                    else
+                        begin
+                        if(current_player == 1'b1)
                             begin
-                                state_next = gameend;
+                                if(turn_done == 1'b1)
+                                    begin
+                                        turn = turn + 1;// increment turn
+                                        uart_state [0:7] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
+
+                                        if(uart_state[3] == 1'b0 && uart_state[7] == 1'b0)
+                                            begin
+                                                player0_health = player0_health + 1;
+                                            end
+                                        else if(uart_state[3] == 1'b1 && uart_state[7] == 1'b0)
+                                            begin
+                                                player0_health = player0_health - 1;
+                                            end
+                                        else if(uart_state[3] == 1'b0 && uart_state[7] == 1'b1)
+                                            begin
+                                                player1_health = player1_health + 1;
+                                            end
+                                        else if(uart_state[3] == 1'b1 && uart_state[7] == 1'b1)
+                                            begin
+                                                player1_health = player1_health - 1;
+                                            end
+                                        
+                                        state_next = player1;
+                                    end
+                                else
+                                    begin
+                                        state_next = player0;
+                                    end
+                            end 
+                        else if(current_player == 1'b0) 
+                            begin
+                                if(uart_rx[0:2] > turn)
+                                    begin
+                                        turn = uart_rx[0:2]; // update turn on this device
+                                        lever_used_out[uart_rx[4:6]] = 1'b0; //update which lever was pulled for lever_select module
+
+                                        if(uart_rx[3] == 1'b0 && uart_rx[7] == 1'b0)
+                                            begin
+                                                player0_health = player0_health + 1;
+                                            end
+                                        else if(uart_rx[3] == 1'b1 && uart_rx[7] == 1'b0)
+                                            begin
+                                                player0_health = player0_health - 1;
+                                            end
+                                        else if(uart_rx[3] == 1'b0 && uart_rx[7] == 1'b1)
+                                            begin
+                                                player1_health = player1_health + 1;
+                                            end
+                                        else if(uart_rx[3] == 1'b1 && uart_rx[7] == 1'b1)
+                                            begin
+                                                player1_health = player1_health - 1;
+                                            end
+                                        
+                                        
+                                        state_next = player1;
+                                    end
+                                else
+                                    begin
+                                        state_next = player0;
+                                    end
+                            end
+                    end
+                end
+                gameend:
+                    begin
+                        if(buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1)
+                            begin
+                                state_next = newgame;
                             end
                         else
                             begin
-                            if(current_player == 1'b0)
-                                begin
+                                state_next = gameend;
+                            end
 
-                                end 
-                            else if(current_player == 1'b1) 
-                                begin
 
-                                end
-                        end
-                    end
-                gameend:
-                    begin
+                        if(current_player == 1'b0 && player0_health == 1'b00)
+                            begin
+                                who_won = 1'b0;
+                            end
+                        else if(current_player == 1'b0 && player1_health == 1'b00)
+                            begin
+                                who_won = 1'b1;
+                            end
+                        else if(current_player == 1'b1 && player0_health == 1'b00)
+                            begin
+                                who_won = 1'b1;
+                            end
+                        else if(current_player == 1'b1 && player1_health == 1'b00)
+                            begin
+                                who_won = 1'b0;
+                            end
                     end 
                 newgame:
                     begin
+                        //reset?
                     end
             endcase
         end

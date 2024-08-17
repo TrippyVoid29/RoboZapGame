@@ -87,6 +87,10 @@ read_verilog -library xil_defaultlib -sv {
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_pkg.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_bg.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_lever.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/table_base.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/top_logic.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/top_uart.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/top_vga.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart.sv

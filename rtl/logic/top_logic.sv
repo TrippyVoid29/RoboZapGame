@@ -59,11 +59,6 @@ module top_logic (
         .turn_done(turn_done)
         
     );
-
-    decoder u_decoder(
-        .lever_select(lever_select),
-        .lever_used_out()
-    );
     
     table_base u_table_base(
         .tablecode(tablecode),

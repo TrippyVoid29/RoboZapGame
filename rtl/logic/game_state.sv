@@ -48,14 +48,14 @@ module game_state #(
     newgame = 3'b100; // new game
 
     // signal declaration
-    logic [2:0] state_current, state_next;
+    logic [2:0] state_current, state_next = init;
 
     // body
     always @(posedge clk, posedge rst)
     if (rst)
        begin
           state_current <= init;
-          tablecode <= 3'b000;
+          tablecode <= 3'b000;  //signals reset in rst cause critical warnings
           //add signals
           uart_state <= 8'b00000000;
           current_player <= 1'b0;

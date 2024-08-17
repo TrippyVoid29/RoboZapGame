@@ -99,27 +99,29 @@ top_vga u_top_vga (
     .vs(Vsync)
 );
 
+wire [7:0] uart_tx, uart_rx;
+
 top_uart u_top_uart (
     .clk(clk100),
     .rst(buttonC),
     .btnU(buttonU),
     .rx(RsRx),
     .loopback_enable(sw1),
-    //.tx_in,
-    .tx(RsTx),   
+    .tx(RsTx),
+    .tx_in(uart_tx),   
     .rx_monitor(rxmonitor),
-    .tx_monitor(txmonitor)
-    //.tx_done_tick,
-    //.rx_out,
-    //.rx_done_tick
+    .tx_monitor(txmonitor),
+    .tx_done_tick(),
+    .rx_out(uart_rx),
+    .rx_done_tick()
 );
 
 top_logic u_top_logic (
-    .clk,
-    .data_output(), //trasmitter uart
+    .clk(clk100),
+    .data_output(uart_tx), //trasmitter uart
     .rst(buttonC),
-    .uart_rx(), //receiver uart
-    .who_won(),
+    .uart_rx(uart_rx), //receiver uart
+    .who_won(), //connect to vga
     .buttonC,
     .buttonD,
     .buttonL,

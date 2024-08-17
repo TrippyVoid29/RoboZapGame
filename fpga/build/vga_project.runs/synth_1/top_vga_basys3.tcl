@@ -84,21 +84,21 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib -sv {
-  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_pkg.sv
-  /home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_bg.sv
-  /home/student/lperczynski/Vivado/RoboZapGame/rtl/draw_lever.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_pkg.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_bg.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_lever.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/table_base.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/top_logic.sv
-  /home/student/lperczynski/Vivado/RoboZapGame/rtl/top_uart.sv
-  /home/student/lperczynski/Vivado/RoboZapGame/rtl/top_vga.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/top_uart.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/top_vga.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_clock.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_rx.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_tx.sv
-  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_if.sv
-  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_timing.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_if.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_timing.sv
   /home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv
 }
 read_verilog -library xil_defaultlib /home/student/lperczynski/Vivado/RoboZapGame/rtl/clk_wiz_0_clk_wiz.v

@@ -16,7 +16,7 @@
 
 module top_vga_basys3 (
     input  wire clk,
-    input  wire btnC, btnU,
+    input  wire buttonC, buttonU, buttonD, buttonL, buttonR,
     input  wire sw1,
     input  wire RsRx,
     output wire RsTx,
@@ -91,7 +91,7 @@ ODDR pclk_oddr (
 
 top_vga u_top_vga (
     .clk(pclk),
-    .rst(btnC),
+    .rst(buttonC),
     .r(vgaRed),
     .g(vgaGreen),
     .b(vgaBlue),
@@ -101,8 +101,8 @@ top_vga u_top_vga (
 
 top_uart u_top_uart (
     .clk(clk100),
-    .rst(btnC),
-    .btnU,
+    .rst(buttonC),
+    .btnU(buttonU),
     .rx(RsRx),
     .loopback_enable(sw1),
     //.tx_in,
@@ -112,6 +112,19 @@ top_uart u_top_uart (
     //.tx_done_tick,
     //.rx_out,
     //.rx_done_tick
+);
+
+top_logic u_top_logic (
+    .clk,
+    .data_output(), //trasmitter uart
+    .rst(buttonC),
+    .uart_rx(), //receiver uart
+    .who_won(),
+    .buttonC,
+    .buttonD,
+    .buttonL,
+    .buttonR,
+    .buttonU
 );
 
 endmodule

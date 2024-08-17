@@ -1,11 +1,6 @@
 `timescale 1 ns / 1 ps
 
 module lever_select #(
-    
-    logic [2:0] position ,
-    logic target,
-    logic turn_done_flag,
-    logic lever_lethality
 
     )(
     input wire clk,
@@ -20,10 +15,15 @@ module lever_select #(
 
     output wire [4:0] lever_select,
     output wire turn_done
+    
 
     );
 
     logic turn = ^lever_used_in;
+    logic lever_lethality;
+    logic [2:0] position;
+    logic target;
+    logic turn_done_flag;
 
     //STATES
     localparam [2:0]

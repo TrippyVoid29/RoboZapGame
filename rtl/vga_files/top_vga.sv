@@ -32,6 +32,8 @@ module top_vga (
 // VGA signals from timing
 vga_if vga_tim();
 vga_if vga_bg();
+vga_if vga_stats();
+vga_if vga_highlight();
 vga_if vga_lever();
 
 /**
@@ -62,13 +64,31 @@ draw_bg u_draw_bg (
     .vga_bg_out(vga_bg)
 );
 
-draw_lever u_draw_lever (
+draw_stats u_draw_stats (
     .clk,
     .rst,
 
-    .vga_lever_in(vga_bg),
+    .vga_stats_in(vga_bg),
+    .vga_stats_out(vga_stats)
+);
+
+draw_highlight u_draw_highlight (
+    .clk,
+    .rst,
+
+    .vga_highlight_in(vga_stats),
+    .vga_highlight_out(vga_highlight)
+);
+
+draw_lever u_draw_lever (
+    .clk,
+    .rst,
+    .lever_used_in(8'b01111111),
+
+    .vga_lever_in(vga_highlight),
     .vga_lever_out(vga_lever)
 
 );
+
 
 endmodule

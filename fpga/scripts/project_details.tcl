@@ -36,6 +36,8 @@ set sv_files {
     ../rtl/vga_files/vga_if.sv
     ../rtl/vga_files/draw_bg.sv
     ../rtl/vga_files/draw_lever.sv
+    ../rtl/vga_files/draw_stats.sv
+    ../rtl/vga_files/draw_highlight.sv
     ../rtl/vga_files/top_vga.sv
     rtl/top_vga_basys3.sv
     ../rtl/uart_files/top_uart.sv

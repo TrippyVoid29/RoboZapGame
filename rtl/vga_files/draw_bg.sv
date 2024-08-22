@@ -65,35 +65,8 @@ always_comb begin : bg_comb_blk
         else if (vga_bg_in.hcount == HOR_PIXELS - 1)   // - right edge:
             rgb_nxt = 12'h0_0_f;                // - - make a blue line.
 
-        // Add your code here.
-        // T
-        else if (vga_bg_in.hcount >= 100 && vga_bg_in.hcount <= 400 && vga_bg_in.vcount >= 100 && vga_bg_in.vcount <= 150)
-            rgb_nxt = 12'h5_5_5;          
-        else if (vga_bg_in.hcount >= 225 && vga_bg_in.hcount <= 275 && vga_bg_in.vcount >= 150 && vga_bg_in.vcount <= 400)
-            rgb_nxt = 12'h5_5_5;
-        // R
-        else if (vga_bg_in.hcount >= 500 && vga_bg_in.hcount <= 650 && vga_bg_in.vcount >= 100 && vga_bg_in.vcount <= 150)
-            rgb_nxt = 12'h9_2_5;          
-        else if (vga_bg_in.hcount >= 500 && vga_bg_in.hcount <= 550 && vga_bg_in.vcount >= 150 && vga_bg_in.vcount <= 400)
-            rgb_nxt = 12'h9_2_5;
-        else if (vga_bg_in.hcount >= 550 && vga_bg_in.hcount <= 650 && vga_bg_in.vcount >= 250 && vga_bg_in.vcount <= 300)
-            rgb_nxt = 12'h9_2_5;
-        else if (vga_bg_in.hcount >= 650 && vga_bg_in.hcount <= 700 && vga_bg_in.vcount >= 150 && vga_bg_in.vcount <= 250)
-            rgb_nxt = 12'h9_2_5;
-        else if (vga_bg_in.hcount >= 625 && vga_bg_in.hcount <= 675 && vga_bg_in.vcount >= 300 && vga_bg_in.vcount <= 350)
-            rgb_nxt = 12'h9_2_5;
-        else if (vga_bg_in.hcount >= 650 && vga_bg_in.hcount <= 700 && vga_bg_in.vcount >= 350 && vga_bg_in.vcount <= 400)
-            rgb_nxt = 12'h9_2_5;
-
-        //circle
-        else if ((400 - vga_bg_in.hcount)*(400 - vga_bg_in.hcount) + (400 - vga_bg_in.vcount)*(400 - vga_bg_in.vcount) <= 900)
-            rgb_nxt = 12'h5_1_5;
-        else if ((400 - vga_bg_in.hcount)*(400 - vga_bg_in.hcount) + (400 - vga_bg_in.vcount)*(400 - vga_bg_in.vcount) <= 1600)
-            rgb_nxt = 12'h1_7_5;
-
-
         else                          // The rest of active display pixels:
-            rgb_nxt = 12'h8_8_8;            // - fill with gray.
+            rgb_nxt = 12'h0_0_8;           // - fill with gray.
     end
 end
 endmodule

@@ -17,5 +17,6 @@ sv work ../../rtl/vga_files/vga_pkg.sv \
         ../../rtl/vga_files/top_vga.sv \
         ../../rtl/vga_files/draw_stats.sv \
         ../../rtl/vga_files/draw_highlight.sv \
+        ../../rtl/vga_files/draw_start_bg.sv \
         ../common/tiff_writer.sv \
         top_vga_tb.sv

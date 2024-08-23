@@ -49,7 +49,6 @@ end
 always_comb begin : lever_comb_blk
 //------------------------INTERFACE_ELEMENTS----------------------------
 
-parameter highlight_range = 3;
 parameter distance = width + 25;
 
 // Colors

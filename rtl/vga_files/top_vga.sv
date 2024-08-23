@@ -35,14 +35,15 @@ vga_if vga_bg();
 vga_if vga_stats();
 vga_if vga_highlight();
 vga_if vga_lever();
+vga_if vga_start_bg();
 
 /**
  * Signals assignments
  */
 
-assign vs = vga_lever.vsync;
-assign hs = vga_lever.hsync;
-assign {r,g,b} = vga_lever.rgb;
+assign vs = vga_start_bg.vsync;
+assign hs = vga_start_bg.hsync;
+assign {r,g,b} = vga_start_bg.rgb;
 
 
 /**
@@ -68,7 +69,7 @@ draw_stats u_draw_stats (
     .clk,
     .rst,
     .current_player(1'b1),
-    .player0_health(2'b11),
+    .player0_health(2'b10),
     .player1_health(2'b01),
 
     .vga_stats_in(vga_bg),
@@ -91,8 +92,15 @@ draw_lever u_draw_lever (
 
     .vga_lever_in(vga_highlight),
     .vga_lever_out(vga_lever)
-
 );
 
+draw_start_bg u_draw_start_bg (
+    .clk,
+    .rst,
+    .states(3'b010),
+
+    .vga_start_bg_in(vga_lever),
+    .vga_start_bg_out(vga_start_bg)
+);
 
 endmodule

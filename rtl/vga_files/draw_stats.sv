@@ -42,6 +42,7 @@ import vga_pkg::*;
 
 logic [11:0] rgb_nxt;
 logic [1:0] my_health;
+logic [1:0] enemy_health;
 
 /**
  * Internal logic
@@ -56,6 +57,8 @@ always_ff @(posedge clk) begin : bg_ff_blk
         vga_stats_out.hsync  <= '0;
         vga_stats_out.hblnk  <= '0;
         vga_stats_out.rgb    <= '0;
+        my_health            <= 2'b10;
+        enemy_health         <= 2'b10;
     end else begin
         vga_stats_out.vcount <= vga_stats_in.vcount;
         vga_stats_out.vsync  <= vga_stats_in.vsync;
@@ -69,19 +72,22 @@ always_ff @(posedge clk) begin : bg_ff_blk
         end else begin
             vga_stats_out.rgb    <= vga_stats_in.rgb;
         end
+            // ---------------- HEALTH_CALCULATION ---------------------------
+        if(current_player == 1'b0)
+            begin
+                my_health [1:0] <= player0_health [1:0];
+                enemy_health [1:0] <= player1_health [1:0];
+            end
+        else
+            begin
+                my_health [1:0] <= player1_health [1:0];
+                enemy_health [1:0] <= player0_health [1:0];
+            end
     end
+
 end
 
 always_comb begin : bg_comb_blk
-// ---------------- MY_HEALTH_CALCULATION ---------------------------
-    if(current_player == 1'b0)
-        begin
-            my_health [1:0] = player0_health [1:0];
-        end
-    else
-        begin
-            my_health [1:0] = player1_health [1:0];
-        end
 
 //------------------- HEALTH_BAR ------------------------------------
     // 1_HP
@@ -132,6 +138,57 @@ always_comb begin : bg_comb_blk
             else
                 begin
                     rgb_nxt = 12'h3_0_0;
+                end
+        end
+//-------------------- HEALTH ENEMY ---------------------------
+    // 1_HP
+    else  if (vga_stats_out.hcount >= (310) && 
+        vga_stats_out.hcount <= (330) && 
+        vga_stats_out.vcount >= (170) && 
+        vga_stats_out.vcount <= 200)       
+
+        begin
+            if(enemy_health >= 2'b01)
+                begin
+                    rgb_nxt = 12'ha_a_0;
+                end
+            else
+                begin
+                    rgb_nxt = 12'h3_3_0;
+                end
+        end
+
+    // 2_HP
+    else if (vga_stats_out.hcount >= (390) && 
+        vga_stats_out.hcount <= (410) && 
+        vga_stats_out.vcount >= (170) && 
+        vga_stats_out.vcount <= 200) 
+
+        begin
+            if(enemy_health >= 2'b10)
+                begin
+                    rgb_nxt = 12'ha_a_0;
+                end
+            else
+                begin
+                    rgb_nxt = 12'h3_3_0;
+                end
+        end
+
+    // 3_HP
+    else if (vga_stats_out.hcount >= (470) && 
+        vga_stats_out.hcount <= (490) && 
+        vga_stats_out.vcount >= (170) && 
+        vga_stats_out.vcount <= 200)
+
+        begin
+            if(enemy_health == 2'b11)
+                begin
+                    rgb_nxt = 12'ha_a_0;
+                end
+            else
+                begin
+                    rgb_nxt = 12'h3_3_0;
                 end
         end
 //------------------- BATTERY_BOX ------------------------------------

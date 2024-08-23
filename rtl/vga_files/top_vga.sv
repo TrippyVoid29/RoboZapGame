@@ -67,6 +67,9 @@ draw_bg u_draw_bg (
 draw_stats u_draw_stats (
     .clk,
     .rst,
+    .current_player(1'b1),
+    .player0_health(2'b11),
+    .player1_health(2'b01),
 
     .vga_stats_in(vga_bg),
     .vga_stats_out(vga_stats)
@@ -75,6 +78,7 @@ draw_stats u_draw_stats (
 draw_highlight u_draw_highlight (
     .clk,
     .rst,
+    .position(3'b101),
 
     .vga_highlight_in(vga_stats),
     .vga_highlight_out(vga_highlight)
@@ -83,7 +87,7 @@ draw_highlight u_draw_highlight (
 draw_lever u_draw_lever (
     .clk,
     .rst,
-    .lever_used_in(8'b10101010),
+    .lever_used_in(8'b11110000),
 
     .vga_lever_in(vga_highlight),
     .vga_lever_out(vga_lever)

@@ -7,12 +7,14 @@
 module draw_highlight #(
 
     parameter lever_posit_x = 100,
-    parameter lever_posit_y = 100,
+    parameter lever_posit_y = 500,
     parameter width = 50,
-    parameter height = 50
+    parameter height = 50,
+    parameter distance = width + 25
 )(
     input  logic clk,
     input  logic rst,
+    input logic [2:0] position,
 
     vga_if.out vga_highlight_out,
     vga_if.in vga_highlight_in
@@ -20,7 +22,6 @@ module draw_highlight #(
 
 import vga_pkg::*;
 
-logic [2:0] position = 0;
 logic [11:0] rgb_nxt;
 
 always_ff @(posedge clk) begin : rect_ff_blk
@@ -52,14 +53,18 @@ always_comb begin : lever_comb_blk
 //------------------------INTERFACE_ELEMENTS----------------------------
 
 parameter highlight_range = 3;
-parameter highlight_color = 12'h0_6_0; //GREEN
+parameter highlight_color = 12'h0_9_0; //GREEN
 
         // --Lever_Highlight--
-        if (vga_highlight_out.hcount >= ((lever_posit_x * (position + 1)) - highlight_range) && vga_highlight_out.hcount <= (highlight_range + width + lever_posit_x * (position + 1)) && vga_highlight_out.vcount >= (lever_posit_y - highlight_range) && vga_highlight_out.vcount <= (height + lever_posit_y + highlight_range))              
+        if (vga_highlight_out.hcount >= (lever_posit_x - highlight_range) + (position * distance) && 
+            vga_highlight_out.hcount <= (lever_posit_x + height + highlight_range) + (position * distance) && 
+            vga_highlight_out.vcount >= (lever_posit_y - highlight_range) && 
+            vga_highlight_out.vcount <= (lever_posit_y + height + highlight_range))              
+            
             rgb_nxt = highlight_color;
         else
             rgb_nxt = 0;
-   
+
 end
 
 endmodule

@@ -86,7 +86,9 @@ OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib -sv {
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_pkg.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_bg.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_highlight.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_lever.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_stats.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/table_base.sv

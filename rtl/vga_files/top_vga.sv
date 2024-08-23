@@ -83,7 +83,7 @@ draw_highlight u_draw_highlight (
 draw_lever u_draw_lever (
     .clk,
     .rst,
-    .lever_used_in(8'b01111111),
+    .lever_used_in(8'b10101010),
 
     .vga_lever_in(vga_highlight),
     .vga_lever_out(vga_lever)

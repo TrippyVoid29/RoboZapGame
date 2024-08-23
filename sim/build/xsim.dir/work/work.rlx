@@ -2,12 +2,13 @@
 2020.2
 Oct 19 2021
 02:56:52
-/home/student/trys/Documents/Vivado/Lab_II_2/uec2_lab1_student/rtl/draw_rect.sv,1712242276,systemVerilog,,/home/student/trys/Documents/Vivado/Lab_II_2/uec2_lab1_student/rtl/top_vga.sv,,draw_rect,,unisims_ver,,,,,,
-/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/draw_bg.sv,1721561069,systemVerilog,,/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/draw_lever.sv,,draw_bg,,unisims_ver,,,,,,
-/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/draw_lever.sv,1721561069,systemVerilog,,/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/top_vga.sv,,draw_lever,,unisims_ver,,,,,,
-/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/top_vga.sv,1721561069,systemVerilog,,/home/student/trys/Documents/Vivado/Test/RoboZapGame/sim/common/tiff_writer.sv,,top_vga,,unisims_ver,,,,,,
-/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/vga_if.sv,1721561069,systemVerilog,,/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/draw_bg.sv,,vga_if,,unisims_ver,,,,,,
-/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/vga_pkg.sv,1721561069,systemVerilog,/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/draw_bg.sv;/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/draw_lever.sv;/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/vga_timing.sv,/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/vga_timing.sv,,vga_pkg,,unisims_ver,,,,,,
-/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/vga_timing.sv,1721561069,systemVerilog,,/home/student/trys/Documents/Vivado/Test/RoboZapGame/rtl/vga_if.sv,,vga_timing,,unisims_ver,,,,,,
-/home/student/trys/Documents/Vivado/Test/RoboZapGame/sim/common/tiff_writer.sv,1721561069,systemVerilog,,/home/student/trys/Documents/Vivado/Test/RoboZapGame/sim/top_vga/top_vga_tb.sv,,tiff_writer,,unisims_ver,,,,,,
-/home/student/trys/Documents/Vivado/Test/RoboZapGame/sim/top_vga/top_vga_tb.sv,1721561070,systemVerilog,,,,top_vga_tb,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_bg.sv,1724360505,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_lever.sv,,draw_bg,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_highlight.sv,1724360505,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/sim/common/tiff_writer.sv,,draw_highlight,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_lever.sv,1724372004,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/top_vga.sv,,draw_lever,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_stats.sv,1724360505,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_highlight.sv,,draw_stats,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/top_vga.sv,1724366026,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_stats.sv,,top_vga,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_if.sv,1722180880,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_bg.sv,,vga_if,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_pkg.sv,1722180880,systemVerilog,/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_bg.sv;/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_highlight.sv;/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_lever.sv;/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_stats.sv;/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_timing.sv,/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_timing.sv,,vga_pkg,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_timing.sv,1722180880,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_if.sv,,vga_timing,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/sim/common/tiff_writer.sv,1722180880,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/sim/top_vga/top_vga_tb.sv,,tiff_writer,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/sim/top_vga/top_vga_tb.sv,1722180880,systemVerilog,,,,top_vga_tb,,unisims_ver,,,,,,

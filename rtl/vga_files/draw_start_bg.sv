@@ -4,7 +4,8 @@
 
     input  logic clk,
     input  logic rst,
-    input logic [2:0] states,
+    input  logic [2:0] states,
+    input  logic [1:0] who_won,
 
     vga_if.out vga_start_bg_out,
     vga_if.in vga_start_bg_in

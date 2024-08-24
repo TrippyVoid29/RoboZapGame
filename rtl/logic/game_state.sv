@@ -29,13 +29,14 @@ module game_state #(
     output logic [7:0] lever_used_out,
     output wire [7:0] data_output, //send info to uart
     output logic [2:0] tablecode,   //code for table selector
-    output logic current_player = 1'b0 // saved which player i am
+    output logic current_player = 1'b0, // saved which player i am
+    output logic [2:0] state_output,
+    output logic [1:0] player0_health = 2'b10,
+    output logic [1:0] player1_health = 2'b10
     );
 
     reg [7:0] uart_state = 8'b00000000; //for updating changes in uart
     logic [2:0] tableselected = 3'b000; // for now 8 tables
-    logic [1:0] player0_health = 2'b10;
-    logic [1:0] player1_health = 2'b10;
     logic [2:0] turn = 3'b000;
 
 //STATES
@@ -49,6 +50,9 @@ module game_state #(
 
     // signal declaration
     logic [2:0] state_current, state_next = init;
+    logic [7:0] uart_state_next;
+    logic current_player_next;
+    logic [2:0] tablecode_next;
 
     // body
     always @(posedge clk, posedge rst)
@@ -63,9 +67,9 @@ module game_state #(
     else
        begin
           state_current <= state_next;
-          uart_state <= uart_state;
-          current_player <= current_player;
-          tablecode <= tablecode;
+          uart_state <= uart_state_next;
+          current_player <= current_player_next;
+          tablecode <= tablecode_next;
           //add signals
        end
     
@@ -80,12 +84,12 @@ module game_state #(
                         if( buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1) //button pressed
                             begin
                                 state_next = menu;
-                                current_player = 1'b0;
-                                uart_state = 8'b10000000; //I'm player_0 u re player_1
+                                current_player_next = 1'b0;
+                                uart_state_next = 8'b10000000; //I'm player_0 u re player_1
                             end
                         else if(uart_rx == 8'b10000000) //uart signal recived
                             begin
-                                current_player = 1'b1; // I'm player_1
+                                current_player_next = 1'b1; // I'm player_1
                                 state_next = menu;
                             end
                         else
@@ -97,14 +101,14 @@ module game_state #(
                     end
                 menu:
                     begin
-                        if(current_player == 1'b0) //for player_0
+                        if(current_player_next == 1'b0) //for player_0
                             begin
                             if(buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1) //any button pressed
                                 begin
-                                    uart_state [3] = tableselected [0]; //code information to output for uart 
-                                    uart_state [4] = tableselected [1];
-                                    uart_state [5] = tableselected [2];
-                                    uart_state [6] = 1'b1;
+                                    uart_state_next [3] = tableselected [0]; //code information to output for uart 
+                                    uart_state_next [4] = tableselected [1];
+                                    uart_state_next [5] = tableselected [2];
+                                    uart_state_next [6] = 1'b1;
                                     state_next = player0;
                                 end
                             else
@@ -112,7 +116,7 @@ module game_state #(
                                     state_next = menu;
                                 end
                             end
-                        else if(current_player == 1'b1 && uart_rx[6] == 1'b1) //for player_1
+                        else if(current_player_next == 1'b1 && uart_rx[6] == 1'b1) //for player_1
                             begin
                                     tableselected [0] = uart_rx [3]; //code information to the memory
                                     tableselected [1] = uart_rx [4];
@@ -124,38 +128,38 @@ module game_state #(
                                 state_next = menu;
                             end
                         //tablecode [0:2] = tableselected [2:0]; // send info about lever pos to lever selected
-                        tablecode [0] = tableselected [0];
-                        tablecode [1] = tableselected [1];
-                        tablecode [2] = tableselected [2];
+                            tablecode_next [0] = tableselected [0];
+                            tablecode_next [1] = tableselected [1];
+                            tablecode_next [2] = tableselected [2];
                     end                    
                 player0:
                     begin
-                        if(uart_state == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
+                        if(uart_state_next == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
                             begin
                                 state_next = gameend;
                             end
                         else
                             begin
-                            if(current_player == 1'b0)
+                            if(current_player_next == 1'b0)
                                 begin
                                     if(turn_done == 1'b1)
                                         begin
                                             turn = turn + 1;// increment turn
-                                            uart_state [7:0] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
+                                            uart_state_next [7:0] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
 
-                                            if(uart_state[3] == 1'b0 && uart_state[7] == 1'b0)
+                                            if(uart_state_next[3] == 1'b0 && uart_state_next[7] == 1'b0)
                                                 begin
                                                     player0_health = player0_health + 1;
                                                 end
-                                            else if(uart_state[3] == 1'b1 && uart_state[7] == 1'b0)
+                                            else if(uart_state_next[3] == 1'b1 && uart_state_next[7] == 1'b0)
                                                 begin
                                                     player0_health = player0_health - 1;
                                                 end
-                                            else if(uart_state[3] == 1'b0 && uart_state[7] == 1'b1)
+                                            else if(uart_state_next[3] == 1'b0 && uart_state_next[7] == 1'b1)
                                                 begin
                                                     player1_health = player1_health + 1;
                                                 end
-                                            else if(uart_state[3] == 1'b1 && uart_state[7] == 1'b1)
+                                            else if(uart_state_next[3] == 1'b1 && uart_state_next[7] == 1'b1)
                                                 begin
                                                     player1_health = player1_health - 1;
                                                 end
@@ -167,7 +171,7 @@ module game_state #(
                                             state_next = player0;
                                         end
                                 end 
-                            else if(current_player == 1'b1) 
+                            else if(current_player_next == 1'b1) 
                                 begin
                                     if(uart_rx[2:0] > turn)
                                         begin
@@ -203,32 +207,32 @@ module game_state #(
                     end 
                 player1:
                 begin
-                    if(uart_state == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
+                    if(uart_state_next == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
                         begin
                             state_next = gameend;
                         end
                     else
                         begin
-                        if(current_player == 1'b1)
+                        if(current_player_next == 1'b1)
                             begin
                                 if(turn_done == 1'b1)
                                     begin
                                         turn = turn + 1;// increment turn
-                                        uart_state [7:0] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
+                                        uart_state_next [7:0] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
 
-                                        if(uart_state[3] == 1'b0 && uart_state[7] == 1'b0)
+                                        if(uart_state_next[3] == 1'b0 && uart_state_next[7] == 1'b0)
                                             begin
                                                 player0_health = player0_health + 1;
                                             end
-                                        else if(uart_state[3] == 1'b1 && uart_state[7] == 1'b0)
+                                        else if(uart_state_next[3] == 1'b1 && uart_state_next[7] == 1'b0)
                                             begin
                                                 player0_health = player0_health - 1;
                                             end
-                                        else if(uart_state[3] == 1'b0 && uart_state[7] == 1'b1)
+                                        else if(uart_state_next[3] == 1'b0 && uart_state_next[7] == 1'b1)
                                             begin
                                                 player1_health = player1_health + 1;
                                             end
-                                        else if(uart_state[3] == 1'b1 && uart_state[7] == 1'b1)
+                                        else if(uart_state_next[3] == 1'b1 && uart_state_next[7] == 1'b1)
                                             begin
                                                 player1_health = player1_health - 1;
                                             end
@@ -240,7 +244,7 @@ module game_state #(
                                         state_next = player0;
                                     end
                             end 
-                        else if(current_player == 1'b0) 
+                        else if(current_player_next == 1'b0) 
                             begin
                                 if(uart_rx[2:0] > turn)
                                     begin
@@ -286,19 +290,19 @@ module game_state #(
                             end
 
 
-                        if(current_player == 1'b0 && player0_health > player1_health)
+                        if(current_player_next == 1'b0 && player0_health > player1_health)
                             begin
                                 who_won = 2'b10;
                             end
-                        else if(current_player == 1'b0 && player0_health < player1_health)
+                        else if(current_player_next == 1'b0 && player0_health < player1_health)
                             begin
                                 who_won = 2'b01;
                             end
-                        if(current_player == 1'b1 && player0_health < player1_health)
+                        if(current_player_next == 1'b1 && player0_health < player1_health)
                             begin
                                 who_won = 2'b10;
                             end
-                        else if(current_player == 1'b1 && player0_health > player1_health)
+                        else if(current_player_next == 1'b1 && player0_health > player1_health)
                             begin
                                 who_won = 2'b01;
                             end
@@ -313,10 +317,10 @@ module game_state #(
                     end 
                 newgame:
                     begin
-                        if(current_player == 1'b0 && (buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1)) //button pressed
+                        if(current_player_next == 1'b0 && (buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1)) //button pressed
                             begin
                                 state_next = menu;
-                                uart_state = 8'b10000000;
+                                uart_state_next = 8'b10000000;
                                 lever_used_out = 8'b11111111;
                                 player0_health = 2'b10;
                                 player1_health = 2'b10;
@@ -324,7 +328,7 @@ module game_state #(
                             end
                         else if(uart_rx == 8'b10000000) //uart signal recived
                             begin
-                                current_player = 1'b1; // I'm player_1
+                                current_player_next = 1'b1; // I'm player_1
                                 state_next = menu;
                                 lever_used_out = 8'b11111111;
                                 player0_health = 2'b10;
@@ -341,5 +345,6 @@ module game_state #(
         end
 
     assign data_output = uart_state; // send everything to uart
+    assign state_output = state_current;
 
 endmodule

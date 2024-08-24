@@ -15,13 +15,18 @@ module top_logic (
 
     
     output wire [7:0] data_output,
-    output wire [1:0] who_won
+    output wire [1:0] who_won,
+    output wire [2:0] state_output,
+    output logic [2:0] position,
+    output logic [7:0] lever_used_out,
+    output wire current_player,
+    output wire [1:0] player0_health,
+    output wire [1:0] player1_health
     );
 
-    wire current_player, turn_done;
+    wire turn_done;
     wire [2:0] tablecode;
     wire [4:0] lever_select;
-    wire [7:0] lever_used;
 
     game_state u_game_state(
         .clk,
@@ -39,7 +44,10 @@ module top_logic (
         .current_player(current_player),
         .tablecode(tablecode),
         .who_won,
-        .lever_used_out(lever_used)
+        .lever_used_out,
+        .state_output,
+        .player0_health,
+        .player1_health
     );
 
     wire [7:0] lethality_table;
@@ -54,9 +62,10 @@ module top_logic (
         .buttonU,
         .current_player(current_player),
         .lever_select(lever_select),
-        .lever_used_in(lever_used),
+        .lever_used_in(lever_used_out),
         .table_lethality(lethality_table),
-        .turn_done(turn_done)
+        .turn_done(turn_done),
+        .position
         
     );
     

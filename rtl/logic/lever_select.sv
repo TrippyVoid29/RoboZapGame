@@ -14,14 +14,14 @@ module lever_select #(
     input reg [7:0] table_lethality, 
 
     output wire [4:0] lever_select,
-    output wire turn_done
+    output wire turn_done,
+    output logic [2:0] position
     
 
     );
 
     logic turn = ^lever_used_in;
     logic lever_lethality;
-    logic [2:0] position;
     logic target;
     logic turn_done_flag;
 

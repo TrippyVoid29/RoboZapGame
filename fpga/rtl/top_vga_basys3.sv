@@ -89,6 +89,11 @@ ODDR pclk_oddr (
  *  Project functional top module
  */
 
+ wire current_player;
+ wire [1:0] player0_health, player1_health, who_won; 
+ wire [2:0] position, states;
+ wire [7:0] lever_used;
+
 top_vga u_top_vga (
     .clk(pclk),
     .rst(buttonC),
@@ -96,7 +101,14 @@ top_vga u_top_vga (
     .g(vgaGreen),
     .b(vgaBlue),
     .hs(Hsync),
-    .vs(Vsync)
+    .vs(Vsync),
+    .current_player,
+    .lever_used_in(lever_used),
+    .player0_health,
+    .player1_health,
+    .position,
+    .states,
+    .who_won
 );
 
 wire [7:0] uart_tx, uart_rx;
@@ -121,12 +133,18 @@ top_logic u_top_logic (
     .data_output(uart_tx), //trasmitter uart
     .rst(buttonC),
     .uart_rx(uart_rx), //receiver uart
-    .who_won(), //connect to vga
+    .who_won, //connect to vga
     .buttonC,
     .buttonD,
     .buttonL,
     .buttonR,
-    .buttonU
+    .buttonU,
+    .current_player,
+    .lever_used_out(lever_used),
+    .player0_health,
+    .player1_health,
+    .position,
+    .state_output(states)
 );
 
 endmodule

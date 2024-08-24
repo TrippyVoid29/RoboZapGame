@@ -17,6 +17,15 @@
 module top_vga (
     input  logic clk,
     input  logic rst,
+    //logika
+    input  logic [2:0] states,
+    input  logic [2:0] position,
+    input  logic [7:0] lever_used_in,
+    input  logic current_player,
+    input  logic [1:0] player0_health,
+    input  logic [1:0] player1_health,
+    input  logic [1:0] who_won,
+
     output logic vs,
     output logic hs,
     output logic [3:0] r,
@@ -68,9 +77,9 @@ draw_bg u_draw_bg (
 draw_stats u_draw_stats (
     .clk,
     .rst,
-    .current_player(1'b1),
-    .player0_health(2'b10),
-    .player1_health(2'b01),
+    .current_player,
+    .player0_health,
+    .player1_health,
 
     .vga_stats_in(vga_bg),
     .vga_stats_out(vga_stats)
@@ -79,7 +88,7 @@ draw_stats u_draw_stats (
 draw_highlight u_draw_highlight (
     .clk,
     .rst,
-    .position(3'b101),
+    .position,
 
     .vga_highlight_in(vga_stats),
     .vga_highlight_out(vga_highlight)
@@ -88,7 +97,7 @@ draw_highlight u_draw_highlight (
 draw_lever u_draw_lever (
     .clk,
     .rst,
-    .lever_used_in(8'b11110000),
+    .lever_used_in,
 
     .vga_lever_in(vga_highlight),
     .vga_lever_out(vga_lever)
@@ -97,7 +106,8 @@ draw_lever u_draw_lever (
 draw_start_bg u_draw_start_bg (
     .clk,
     .rst,
-    .states(3'b010),
+    .states,
+    .who_won,
 
     .vga_start_bg_in(vga_lever),
     .vga_start_bg_out(vga_start_bg)

@@ -58,7 +58,7 @@ end
 
 top_vga_basys3 dut (
     .clk(clk),
-    .btnC(rst),
+    .buttonC(rst),
     .Vsync(vs),
     .Hsync(hs),
     .vgaRed(r),

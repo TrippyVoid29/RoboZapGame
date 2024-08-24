@@ -16,9 +16,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 1087
+INFO: [Synth 8-7075] Helper process launched with PID 10968
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 2643 ; free virtual = 13627
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 5108 ; free virtual = 16134
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top_vga_basys3' [/home/student/lperczynski/Vivado/RoboZapGame/fpga/rtl/top_vga_basys3.sv:17]
 INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0_clk_wiz' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/clk_wiz_0_clk_wiz.v:69]
@@ -129,18 +129,18 @@ WARNING: [Synth 8-7129] Port vga_tim\.rgb[2] in module vga_timing is either unco
 WARNING: [Synth 8-7129] Port vga_tim\.rgb[1] in module vga_timing is either unconnected or has no load
 WARNING: [Synth 8-7129] Port vga_tim\.rgb[0] in module vga_timing is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 3143 ; free virtual = 14128
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 5850 ; free virtual = 16877
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 3207 ; free virtual = 14192
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 5895 ; free virtual = 16922
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 3207 ; free virtual = 14192
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 5895 ; free virtual = 16922
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2717.812 ; gain = 0.000 ; free physical = 3198 ; free virtual = 14182
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2717.816 ; gain = 0.000 ; free physical = 5902 ; free virtual = 16928
 WARNING: [Netlist 29-345] The value of SIM_DEVICE on instance 'u_clk_wiz_0_clk_wiz/clkout1_buf' of type 'BUFGCE' is 'ULTRASCALE'; it is being changed to match the current FPGA architecture, '7SERIES'. For functional simulation to match hardware behavior, the value of SIM_DEVICE should be changed in the source netlist. 
 WARNING: [Netlist 29-345] The value of SIM_DEVICE on instance 'u_clk_wiz_0_clk_wiz/clkout2_buf' of type 'BUFGCE' is 'ULTRASCALE'; it is being changed to match the current FPGA architecture, '7SERIES'. For functional simulation to match hardware behavior, the value of SIM_DEVICE should be changed in the source netlist. 
 INFO: [Netlist 29-17] Analyzing 4 Unisim elements for replacement
@@ -156,27 +156,27 @@ Resolution: To avoid this warning, move constraints listed in [.Xil/top_vga_basy
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.723 ; gain = 0.000 ; free physical = 3031 ; free virtual = 14015
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 5736 ; free virtual = 16763
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 2 instances were transformed.
   BUFGCE => BUFGCTRL: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2781.723 ; gain = 0.000 ; free physical = 3031 ; free virtual = 14016
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 5736 ; free virtual = 16763
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 3174 ; free virtual = 14159
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5886 ; free virtual = 16913
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 3174 ; free virtual = 14159
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5886 ; free virtual = 16914
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 3173 ; free virtual = 14159
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5889 ; free virtual = 16916
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'uart_rx'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'uart_tx'
@@ -216,15 +216,15 @@ WARNING: [Synth 8-327] inferring latch for variable 'FSM_onehot_state_next_reg' 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_current_reg' using encoding 'sequential' in module 'game_state'
 WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_state_next_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:86]
-WARNING: [Synth 8-327] inferring latch for variable 'who_won_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:295]
-WARNING: [Synth 8-327] inferring latch for variable 'lever_used_out_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:100]
+WARNING: [Synth 8-327] inferring latch for variable 'who_won_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:296]
+WARNING: [Synth 8-327] inferring latch for variable 'lever_used_out_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:101]
 WARNING: [Synth 8-327] inferring latch for variable 'uart_state_next_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:88]
-WARNING: [Synth 8-327] inferring latch for variable 'tablecode_next_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:131]
+WARNING: [Synth 8-327] inferring latch for variable 'tablecode_next_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:132]
 WARNING: [Synth 8-327] inferring latch for variable 'current_player_next_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'turn_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:147]
-WARNING: [Synth 8-327] inferring latch for variable 'player1_health_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:137]
-WARNING: [Synth 8-327] inferring latch for variable 'player0_health_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:137]
-WARNING: [Synth 8-327] inferring latch for variable 'tableselected_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:98]
+WARNING: [Synth 8-327] inferring latch for variable 'turn_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:148]
+WARNING: [Synth 8-327] inferring latch for variable 'player1_health_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:138]
+WARNING: [Synth 8-327] inferring latch for variable 'player0_health_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:138]
+WARNING: [Synth 8-327] inferring latch for variable 'tableselected_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:99]
 WARNING: [Synth 8-327] inferring latch for variable 'target_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv:94]
 WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_state_next_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv:60]
 WARNING: [Synth 8-327] inferring latch for variable 'FSM_onehot_state_next_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv:60]
@@ -244,7 +244,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'position_reg' [/home/studen
 WARNING: [Synth 8-327] inferring latch for variable 'lever_lethality_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv:93]
 WARNING: [Synth 8-327] inferring latch for variable 'turn_done_flag_reg' [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv:96]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 3182 ; free virtual = 14168
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5877 ; free virtual = 16905
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -340,25 +340,25 @@ WARNING: [Synth 8-3332] Sequential element (u_top_uart/u_uart_rx/rx_done_tick_ne
 WARNING: [Synth 8-3332] Sequential element (u_top_logic/u_game_state/who_won_reg[1]) is unused and will be removed from module top_vga_basys3.
 WARNING: [Synth 8-3332] Sequential element (u_top_logic/u_game_state/who_won_reg[0]) is unused and will be removed from module top_vga_basys3.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 3169 ; free virtual = 14162
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5854 ; free virtual = 16887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 3017 ; free virtual = 14010
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5739 ; free virtual = 16772
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 2876 ; free virtual = 13872
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5739 ; free virtual = 16772
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 2815 ; free virtual = 13812
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5734 ; free virtual = 16767
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -376,37 +376,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 3000 ; free virtual = 13997
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5735 ; free virtual = 16768
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 2999 ; free virtual = 13996
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5735 ; free virtual = 16768
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 2998 ; free virtual = 13995
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5735 ; free virtual = 16768
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 2998 ; free virtual = 13995
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5735 ; free virtual = 16768
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 2997 ; free virtual = 13994
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5735 ; free virtual = 16768
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 2997 ; free virtual = 13994
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5735 ; free virtual = 16768
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -443,12 +443,12 @@ Report Cell Usage:
 |2     |BUFGCE     |     2|
 |3     |BUFH       |     2|
 |4     |CARRY4     |    15|
-|5     |LUT1       |    12|
-|6     |LUT2       |    44|
-|7     |LUT3       |    65|
-|8     |LUT4       |    61|
-|9     |LUT5       |   148|
-|10    |LUT6       |   232|
+|5     |LUT1       |    11|
+|6     |LUT2       |    63|
+|7     |LUT3       |    67|
+|8     |LUT4       |    63|
+|9     |LUT5       |   147|
+|10    |LUT6       |   231|
 |11    |MMCME2_ADV |     1|
 |12    |ODDR       |     1|
 |13    |SRL16E     |     4|
@@ -463,20 +463,20 @@ Report Cell Usage:
 |22    |OBUF       |    17|
 +------+-----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 2996 ; free virtual = 13993
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5735 ; free virtual = 16768
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 51 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 2781.723 ; gain = 0.000 ; free physical = 3047 ; free virtual = 14044
-Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 2781.723 ; gain = 63.910 ; free physical = 3046 ; free virtual = 14044
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 5790 ; free virtual = 16822
+Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 2781.727 ; gain = 63.910 ; free physical = 5790 ; free virtual = 16823
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2781.723 ; gain = 0.000 ; free physical = 3135 ; free virtual = 14133
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 5882 ; free virtual = 16915
 WARNING: [Netlist 29-345] The value of SIM_DEVICE on instance 'u_clk_wiz_0_clk_wiz/clkout1_buf' of type 'BUFGCE' is 'ULTRASCALE'; it is being changed to match the current FPGA architecture, '7SERIES'. For functional simulation to match hardware behavior, the value of SIM_DEVICE should be changed in the source netlist. 
 WARNING: [Netlist 29-345] The value of SIM_DEVICE on instance 'u_clk_wiz_0_clk_wiz/clkout2_buf' of type 'BUFGCE' is 'ULTRASCALE'; it is being changed to match the current FPGA architecture, '7SERIES'. For functional simulation to match hardware behavior, the value of SIM_DEVICE should be changed in the source netlist. 
 INFO: [Netlist 29-17] Analyzing 65 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.723 ; gain = 0.000 ; free physical = 3050 ; free virtual = 14047
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2781.727 ; gain = 0.000 ; free physical = 5819 ; free virtual = 16852
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 48 instances were transformed.
   BUFGCE => BUFGCTRL: 2 instances
@@ -484,11 +484,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   LDC => LDCE: 3 instances
   LDP => LDPE: 1 instance 
 
-Synth Design complete, checksum: 205fd9aa
+Synth Design complete, checksum: b5b7448e
 INFO: [Common 17-83] Releasing license: Synthesis
 89 Infos, 83 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:34 ; elapsed = 00:00:33 . Memory (MB): peak = 2781.723 ; gain = 64.031 ; free physical = 3255 ; free virtual = 14252
+synth_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:32 . Memory (MB): peak = 2781.727 ; gain = 64.031 ; free physical = 6029 ; free virtual = 17062
 INFO: [Common 17-1381] The checkpoint '/home/student/lperczynski/Vivado/RoboZapGame/fpga/build/vga_project.runs/synth_1/top_vga_basys3.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_vga_basys3_utilization_synth.rpt -pb top_vga_basys3_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Aug 24 13:51:15 2024...
+INFO: [Common 17-206] Exiting Vivado at Sat Aug 24 23:47:34 2024...

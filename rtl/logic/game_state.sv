@@ -81,11 +81,12 @@ module game_state #(
             case(state_current)
                 init:
                     begin
-                        if( buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1) //button pressed
+                        if(buttonL && buttonR == 1'b1) //button pressed
                             begin
                                 state_next = menu;
                                 current_player_next = 1'b0;
                                 uart_state_next = 8'b10000000; //I'm player_0 u re player_1
+                                
                             end
                         else if(uart_rx == 8'b10000000) //uart signal recived
                             begin
@@ -103,7 +104,7 @@ module game_state #(
                     begin
                         if(current_player_next == 1'b0) //for player_0
                             begin
-                            if(buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1) //any button pressed
+                            if((buttonL == 1'b1) && (buttonR == 1'b0) || (buttonL == 1'b0) && (buttonR == 1'b1)) //any button pressed
                                 begin
                                     uart_state_next [3] = tableselected [0]; //code information to output for uart 
                                     uart_state_next [4] = tableselected [1];

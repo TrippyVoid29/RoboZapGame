@@ -11,6 +11,7 @@
 
 module vga_timing_tb;
 
+
 import vga_pkg::*;
 
 
@@ -28,10 +29,7 @@ localparam CLK_PERIOD = 25;     // 40 MHz
 logic clk;
 logic rst;
 
-wire [10:0] vcount, hcount;
-wire        vsync,  hsync;
-wire        vblnk,  hblnk;
-
+vga_if vga_tim();
 
 /**
  * Clock generation
@@ -62,12 +60,7 @@ end
 vga_timing dut(
     .clk,
     .rst,
-    .vcount,
-    .vsync,
-    .vblnk,
-    .hcount,
-    .hsync,
-    .hblnk
+    .vga_tim
 );
 
 /**
@@ -92,9 +85,9 @@ initial begin
     @(posedge rst);
     @(negedge rst);
 
-    wait (vsync == 1'b0);
-    @(negedge vsync)
-    @(negedge vsync)
+    wait (vga_tim.vsync == 1'b0);
+    @(negedge vga_tim.vsync)
+    @(negedge vga_tim.vsync)
 
     $finish;
 end

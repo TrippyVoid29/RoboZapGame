@@ -23,7 +23,7 @@ module lever_select #(
     logic turn = ^lever_used_in;
     logic lever_lethality;
     logic target;
-    logic turn_done_flag;
+    logic turn_done_flag =1'b0;
 
     //STATES
     localparam [2:0]

@@ -41,6 +41,7 @@ logic [2:0] states, position;
 logic [1:0] player0_health, player1_health;
 logic current_player;
 logic [7:0]lever_used_in;
+logic [1:0] who_won;
 
 
 /**
@@ -70,7 +71,8 @@ top_vga dut (
     .player0_health(player0_health), 
     .player1_health(player1_health),
     .current_player(current_player),
-    .lever_used_in(lever_used_in)
+    .lever_used_in(lever_used_in),
+    .who_won(who_won)
 );
 
 tiff_writer #(
@@ -95,13 +97,15 @@ initial begin
     # 30 rst = 1'b1;
     # 30 rst = 1'b0;
 
-    states = 3'b011;
+    states = 3'b110;
+    who_won = 2'b00;
+/*
     lever_used_in = 8'b00010111;
-    position = 3'b011;
+    position = 3'b000;
     player0_health = 2'b01;
     player1_health = 2'b10;
     current_player = 1'b0;
-
+*/
     $display("If simulation ends before the testbench");
     $display("completes, use the menu option to run all.");
     $display("Prepare to wait a long time...");

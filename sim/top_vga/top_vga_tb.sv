@@ -37,6 +37,10 @@ localparam CLK_PERIOD = 25;     // 40 MHz
 logic clk, rst;
 wire vs, hs;
 wire [3:0] r, g, b;
+logic [2:0] states, position;
+logic [1:0] player0_health, player1_health;
+logic current_player;
+logic [7:0]lever_used_in;
 
 
 /**
@@ -60,7 +64,13 @@ top_vga dut (
     .hs(hs),
     .r(r),
     .g(g),
-    .b(b)
+    .b(b),
+    .states(states),
+    .position(position),
+    .player0_health(player0_health), 
+    .player1_health(player1_health),
+    .current_player(current_player),
+    .lever_used_in(lever_used_in)
 );
 
 tiff_writer #(
@@ -84,6 +94,13 @@ initial begin
     rst = 1'b0;
     # 30 rst = 1'b1;
     # 30 rst = 1'b0;
+
+    states = 3'b011;
+    lever_used_in = 8'b00010111;
+    position = 3'b011;
+    player0_health = 2'b01;
+    player1_health = 2'b10;
+    current_player = 1'b0;
 
     $display("If simulation ends before the testbench");
     $display("completes, use the menu option to run all.");

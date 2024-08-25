@@ -74,6 +74,14 @@ always_comb begin : bg_comb_blk
                 rgb_nxt = 12'h0_8_0;
             else
                 rgb_nxt = 12'h1_1_1;
+
+// --------------------- BG 3 ------------------------
+        else if(states == 3'b110)
+        // jakiś losowy kwadrat
+            if (vga_start_bg_in.hcount >= 250 && vga_start_bg_in.hcount <= 350 && vga_start_bg_in.vcount >= 150 && vga_start_bg_in.vcount <= 250)
+                rgb_nxt = 12'h0_0_8;
+            else
+                rgb_nxt = 12'h1_1_1;
         else
             rgb_nxt = 0;
         end

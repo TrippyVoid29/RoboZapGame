@@ -955,7 +955,6 @@ always_comb begin : bg_comb_blk
 
 // --------------------- BG 3 ------------------------
         else if(states == 3'b110) // gameend
-        // jakiś losowy kwadrat
 
             if(who_won == 2'b01) //u lost
                 begin

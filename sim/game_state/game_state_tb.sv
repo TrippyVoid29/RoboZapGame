@@ -33,16 +33,16 @@ game_state dut(
     .buttonR(ButtonR),
     .buttonU(ButtonU),
     .clk,
-    .current_player,
-    .data_output,
-    .lever_select,
-    .lever_used_out,
+    //.current_player,
+    //.data_output,
+    //.lever_select,
+    //.lever_used_out,
     //.player0_health,
     //.player1_health,
     .rst,
     .state_output(state_output),
-    .tablecode,
-    .turn_done(turn_done),
+    //.tablecode,
+    .turn_done(turn_done)
     //.uart_rx,
     //.who_won
 );

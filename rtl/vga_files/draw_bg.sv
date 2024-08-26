@@ -74,6 +74,68 @@ always_comb begin : bg_comb_blk
             end
 
 // --------------------- ROBOT HEAD ------------------------
+        else if (vga_bg_in.hcount >= 465 && vga_bg_in.hcount <= 495 && vga_bg_in.vcount >= 165 && vga_bg_in.vcount <= 200)
+            begin
+                rgb_nxt = 12'h5_5_2;
+            end
+        else if (vga_bg_in.hcount >= 385 && vga_bg_in.hcount <= 415 && vga_bg_in.vcount >= 165 && vga_bg_in.vcount <= 200)
+            begin
+                rgb_nxt = 12'h5_5_2;
+            end
+        else if (vga_bg_in.hcount >= 305 && vga_bg_in.hcount <= 335 && vga_bg_in.vcount >= 165 && vga_bg_in.vcount <= 200)
+            begin
+                rgb_nxt = 12'h5_5_2;
+            end
+        else if (vga_bg_in.hcount >= 445 && vga_bg_in.hcount <= 465 && vga_bg_in.vcount >= 235 && vga_bg_in.vcount <= 245)
+            begin
+                rgb_nxt = 12'h5_2_2;
+            end
+        else if (vga_bg_in.hcount >= 335 && vga_bg_in.hcount <= 355 && vga_bg_in.vcount >= 235 && vga_bg_in.vcount <= 245)
+            begin
+                rgb_nxt = 12'h5_2_2;
+            end
+        //stripes
+        else if (vga_bg_in.hcount >= 355 && vga_bg_in.hcount <= 360 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 365 && vga_bg_in.hcount <= 370 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 375 && vga_bg_in.hcount <= 380 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 385 && vga_bg_in.hcount <= 390 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 395 && vga_bg_in.hcount <= 400 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 405 && vga_bg_in.hcount <= 410 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 415 && vga_bg_in.hcount <= 420 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 425 && vga_bg_in.hcount <= 430 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 435 && vga_bg_in.hcount <= 440 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        else if (vga_bg_in.hcount >= 445 && vga_bg_in.hcount <= 450 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+        //stripes_end
         else if (vga_bg_in.hcount >= 330 && vga_bg_in.hcount <= 360 && vga_bg_in.vcount >= 230 && vga_bg_in.vcount <= 250)
             begin
                 rgb_nxt = 12'h2_2_2;
@@ -82,7 +144,7 @@ always_comb begin : bg_comb_blk
             begin
                 rgb_nxt = 12'h2_2_2;
             end
-        else if (vga_bg_in.hcount >= 350 && vga_bg_in.hcount <= 450 && vga_bg_in.vcount >= 300 && vga_bg_in.vcount <= 320)
+        else if (vga_bg_in.hcount >= 350 && vga_bg_in.hcount <= 455 && vga_bg_in.vcount >= 300 && vga_bg_in.vcount <= 320)
             begin
                 rgb_nxt = 12'h2_2_2;
             end
@@ -90,6 +152,30 @@ always_comb begin : bg_comb_blk
             begin
                 rgb_nxt = 12'h4_4_4;
             end
+        else if (vga_bg_in.hcount >= 290 && vga_bg_in.hcount <= 510 && vga_bg_in.vcount >= 195 && vga_bg_in.vcount <= 360)
+            begin
+                rgb_nxt = 12'h2_2_2;
+            end
+        //chasis
+        else if (vga_bg_in.hcount >= 300 && vga_bg_in.hcount <= 500 && vga_bg_in.vcount >= 400 && vga_bg_in.vcount <= 410)
+            begin
+                rgb_nxt = 12'h3_3_3;
+            end
+        else if (vga_bg_in.hcount >= 290 && vga_bg_in.hcount <= 510 && vga_bg_in.vcount >= 390 && vga_bg_in.vcount <= 490)
+            begin
+                rgb_nxt = 12'h4_4_4;
+            end
+        else if (vga_bg_in.hcount >= 280 && vga_bg_in.hcount <= 520 && vga_bg_in.vcount >= 380 && vga_bg_in.vcount <= 500)
+            begin
+                rgb_nxt = 12'h2_2_2;
+            end
+        //connector
+        else if (vga_bg_in.hcount >= 330 && vga_bg_in.hcount <= 470 && vga_bg_in.vcount >= 310 && vga_bg_in.vcount <= 520)
+            begin
+                rgb_nxt = 12'h1_1_1;
+            end
+
+
 
         else                          // The rest of active display pixels:
             rgb_nxt = 12'h0_0_2;           // - fill with gray.

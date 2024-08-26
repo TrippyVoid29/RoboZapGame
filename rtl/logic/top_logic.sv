@@ -42,7 +42,7 @@ module top_logic (
         
         .data_output,
         .current_player(current_player),
-        .tablecode(tablecode),
+        .tableselected(tablecode),
         .who_won,
         .lever_used_out,
         .state_output,

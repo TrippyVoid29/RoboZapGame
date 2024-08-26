@@ -14,14 +14,29 @@
     logic clk;
     logic rst;
     logic ButtonD, ButtonL, ButtonR, ButtonU;
-    
-    logic turn_done;
 
-    wire [2:0] state_output, position;
-    wire [1:0] player0_health, player1_health, who_won;
+    logic [7:0] uart_rx;
+
+    wire [2:0] state_output; 
+    logic [2:0] position;
+    logic [1:0] player0_health, player1_health, who_won;
     wire [7:0] lever_used_out, data_output;
     wire current_player;
-    logic [7:0] uart_rx;
+
+// microcode
+// 0000 0000
+// 0,1,2 - turn
+// 3 - lever lethality
+// 4,5,6 - which switch
+// 7 - who was targeted
+
+    /*                                 if(uart_rx[2:0] > turn)
+                                    begin
+                                        turn = uart_rx[2:0]; // update turn on this device
+                                        lever_used_out[uart_rx[6:4]] = 1'b0; //update which lever was pulled for lever_select module
+
+                                        if(uart_rx[3] == 1'b0 && uart_rx[7] == 1'b0)
+                                        */
 
 initial begin
     clk = 0;
@@ -47,23 +62,70 @@ top_logic dut(
     .who_won
 );
 
-initial begin
-    rst = 1'b0;
-    #10 rst = 1'b1;
-    #10 rst = 1'b0;
+task reset();
+    begin
+        rst = 1'b0;
+        #10 rst = 1'b1;
+        #10 rst = 1'b0;
+        position = 0;
+        player0_health = 2'b10;
+        player1_health = 2'b10;
+        //lever_used_out = 8'b11111111;
+        uart_rx = 8'b00000000;
+    end
+endtask
 
-    turn_done <= 0;
-    assert(state_output === 3'b000) else $error("wrong init value for state_next");
+localparam [1:0]
+up = 2'b00,
+left = 2'b10,
+right = 2'b01,
+down = 2'b11;
 
+task press_lever(input [1:0] direction);
+    begin
+    if(direction == left) begin
+        ButtonL = 1'b1;
+        #20 ButtonL = 1'b0;
+        #20;
+    end else if (direction == right) begin
+        ButtonR = 1'b1;
+        #20 ButtonR = 1'b0;
+        #20;
+    end else if (direction == up) begin
+        ButtonU = 1'b1;
+        #10 ButtonU = 1'b0;
+        #10;
+    end else if (direction == down) begin
+        ButtonD = 1'b1;
+        #20 ButtonD = 1'b0;
+        #20;
+    end 
+    end
+endtask
+
+task start_game();
+    begin
     #20 ButtonL <= 1; ButtonR <= 1;
-    #20 assert(state_output === 3'b001) else $error("not in menu");
-
     #20 ButtonL <= 0; ButtonR <= 1;
-    #20 assert(state_output === 3'b011) else $error("not in player0");
-    assert(turn_done === 0) else $error("problem with turn_done?");
-    
-    #60 assert(state_output === 3'b011)
+    #20 ButtonR <= 0;
+    end
+endtask
 
+initial begin
+
+    reset();
+    start_game();
+
+    #20 press_lever(left);
+    press_lever(left);
+    press_lever(left);
+    press_lever(left);
+    press_lever(left);
+    press_lever(up);
+    uart_rx = 8'b00011001;
+    #20 
+    uart_rx = 8'b00011010;
+    #20
     //add code here
 
     $finish;

@@ -45,7 +45,7 @@ set sv_files {
     ../rtl/uart_files/uart_clock.sv
     ../rtl/uart_files/uart_rx.sv
     ../rtl/uart_files/uart_tx.sv
-    ../rtl/uart_files/uart.sv
+    ../rtl/uart_files/uart_rec.sv
     ../rtl/logic/game_state.sv
     ../rtl/logic/lever_select.sv
     ../rtl/logic/top_logic.sv

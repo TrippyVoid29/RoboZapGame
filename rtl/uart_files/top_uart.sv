@@ -3,63 +3,54 @@
 module top_uart (
     input  logic clk,
     input  logic rst,
-    input logic btnU,
-    input  logic rx,
-    input  logic loopback_enable,
+    input  logic tx_start,
+    input  logic rx_in,
     input  logic [7:0] tx_in,
-    output  logic tx,   
-    output  logic rx_monitor,
-    output  logic tx_monitor,
-    output  logic tx_done_tick,
-    output  logic [7:0] rx_out,
-    output  logic rx_done_tick
-);
 
-logic tx_loop, tx_bnt;
-
-uart u_uart(
-    .clk,
-    .rst,
-    .rx,
-    .rx_monitor,
-    .tx(tx_loop),
-    .tx_monitor,
-    .loopback_enable
+    output  logic tx_out,   
+    output  logic [7:0] rx_out
 );
 
 wire uclk;
+logic rx_done_tick;
+logic [7:0] rx_read;
 
-uart_clock u_uart_clock(
+uart_clock u_uart_clock
+    (
 
     .clk, 
     .rst,
     .uclk(uclk)
-);
+    );
 
 uart_rx u_uart_rx
     (
      .clk, 
      .reset(rst),
-     .rx, 
+     .rx(rx_in), 
      .s_tick(uclk),
-     .rx_done_tick,
-     .dout(rx_out)
+     .rx_done_tick(rx_done_tick),
+     .dout(rx_read)
+    );
+
+uart_rec u_uart_rec
+    (
+    .clk,
+    .rst,
+    .rx_done_tick(rx_done_tick),
+    .din(rx_read),
+    .dout(rx_out)
+
     );
 
 uart_tx u_uart_tx
     (
      .clk, 
      .reset(rst),
-     .tx(tx_bnt), 
+     .tx(tx_out), 
      .din(tx_in),
      .s_tick(uclk),
-     .tx_start(btnU),
-     .tx_done_tick(tx_done_tick)
+     .tx_start
     );
-
-
-assign tx = tx_loop & tx_bnt;
-
-
 
 endmodule

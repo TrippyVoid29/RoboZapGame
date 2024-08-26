@@ -96,8 +96,8 @@ read_verilog -library xil_defaultlib -sv {
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/top_logic.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/top_uart.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/top_vga.sv
-  /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_clock.sv
+  /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_rec.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_rx.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/uart_files/uart_tx.sv
   /home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_if.sv

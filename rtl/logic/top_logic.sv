@@ -21,7 +21,8 @@ module top_logic (
     output logic [7:0] lever_used_out,
     output wire current_player,
     output wire [1:0] player0_health,
-    output wire [1:0] player1_health
+    output wire [1:0] player1_health,
+    output logic tx_start
     );
 
     wire turn_done;
@@ -47,7 +48,8 @@ module top_logic (
         .lever_used_out,
         .state_output,
         .player0_health,
-        .player1_health
+        .player1_health,
+        .tx_start
     );
 
     wire [7:0] lethality_table;

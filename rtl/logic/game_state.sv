@@ -16,7 +16,6 @@ module game_state #(
     input wire clk,
     input wire rst,
     input wire [7:0] uart_rx,        //info received from uart
-    //input logic [7:0] lever_used_in, // which lever was used: 1- when unused, 0 - when used
     input wire [4:0] lever_select,
     input wire buttonC, //middle button
     input wire buttonU, //upper button
@@ -32,7 +31,8 @@ module game_state #(
     output logic [2:0] state_output,
     output logic [1:0] player0_health = 2'b10,
     output logic [1:0] player1_health = 2'b10,
-    output logic [2:0] tableselected = 3'b000 // for now 8 tables
+    output logic [2:0] tableselected = 3'b000, // for now 8 tables
+    output logic tx_start = 1'b0
     );
 
     reg [7:0] uart_state = 8'b00000000; //for updating changes in uart
@@ -86,6 +86,7 @@ module game_state #(
                             begin
                                 state_next = menu;
                                 current_player_next = 1'b0;
+                                tx_start = 1'b1;
                                 uart_state_next = 8'b10000000; //I'm player_0 u re player_1
                                 
                             end
@@ -97,16 +98,18 @@ module game_state #(
                         else
                             begin
                                 state_next = init;
-                                tableselected_next = tableselected + 1;
+                                tableselected_next =   + 1;
                             end
                         lever_used_out = 8'b11111111;
                     end
                 menu:
                     begin
+                        tx_start = 1'b0;
                         if(current_player_next == 1'b0) //for player_0
                             begin
                             if((buttonL == 1'b1) && (buttonR == 1'b0) || (buttonL == 1'b0) && (buttonR == 1'b1)) //any button pressed
                                 begin
+                                    tx_start = 1'b1;
                                     uart_state_next [3] = tableselected_next [0]; //code information to output for uart 
                                     uart_state_next [4] = tableselected_next [1];
                                     uart_state_next [5] = tableselected_next [2];
@@ -129,13 +132,10 @@ module game_state #(
                             begin
                                 state_next = menu;
                             end
-                        //tablecode [0:2] = tableselected [2:0]; // send info about lever pos to lever selected
-                                tableselected [0] = tableselected_next [0];
-                                tableselected [1] = tableselected_next [1];
-                                tableselected [2] = tableselected_next [2];
                     end                    
                 player0:
                     begin
+                        tx_start = 1'b0;
                         if(uart_state_next == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
                             begin
                                 state_next = gameend;
@@ -146,6 +146,7 @@ module game_state #(
                                 begin
                                     if(turn_done == 1'b1)
                                         begin
+                                            tx_start = 1'b1;
                                             turn = turn + 1;// increment turn
                                             uart_state_next [7:0] = {lever_select, turn}; // save turn in uart /update uart which lever was pulled, lethality, target
                                                 //lethality                      target
@@ -210,6 +211,7 @@ module game_state #(
                     end 
                 player1:
                 begin
+                    tx_start = 1'b0;
                     if(uart_state_next == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
                         begin
                             state_next = gameend;
@@ -220,6 +222,7 @@ module game_state #(
                             begin
                                 if(turn_done == 1'b1)
                                     begin
+                                        tx_start = 1'b1;
                                         turn = turn + 1;// increment turn
                                         uart_state_next [7:0] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
                                                 //lethality                      target
@@ -284,7 +287,7 @@ module game_state #(
                 end
                 gameend:
                     begin
-                        if(buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1)
+                        if(buttonU || buttonD || buttonL || buttonR == 1'b1)
                             begin
                                 state_next = newgame;
                             end

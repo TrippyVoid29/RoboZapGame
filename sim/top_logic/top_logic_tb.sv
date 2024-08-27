@@ -19,7 +19,7 @@
     logic [7:0] uart_rx;
 
     wire [2:0] state_output; 
-    logic [2:0] position;
+    logic [2:0] position, state_current_lever;
     logic [1:0] player0_health, player1_health, who_won;
     wire [7:0] lever_used_out, data_output;
     wire current_player;
@@ -31,13 +31,16 @@
 // 4,5,6 - which switch
 // 7 - who was targeted
 
-    /*                                 if(uart_rx[2:0] > turn)
-                                    begin
-                                        turn = uart_rx[2:0]; // update turn on this device
-                                        lever_used_out[uart_rx[6:4]] = 1'b0; //update which lever was pulled for lever_select module
-
-                                        if(uart_rx[3] == 1'b0 && uart_rx[7] == 1'b0)
-                                        */
+/*
+      //STATES
+    localparam [2:0]
+    idle = 3'b000,
+    left = 3'b001,
+    right = 3'b010,
+    locked = 3'b011,
+    up = 3'b100,
+    down = 3'b101;
+    */
 
 initial begin
     clk = 0;
@@ -61,7 +64,8 @@ top_logic dut(
     .position,
     .data_output,
     .lever_used_out,
-    .who_won
+    .who_won,
+    .state_current_lever
 );
 
 task reset();
@@ -69,10 +73,6 @@ task reset();
         rst = 1'b0;
         #10 rst = 1'b1;
         #10 rst = 1'b0;
-        position = 0;
-        player0_health = 2'b10;
-        player1_health = 2'b10;
-        //uart_rx = 8'b00000000;
     end
 endtask
 
@@ -123,10 +123,13 @@ initial begin
     press_lever(left);
     press_lever(left);
     press_lever(up);
-    uart_rx = 8'b00011001;
-    #20 
-    uart_rx = 8'b00011010;
-    #20
+    #40 uart_rx = 8'b00011001;
+    #40 uart_rx = 8'b00011010;
+    #40 press_lever(down);
+    press_lever(left);
+    press_lever(down);
+    #60
+
     //add code here
 
     $finish;

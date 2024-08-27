@@ -53,6 +53,7 @@ module game_state #(
     logic [7:0] uart_state_next = 8'b00000000;
     logic current_player_next = 1'b0;
     logic [2:0] tableselected_next;
+    logic [7:0] lever_used_out_next = 8'b11111111;
 
 
     // body
@@ -64,6 +65,7 @@ module game_state #(
           uart_state <= 8'b00000000;
           current_player <= 1'b0;
           tableselected <= 3'b000;
+          lever_used_out <= 8'b11111111;
        end
     else
        begin
@@ -71,6 +73,7 @@ module game_state #(
           uart_state <= uart_state_next;
           current_player <= current_player_next;
           tableselected <= tableselected_next;
+          lever_used_out <= lever_used_out_next;
           //add signals
        end
     
@@ -99,7 +102,6 @@ module game_state #(
                                 state_next = init;
                                 tableselected_next =   + 1;
                             end
-                        lever_used_out = 8'b11111111;
                     end
                 menu:
                     begin
@@ -166,7 +168,7 @@ module game_state #(
                                                 end
                                                 
                                             tx_start = 1'b1;
-                                            lever_used_out[lever_select[3:1]] = 1'b0;
+                                            lever_used_out_next[lever_select[3:1]] = 1'b0;
                                             state_next = player1;
                                             
                                         end
@@ -180,7 +182,7 @@ module game_state #(
                                     if(uart_rx[2:0] > turn)
                                         begin
                                             turn = uart_rx[2:0]; // update turn on this device
-                                            lever_used_out[uart_rx[6:4]] = 1'b0; //update which lever was pulled for lever_select module
+                                            lever_used_out_next[uart_rx[6:4]] = 1'b0; //update which lever was pulled for lever_select module
 
                                             if(uart_rx[3] == 1'b0 && uart_rx[7] == 1'b0)
                                                 begin
@@ -223,7 +225,7 @@ module game_state #(
                                 if(turn_done == 1'b1)
                                     begin
                                         turn = turn + 1;// increment turn
-                                        uart_state_next [7:0] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
+                                        uart_state_next [7:0] = {lever_select, turn}; // save turn in uart /update uart which lever was pulled, lethality, target
                                                 //lethality                      target
                                         if(uart_state_next[3] == 1'b0 && uart_state_next[7] == 1'b0)
                                             begin
@@ -243,7 +245,7 @@ module game_state #(
                                             end
 
                                         tx_start = 1'b1;
-                                        lever_used_out[lever_select[3:1]] = 1'b0;
+                                        lever_used_out_next[lever_select[3:1]] = 1'b0;
                                         state_next = player0;
                                     end
                                 else
@@ -256,7 +258,7 @@ module game_state #(
                                 if(uart_rx[2:0] > turn)
                                     begin
                                         turn = uart_rx[2:0]; // update turn on this device
-                                        lever_used_out[uart_rx[6:4]] = 1'b0; //update which lever was pulled for lever_select module
+                                        lever_used_out_next[uart_rx[6:4]] = 1'b0; //update which lever was pulled for lever_select module
                                             //lethality                      target
                                         if(uart_rx[3] == 1'b0 && uart_rx[7] == 1'b0)
                                             begin
@@ -328,7 +330,7 @@ module game_state #(
                             begin
                                 state_next = menu;
                                 uart_state_next = 8'b10000000;
-                                lever_used_out = 8'b11111111;
+                                lever_used_out_next = 8'b11111111;
                                 player0_health = 2'b10;
                                 player1_health = 2'b10;
                                 turn = 3'b000;
@@ -337,7 +339,7 @@ module game_state #(
                             begin
                                 current_player_next = 1'b1; // I'm player_1
                                 state_next = menu;
-                                lever_used_out = 8'b11111111;
+                                lever_used_out_next = 8'b11111111;
                                 player0_health = 2'b10;
                                 player1_health = 2'b10;
                                 turn = 3'b000;

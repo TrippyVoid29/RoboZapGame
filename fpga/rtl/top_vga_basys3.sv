@@ -17,7 +17,8 @@
 module top_vga_basys3 (
     input  wire clk,
     input  wire buttonC, buttonU, buttonD, buttonL, buttonR,
-    input wire RsRx,
+    //input wire RsRx,
+    input wire JA2,
 
     output wire Vsync,
     output wire Hsync,
@@ -49,6 +50,10 @@ logic [7:0] safe_start = 0;
 /**
  * Signals assignments
  */
+wire rx_in, tx_out;
+assign rx_in = JA2;
+assign JA1 = tx_out;
+assign RsTx = tx_out;
 
 /**
  * FPGA submodules placement
@@ -111,8 +116,8 @@ wire [7:0] uart_tx, uart_rx;
 top_uart u_top_uart (
     .clk(clk100),
     .rst(buttonC),
-    .rx_in(RsRx),
-    .tx_out(RsTx),
+    .rx_in(rx_in),
+    .tx_out(tx_out),
     .tx_in(uart_tx),   
     .rx_out(uart_rx),
     .tx_start(tx_start)

@@ -10,7 +10,7 @@ module uart_rec
      output logic [7:0] dout
     );
 
-    logic [7:0] dout_next;
+    logic [7:0] dout_next = 8'b00000000;
     logic [1:0] state_reg, state_reg_next;
 
     localparam [1:0]

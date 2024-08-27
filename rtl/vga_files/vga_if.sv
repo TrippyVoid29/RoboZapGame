@@ -15,15 +15,16 @@ logic        vblnk;
 logic [10:0] hcount;
 logic        hsync;
 logic        hblnk;
+logic [2:0]  position;
 
 logic [11:0] rgb;
 
  modport in(
-    input vsync, vcount, vblnk, hcount, hsync, hblnk, rgb
+    input vsync, vcount, vblnk, hcount, hsync, hblnk, rgb, position
  );
 
  modport out(
-    output vsync, vcount, vblnk, hcount, hsync, hblnk, rgb
+    output vsync, vcount, vblnk, hcount, hsync, hblnk, rgb, position
  );
 
 endinterface

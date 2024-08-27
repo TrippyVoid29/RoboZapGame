@@ -31,6 +31,7 @@ always_ff @(posedge clk) begin : rect_ff_blk
         vga_lever_out.hsync  <= '0;
         vga_lever_out.hblnk  <= '0;
         vga_lever_out.rgb    <= '0;
+        vga_lever_out.position <= '0;
     end else begin
         vga_lever_out.vcount <= vga_lever_in.vcount;
         vga_lever_out.vsync  <= vga_lever_in.vsync;
@@ -38,6 +39,7 @@ always_ff @(posedge clk) begin : rect_ff_blk
         vga_lever_out.hcount <= vga_lever_in.hcount;
         vga_lever_out.hsync  <= vga_lever_in.hsync;
         vga_lever_out.hblnk  <= vga_lever_in.hblnk;
+        vga_lever_out.position <= vga_lever_in.position;
         if(rgb_nxt) begin
             vga_lever_out.rgb    <= rgb_nxt;
         end else begin

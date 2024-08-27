@@ -59,6 +59,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         vga_stats_out.rgb    <= '0;
         my_health            <= 2'b10;
         enemy_health         <= 2'b10;
+        vga_stats_out.position <= '0;
     end else begin
         vga_stats_out.vcount <= vga_stats_in.vcount;
         vga_stats_out.vsync  <= vga_stats_in.vsync;
@@ -67,6 +68,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         vga_stats_out.hsync  <= vga_stats_in.hsync;
         vga_stats_out.hblnk  <= vga_stats_in.hblnk;
         vga_stats_out.rgb    <= rgb_nxt;
+        vga_stats_out.position <= vga_stats_in.position;
         if(rgb_nxt) begin
             vga_stats_out.rgb    <= rgb_nxt;
         end else begin

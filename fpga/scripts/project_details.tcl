@@ -13,7 +13,7 @@
 #                   Project details                   #
 #-----------------------------------------------------#
 # Project name                                  -- EDIT
-set project_name vga_project
+set project_name RoboZap
 
 # Top module name                               -- EDIT
 set top_module top_vga_basys3

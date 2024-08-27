@@ -14,6 +14,7 @@ module draw_bg (
 
     input  logic clk,
     input  logic rst,
+    input logic [2:0]  position,
     vga_if.out vga_bg_out,
     vga_if.in vga_bg_in
 );
@@ -41,6 +42,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         vga_bg_out.hsync  <= '0;
         vga_bg_out.hblnk  <= '0;
         vga_bg_out.rgb    <= '0;
+        vga_bg_out.position <= '0;
     end else begin
         vga_bg_out.vcount <= vga_bg_in.vcount;
         vga_bg_out.vsync  <= vga_bg_in.vsync;
@@ -49,6 +51,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         vga_bg_out.hsync  <= vga_bg_in.hsync;
         vga_bg_out.hblnk  <= vga_bg_in.hblnk;
         vga_bg_out.rgb    <= rgb_nxt;
+        vga_bg_out.position <= position;
     end
 end
 

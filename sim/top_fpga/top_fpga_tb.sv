@@ -86,8 +86,8 @@ tiff_writer #(
 
 initial begin
     rst = 1'b0;
-    # 1000 rst = 1'b1;
-    # 2000 rst = 1'b0;
+    # 10 rst = 1'b1;
+    # 20 rst = 1'b0;
 
     $display("If simulation ends before the testbench");
     $display("completes, use the menu option to run all.");

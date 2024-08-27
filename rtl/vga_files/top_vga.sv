@@ -69,6 +69,7 @@ vga_timing u_vga_timing (
 draw_bg u_draw_bg (
     .clk,
     .rst,
+    .position,
 
     .vga_bg_in(vga_tim),
     .vga_bg_out(vga_bg)
@@ -88,7 +89,6 @@ draw_stats u_draw_stats (
 draw_highlight u_draw_highlight (
     .clk,
     .rst,
-    .position,
 
     .vga_highlight_in(vga_stats),
     .vga_highlight_out(vga_highlight)

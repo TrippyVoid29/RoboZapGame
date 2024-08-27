@@ -85,12 +85,12 @@ module game_state #(
             case(state_current)
                 init:
                     begin
-                        tx_start = 1'b1;
                         if(buttonL && buttonR == 1'b1) //button pressed
                             begin
                                 state_next = menu;
                                 current_player_next = 1'b0;
                                 uart_state_next = 8'b10000000; //I'm player_0 u re player_1
+                                tx_start = 1'b1;
                             end
                         else if(uart_rx == 8'b10000000) //uart signal recived
                             begin

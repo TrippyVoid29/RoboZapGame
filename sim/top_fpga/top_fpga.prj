@@ -9,11 +9,26 @@
 # https://docs.xilinx.com/r/en-US/ug900-vivado-logic-simulation/Project-File-.prj-Syntax
 
 
-sv work ../../rtl/vga_pkg.sv \
-        ../../rtl/vga_timing.sv \
-        ../../rtl/draw_bg.sv \
-        ../../rtl/top_vga.sv \
+sv work ../../rtl/vga_files/vga_pkg.sv \
+        ../../rtl/vga_files/vga_timing.sv \
+        ../../rtl/vga_files/vga_if.sv \
+        ../../rtl/vga_files/draw_bg.sv \
+        ../../rtl/vga_files/draw_lever.sv \
+        ../../rtl/vga_files/top_vga.sv \
+        ../../rtl/vga_files/draw_stats.sv \
+        ../../rtl/vga_files/draw_highlight.sv \
+        ../../rtl/vga_files/draw_start_bg.sv \
         ../../fpga/rtl/top_vga_basys3.sv \
+        ../../rtl/logic/game_state.sv \
+        ../../rtl/logic/lever_select.sv \
+        ../../rtl/logic/table_base.sv \
+        ../../rtl/logic/top_logic.sv \
+        ../../rtl/uart_files/top_uart.sv \
+        ../../rtl/uart_files/uart_clock.sv \
+        ../../rtl/uart_files/uart_rec.sv \
+        ../../rtl/uart_files/uart_rx.sv \
+        ../../rtl/uart_files/uart_tx.sv \
+        ../../rtl/clk_wiz_0_clk_wiz.v \
         ../common/tiff_writer.sv \
         top_fpga_tb.sv
 

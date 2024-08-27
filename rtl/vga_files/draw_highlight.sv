@@ -14,7 +14,6 @@ module draw_highlight #(
 )(
     input  logic clk,
     input  logic rst,
-    input logic [2:0] position,
 
     vga_if.out vga_highlight_out,
     vga_if.in vga_highlight_in
@@ -33,6 +32,7 @@ always_ff @(posedge clk) begin : rect_ff_blk
         vga_highlight_out.hsync  <= '0;
         vga_highlight_out.hblnk  <= '0;
         vga_highlight_out.rgb    <= '0;
+        vga_highlight_out.position <= '0;
     end else begin
         vga_highlight_out.vcount <= vga_highlight_in.vcount;
         vga_highlight_out.vsync  <= vga_highlight_in.vsync;
@@ -40,6 +40,7 @@ always_ff @(posedge clk) begin : rect_ff_blk
         vga_highlight_out.hcount <= vga_highlight_in.hcount;
         vga_highlight_out.hsync  <= vga_highlight_in.hsync;
         vga_highlight_out.hblnk  <= vga_highlight_in.hblnk;
+        vga_highlight_out.position <= vga_highlight_in.position;
         if(rgb_nxt) begin
             vga_highlight_out.rgb    <= rgb_nxt;
         end else begin
@@ -56,8 +57,8 @@ parameter highlight_range = 3;
 parameter highlight_color = 12'h0_9_0; //GREEN
 
         // --Lever_Highlight--
-        if (vga_highlight_out.hcount >= (lever_posit_x - highlight_range) + (position * distance) && 
-            vga_highlight_out.hcount <= (lever_posit_x + height + highlight_range) + (position * distance) && 
+        if (vga_highlight_out.hcount >= (lever_posit_x - highlight_range) + (vga_highlight_out.position * distance) && 
+            vga_highlight_out.hcount <= (lever_posit_x + height + highlight_range) + (vga_highlight_out.position * distance) && 
             vga_highlight_out.vcount >= (lever_posit_y - highlight_range) && 
             vga_highlight_out.vcount <= (lever_posit_y + height + highlight_range))              
             

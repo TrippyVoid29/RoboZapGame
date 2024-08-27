@@ -50,8 +50,8 @@ module game_state #(
 
     // signal declaration
     logic [2:0] state_current, state_next = init;
-    logic [7:0] uart_state_next;
-    logic current_player_next;
+    logic [7:0] uart_state_next = 8'b00000000;
+    logic current_player_next = 1'b0;
     logic [2:0] tableselected_next;
 
 
@@ -82,13 +82,12 @@ module game_state #(
             case(state_current)
                 init:
                     begin
+                        tx_start = 1'b1;
                         if(buttonL && buttonR == 1'b1) //button pressed
                             begin
                                 state_next = menu;
                                 current_player_next = 1'b0;
-                                tx_start = 1'b1;
                                 uart_state_next = 8'b10000000; //I'm player_0 u re player_1
-                                
                             end
                         else if(uart_rx == 8'b10000000) //uart signal recived
                             begin
@@ -109,12 +108,12 @@ module game_state #(
                             begin
                             if((buttonL == 1'b1) && (buttonR == 1'b0) || (buttonL == 1'b0) && (buttonR == 1'b1)) //any button pressed
                                 begin
-                                    tx_start = 1'b1;
                                     uart_state_next [3] = tableselected_next [0]; //code information to output for uart 
                                     uart_state_next [4] = tableselected_next [1];
                                     uart_state_next [5] = tableselected_next [2];
                                     uart_state_next [6] = 1'b1;
                                     state_next = player0;
+                                    tx_start = 1'b1;
                                 end
                             else
                                 begin
@@ -146,7 +145,6 @@ module game_state #(
                                 begin
                                     if(turn_done == 1'b1)
                                         begin
-                                            tx_start = 1'b1;
                                             turn = turn + 1;// increment turn
                                             uart_state_next [7:0] = {lever_select, turn}; // save turn in uart /update uart which lever was pulled, lethality, target
                                                 //lethality                      target
@@ -166,9 +164,11 @@ module game_state #(
                                                 begin
                                                     player1_health = player1_health - 1;
                                                 end
-
+                                                
+                                            tx_start = 1'b1;
                                             lever_used_out[lever_select[3:1]] = 1'b0;
                                             state_next = player1;
+                                            
                                         end
                                     else
                                         begin
@@ -222,7 +222,6 @@ module game_state #(
                             begin
                                 if(turn_done == 1'b1)
                                     begin
-                                        tx_start = 1'b1;
                                         turn = turn + 1;// increment turn
                                         uart_state_next [7:0] = {turn, lever_select}; // save turn in uart /update uart which lever was pulled, lethality, target
                                                 //lethality                      target
@@ -243,6 +242,7 @@ module game_state #(
                                                 player1_health = player1_health - 1;
                                             end
 
+                                        tx_start = 1'b1;
                                         lever_used_out[lever_select[3:1]] = 1'b0;
                                         state_next = player0;
                                     end

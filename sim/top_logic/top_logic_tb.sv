@@ -14,6 +14,7 @@
     logic clk;
     logic rst;
     logic ButtonD, ButtonL, ButtonR, ButtonU;
+    logic tx_start;
 
     logic [7:0] uart_rx;
 
@@ -51,6 +52,7 @@ top_logic dut(
     .clk,
     .rst,
     .uart_rx,
+    .tx_start(tx_start),
 
     .player0_health,
     .player1_health,
@@ -70,8 +72,7 @@ task reset();
         position = 0;
         player0_health = 2'b10;
         player1_health = 2'b10;
-        //lever_used_out = 8'b11111111;
-        uart_rx = 8'b00000000;
+        //uart_rx = 8'b00000000;
     end
 endtask
 

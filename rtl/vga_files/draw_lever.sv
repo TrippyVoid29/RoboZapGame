@@ -13,7 +13,7 @@ module draw_lever #(
 )(
     input  logic clk,
     input  logic rst,
-    input [7:0] lever_used_in,
+    input [7:0] lever_left_in,
     vga_if.out vga_lever_out,
     vga_if.in vga_lever_in
 );
@@ -66,177 +66,177 @@ parameter used_rd_color = 12'h4_4_4;
 //------------------------LEVER_7---------------------------
         if (vga_lever_out.hcount >= (lever_posit_x + 7) && vga_lever_out.hcount <= (width + lever_posit_x - 7) && vga_lever_out.vcount >= (lever_posit_y + 22) && vga_lever_out.vcount <= (height + lever_posit_y - 22))              
             begin
-            if(lever_used_in[7] == 1)
+            if(lever_left_in[7] == 1)
                 rgb_nxt = unused_st_color;
-            else if(lever_used_in[7] == 0) 
+            else if(lever_left_in[7] == 0) 
                 rgb_nxt = used_st_color;
             end
         else if (vga_lever_out.hcount >= (lever_posit_x + 5) && vga_lever_out.hcount <= (width + lever_posit_x - 5) && vga_lever_out.vcount >= (lever_posit_y + 20) && vga_lever_out.vcount <= (height + lever_posit_y - 20))              
             begin
-            if(lever_used_in[7] == 1)
+            if(lever_left_in[7] == 1)
                 rgb_nxt = unused_nd_color;
-            else if(lever_used_in[7] == 0)
+            else if(lever_left_in[7] == 0)
                 rgb_nxt = used_nd_color;   
             end
         else if (vga_lever_out.hcount >= lever_posit_x && vga_lever_out.hcount <= (width + lever_posit_x) && vga_lever_out.vcount >= lever_posit_y && vga_lever_out.vcount <= (height + lever_posit_y))              
             begin
-            if(lever_used_in[7] == 1)
+            if(lever_left_in[7] == 1)
                 rgb_nxt = unused_rd_color;
-            else if(lever_used_in[7] == 0)
+            else if(lever_left_in[7] == 0)
                 rgb_nxt = used_rd_color;
             end
 //------------------------LEVER_6---------------------------
         else if (vga_lever_out.hcount >= (lever_posit_x + distance + 7) && vga_lever_out.hcount <= (width + lever_posit_x + distance - 7) && vga_lever_out.vcount >= (lever_posit_y + 22) && vga_lever_out.vcount <= (height + lever_posit_y - 22))              
             begin
-            if(lever_used_in[6] == 1)
+            if(lever_left_in[6] == 1)
                 rgb_nxt = unused_st_color;
-            else if(lever_used_in[6] == 0) 
+            else if(lever_left_in[6] == 0) 
                 rgb_nxt = used_st_color;
             end
         else if (vga_lever_out.hcount >= (lever_posit_x + distance + 5) && vga_lever_out.hcount <= (width + lever_posit_x + distance - 5) && vga_lever_out.vcount >= (lever_posit_y + 20) && vga_lever_out.vcount <= (height + lever_posit_y - 20))              
             begin
-            if(lever_used_in[6] == 1)
+            if(lever_left_in[6] == 1)
                 rgb_nxt = unused_nd_color;
-            else if(lever_used_in[6] == 0)
+            else if(lever_left_in[6] == 0)
                 rgb_nxt = used_nd_color;   
             end
         else if (vga_lever_out.hcount >= lever_posit_x + distance && vga_lever_out.hcount <= (width + lever_posit_x + distance) && vga_lever_out.vcount >= lever_posit_y && vga_lever_out.vcount <= (height + lever_posit_y))              
             begin
-            if(lever_used_in[6] == 1)
+            if(lever_left_in[6] == 1)
                 rgb_nxt = unused_rd_color;
-            else if(lever_used_in[6] == 0)
+            else if(lever_left_in[6] == 0)
                 rgb_nxt = used_rd_color;
             end
 //------------------------LEVER_5---------------------------
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 2) + 7) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 2) - 7) && vga_lever_out.vcount >= (lever_posit_y + 22) && vga_lever_out.vcount <= (height + lever_posit_y - 22))              
             begin
-            if(lever_used_in[5] == 1)
+            if(lever_left_in[5] == 1)
                 rgb_nxt = unused_st_color;
-            else if(lever_used_in[5] == 0) 
+            else if(lever_left_in[5] == 0) 
                 rgb_nxt = used_st_color;
             end
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 2) + 5) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 2) - 5) && vga_lever_out.vcount >= (lever_posit_y + 20) && vga_lever_out.vcount <= (height + lever_posit_y - 20))              
             begin
-            if(lever_used_in[5] == 1)
+            if(lever_left_in[5] == 1)
                 rgb_nxt = unused_nd_color;
-            else if(lever_used_in[5] == 0)
+            else if(lever_left_in[5] == 0)
                 rgb_nxt = used_nd_color;   
             end
         else if (vga_lever_out.hcount >= lever_posit_x + (distance * 2) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 2)) && vga_lever_out.vcount >= lever_posit_y && vga_lever_out.vcount <= (height + lever_posit_y))              
             begin
-            if(lever_used_in[5] == 1)
+            if(lever_left_in[5] == 1)
                 rgb_nxt = unused_rd_color;
-            else if(lever_used_in[5] == 0)
+            else if(lever_left_in[5] == 0)
                 rgb_nxt = used_rd_color;
             end
 //------------------------LEVER_4---------------------------
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 3) + 7) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 3) - 7) && vga_lever_out.vcount >= (lever_posit_y + 22) && vga_lever_out.vcount <= (height + lever_posit_y - 22))              
             begin
-            if(lever_used_in[4] == 1)
+            if(lever_left_in[4] == 1)
                 rgb_nxt = unused_st_color;
-            else if(lever_used_in[4] == 0) 
+            else if(lever_left_in[4] == 0) 
                 rgb_nxt = used_st_color;
             end
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 3) + 5) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 3) - 5) && vga_lever_out.vcount >= (lever_posit_y + 20) && vga_lever_out.vcount <= (height + lever_posit_y - 20))              
             begin
-            if(lever_used_in[4] == 1)
+            if(lever_left_in[4] == 1)
                 rgb_nxt = unused_nd_color;
-            else if(lever_used_in[4] == 0)
+            else if(lever_left_in[4] == 0)
                 rgb_nxt = used_nd_color;   
             end
         else if (vga_lever_out.hcount >= lever_posit_x + (distance * 3) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 3)) && vga_lever_out.vcount >= lever_posit_y && vga_lever_out.vcount <= (height + lever_posit_y))              
             begin
-            if(lever_used_in[4] == 1)
+            if(lever_left_in[4] == 1)
                 rgb_nxt = unused_rd_color;
-            else if(lever_used_in[4] == 0)
+            else if(lever_left_in[4] == 0)
                 rgb_nxt = used_rd_color;
             end
 //------------------------LEVER_3---------------------------
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 4) + 7) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 4) - 7) && vga_lever_out.vcount >= (lever_posit_y + 22) && vga_lever_out.vcount <= (height + lever_posit_y - 22))              
             begin
-            if(lever_used_in[3] == 1)
+            if(lever_left_in[3] == 1)
                 rgb_nxt = unused_st_color;
-            else if(lever_used_in[3] == 0) 
+            else if(lever_left_in[3] == 0) 
                 rgb_nxt = used_st_color;
             end
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 4) + 5) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 4) - 5) && vga_lever_out.vcount >= (lever_posit_y + 20) && vga_lever_out.vcount <= (height + lever_posit_y - 20))              
             begin
-            if(lever_used_in[3] == 1)
+            if(lever_left_in[3] == 1)
                 rgb_nxt = unused_nd_color;
-            else if(lever_used_in[3] == 0)
+            else if(lever_left_in[3] == 0)
                 rgb_nxt = used_nd_color;   
             end
         else if (vga_lever_out.hcount >= lever_posit_x + (distance * 4) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 4)) && vga_lever_out.vcount >= lever_posit_y && vga_lever_out.vcount <= (height + lever_posit_y))              
             begin
-            if(lever_used_in[3] == 1)
+            if(lever_left_in[3] == 1)
                 rgb_nxt = unused_rd_color;
-            else if(lever_used_in[3] == 0)
+            else if(lever_left_in[3] == 0)
                 rgb_nxt = used_rd_color;
             end
 //------------------------LEVER_2---------------------------
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 5) + 7) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 5) - 7) && vga_lever_out.vcount >= (lever_posit_y + 22) && vga_lever_out.vcount <= (height + lever_posit_y - 22))              
             begin
-            if(lever_used_in[2] == 1)
+            if(lever_left_in[2] == 1)
                 rgb_nxt = unused_st_color;
-            else if(lever_used_in[2] == 0) 
+            else if(lever_left_in[2] == 0) 
                 rgb_nxt = used_st_color;
             end
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 5) + 5) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 5) - 5) && vga_lever_out.vcount >= (lever_posit_y + 20) && vga_lever_out.vcount <= (height + lever_posit_y - 20))              
             begin
-            if(lever_used_in[2] == 1)
+            if(lever_left_in[2] == 1)
                 rgb_nxt = unused_nd_color;
-            else if(lever_used_in[2] == 0)
+            else if(lever_left_in[2] == 0)
                 rgb_nxt = used_nd_color;   
             end
         else if (vga_lever_out.hcount >= lever_posit_x + (distance * 5) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 5)) && vga_lever_out.vcount >= lever_posit_y && vga_lever_out.vcount <= (height + lever_posit_y))              
             begin
-            if(lever_used_in[2] == 1)
+            if(lever_left_in[2] == 1)
                 rgb_nxt = unused_rd_color;
-            else if(lever_used_in[2] == 0)
+            else if(lever_left_in[2] == 0)
                 rgb_nxt = used_rd_color;
             end
 //------------------------LEVER_1---------------------------
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 6) + 7) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 6) - 7) && vga_lever_out.vcount >= (lever_posit_y + 22) && vga_lever_out.vcount <= (height + lever_posit_y - 22))              
             begin
-            if(lever_used_in[1] == 1)
+            if(lever_left_in[1] == 1)
                 rgb_nxt = unused_st_color;
-            else if(lever_used_in[1] == 0) 
+            else if(lever_left_in[1] == 0) 
                 rgb_nxt = used_st_color;
             end
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 6) + 5) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 6) - 5) && vga_lever_out.vcount >= (lever_posit_y + 20) && vga_lever_out.vcount <= (height + lever_posit_y - 20))              
             begin
-            if(lever_used_in[1] == 1)
+            if(lever_left_in[1] == 1)
                 rgb_nxt = unused_nd_color;
-            else if(lever_used_in[1] == 0)
+            else if(lever_left_in[1] == 0)
                 rgb_nxt = used_nd_color;   
             end
         else if (vga_lever_out.hcount >= lever_posit_x + (distance * 6) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 6)) && vga_lever_out.vcount >= lever_posit_y && vga_lever_out.vcount <= (height + lever_posit_y))              
             begin
-            if(lever_used_in[1] == 1)
+            if(lever_left_in[1] == 1)
                 rgb_nxt = unused_rd_color;
-            else if(lever_used_in[1] == 0)
+            else if(lever_left_in[1] == 0)
                 rgb_nxt = used_rd_color;
             end
 //------------------------LEVER_0---------------------------
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 7) + 7) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 7) - 7) && vga_lever_out.vcount >= (lever_posit_y + 22) && vga_lever_out.vcount <= (height + lever_posit_y - 22))              
             begin
-            if(lever_used_in[0] == 1)
+            if(lever_left_in[0] == 1)
                 rgb_nxt = unused_st_color;
-            else if(lever_used_in[0] == 0) 
+            else if(lever_left_in[0] == 0) 
                 rgb_nxt = used_st_color;
             end
         else if (vga_lever_out.hcount >= (lever_posit_x + (distance * 7) + 5) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 7) - 5) && vga_lever_out.vcount >= (lever_posit_y + 20) && vga_lever_out.vcount <= (height + lever_posit_y - 20))              
             begin
-            if(lever_used_in[0] == 1)
+            if(lever_left_in[0] == 1)
                 rgb_nxt = unused_nd_color;
-            else if(lever_used_in[0] == 0)
+            else if(lever_left_in[0] == 0)
                 rgb_nxt = used_nd_color;   
             end
         else if (vga_lever_out.hcount >= lever_posit_x + (distance * 7) && vga_lever_out.hcount <= (width + lever_posit_x + (distance * 7)) && vga_lever_out.vcount >= lever_posit_y && vga_lever_out.vcount <= (height + lever_posit_y))              
             begin
-            if(lever_used_in[0] == 1)
+            if(lever_left_in[0] == 1)
                 rgb_nxt = unused_rd_color;
-            else if(lever_used_in[0] == 0)
+            else if(lever_left_in[0] == 0)
                 rgb_nxt = used_rd_color;
             end
 

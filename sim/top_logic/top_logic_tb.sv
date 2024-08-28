@@ -19,9 +19,9 @@
     logic [7:0] uart_rx;
 
     wire [2:0] state_output; 
-    logic [2:0] position, state_current_lever;
+    logic [2:0] position;
     logic [1:0] player0_health, player1_health, who_won;
-    wire [7:0] lever_used_out, data_output;
+    wire [7:0] lever_left_out, data_output;
     wire current_player;
 
 // microcode
@@ -63,15 +63,20 @@ top_logic dut(
     .state_output(state_output),
     .position,
     .data_output,
-    .lever_used_out,
-    .who_won,
-    .state_current_lever
+    .lever_left_out,
+    .who_won
 );
 
 task reset();
     begin
         rst = 1'b0;
         #10 rst = 1'b1;
+
+        ButtonL = 1'b0;
+        ButtonR = 1'b0;
+        ButtonU = 1'b0;
+        ButtonD = 1'b0;
+
         #10 rst = 1'b0;
     end
 endtask
@@ -115,6 +120,7 @@ endtask
 initial begin
 
     reset();
+
     start_game();
 
     #20 press_lever(left);

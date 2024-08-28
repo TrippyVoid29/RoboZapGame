@@ -10,24 +10,22 @@ module lever_select #(
     input wire buttonL, //left button
     input wire buttonR, //right button
     input wire current_player,
-    input wire [7:0] lever_used_in,
+    input wire [7:0] lever_left_in,
     input reg [7:0] table_lethality, 
 
-    output wire [4:0] lever_select,
+    output logic [4:0] lever_select,
     output logic turn_done,
-    output logic [2:0] position = 3'b000,
-    output logic [2:0] state_current_lever
-    
+    output logic [2:0] position = 3'b000
 
     );
 
-    logic turn = 1'b0;
-    logic turn_next = 1'b0;
+    logic turn;
+    logic turn_next;
     logic lever_lethality;
     logic target;
-    logic turn_done_flag =1'b0;
-    logic button_pressed = 0;
-    logic [2:0] position_next = 3'b000;
+    logic turn_done_next;
+    logic button_pressed;
+    logic [2:0] position_next;
 
     //STATES
     localparam [2:0]
@@ -39,30 +37,35 @@ module lever_select #(
     down = 3'b101;
 
     logic [2:0] state_current, state_next = idle;
+    logic [4:0] lever_select_next;
 
     // body
-    always @(posedge clk, posedge rst)
+    always_ff@(posedge clk)
     if (rst)
        begin
           state_current <= idle;
           position <= 3'b000;
           turn <= 1'b0;
+          lever_select <= 5'b00000;
+          turn_done <= 1'b0;
        end
     else
        begin
           state_current <= state_next;
           position <= position_next;
           turn <= turn_next;
-          //add signals
+          lever_select <= lever_select_next;
+          turn_done <= turn_done_next;
        end
 
-    always @*
+    always_comb
         begin
             
             //add signals
             case(state_current)
                 idle:
                     begin
+                        position_next = position;
                         if(buttonR == 1'b1)
                             begin
                                 button_pressed = 1'b1;
@@ -114,12 +117,12 @@ module lever_select #(
                     end
                 up:
                     begin
-                        if(lever_used_in[position_next] == 1'b1) begin
+                        if(lever_left_in[position_next] == 1'b1) begin
                             if(buttonU == 1'b0 && button_pressed == 1'b1) 
                             begin
                                 lever_lethality = table_lethality[position_next];
                                 state_next = locked;
-                                turn_done_flag = 1'b1;
+                                turn_done_next = 1'b1;
                                 if(current_player == 1'b0)
                                 begin
                                     target = 1'b1;
@@ -128,21 +131,22 @@ module lever_select #(
                                 begin
                                     target = 1'b0;
                                 end
+                                lever_select_next = {target, position, lever_lethality};
                             end else begin
                                 state_next = up;
                             end
-                        end else if(lever_used_in[position_next] == 1'b0) begin
+                        end else if(lever_left_in[position_next] == 1'b0) begin
                             state_next = idle;
                         end
                     end
                 down:
                     begin
-                        if(lever_used_in[position_next] == 1'b1) begin
+                        if(lever_left_in[position_next] == 1'b1) begin
                             if(buttonD == 1'b0 && button_pressed == 1'b1)
                             begin
                                 lever_lethality = table_lethality[position_next];
                                 state_next = locked;
-                                turn_done_flag = 1'b1;
+                                turn_done_next = 1'b1;
                                 if(current_player == 1'b0) 
                                 begin
                                     target = 1'b0;
@@ -151,17 +155,18 @@ module lever_select #(
                                 begin
                                     target = 1'b1;
                                 end
+                                lever_select_next = {target, position, lever_lethality};
                             end else begin
                                 state_next = down;
                             end
-                        end else if(lever_used_in[position_next] == 1'b0) begin
+                        end else if(lever_left_in[position_next] == 1'b0) begin
                             state_next = idle;
                         end
                     end
                 locked:
                     begin
-                        turn_done_flag = 1'b0;
-                        turn_next = ^lever_used_in;
+                        turn_done_next = 1'b0;
+                        turn_next = ^lever_left_in;
                         if(current_player == turn)
                             begin
                                 state_next = idle;
@@ -172,7 +177,7 @@ module lever_select #(
             endcase 
         end
 
-        assign lever_select = {target, position, lever_lethality};
-        assign turn_done = turn_done_flag;
-        assign state_current_lever = state_next;
+        //assign lever_select = {target, position, lever_lethality};
+        //assign turn_done = turn_done_next;
+        //assign state_current_lever = state_next;
 endmodule

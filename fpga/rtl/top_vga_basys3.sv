@@ -91,7 +91,7 @@ ODDR pclk_oddr (
  wire current_player;
  wire [1:0] player0_health, player1_health, who_won; 
  wire [2:0] position, states;
- wire [7:0] lever_used;
+ wire [7:0] lever_left;
  logic tx_start;
 
 top_vga u_top_vga (
@@ -103,7 +103,7 @@ top_vga u_top_vga (
     .hs(Hsync),
     .vs(Vsync),
     .current_player,
-    .lever_used_in(lever_used),
+    .lever_left_in(lever_left),
     .player0_health,
     .player1_health,
     .position,
@@ -135,7 +135,7 @@ top_logic u_top_logic (
     .buttonR,
     .buttonU,
     .current_player,
-    .lever_used_out(lever_used),
+    .lever_left_out(lever_left),
     .player0_health,
     .player1_health,
     .position,

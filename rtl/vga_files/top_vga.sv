@@ -20,7 +20,7 @@ module top_vga (
     //logika
     input  logic [2:0] states,
     input  logic [2:0] position,
-    input  logic [7:0] lever_used_in,
+    input  logic [7:0] lever_left_in,
     input  logic current_player,
     input  logic [1:0] player0_health,
     input  logic [1:0] player1_health,
@@ -97,7 +97,7 @@ draw_highlight u_draw_highlight (
 draw_lever u_draw_lever (
     .clk,
     .rst,
-    .lever_used_in,
+    .lever_left_in,
 
     .vga_lever_in(vga_highlight),
     .vga_lever_out(vga_lever)

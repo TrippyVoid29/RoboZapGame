@@ -18,12 +18,11 @@ module top_logic (
     output wire [1:0] who_won,
     output wire [2:0] state_output,
     output logic [2:0] position,
-    output logic [7:0] lever_used_out,
+    output logic [7:0] lever_left_out,
     output wire current_player,
     output wire [1:0] player0_health,
     output wire [1:0] player1_health,
-    output logic tx_start,
-    output logic [2:0] state_current_lever
+    output logic tx_start
     );
 
     wire turn_done;
@@ -46,7 +45,7 @@ module top_logic (
         .current_player(current_player),
         .tableselected(tablecode),
         .who_won,
-        .lever_used_out,
+        .lever_left_out,
         .state_output,
         .player0_health,
         .player1_health,
@@ -65,11 +64,10 @@ module top_logic (
         .buttonU,
         .current_player(current_player),
         .lever_select(lever_select),
-        .lever_used_in(lever_used_out),
+        .lever_left_in(lever_left_out),
         .table_lethality(lethality_table),
         .turn_done(turn_done),
-        .position,
-        .state_current_lever
+        .position
         
     );
     

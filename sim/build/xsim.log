@@ -2,13 +2,13 @@
 # xsim v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Mon Aug 26 15:38:57 2024
-# Process ID: 30553
-# Current directory: /home/student/lperczynski/Vivado/RoboZapGame/sim/build
+# Start of session at: Wed Aug 28 19:03:09 2024
+# Process ID: 19962
+# Current directory: /home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/sim/build
 # Command line: xsim -source {xsim.dir/top_logic_tb/xsim_script.tcl}
-# Log file: /home/student/lperczynski/Vivado/RoboZapGame/sim/build/xsim.log
-# Journal file: /home/student/lperczynski/Vivado/RoboZapGame/sim/build/xsim.jou
-# Running On: cadence26, OS: Linux, CPU Frequency: 3703.710 MHz, CPU Physical cores: 4, Host memory: 16720 MB
+# Log file: /home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/sim/build/xsim.log
+# Journal file: /home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/sim/build/xsim.jou
+# Running On: cadence25, OS: Linux, CPU Frequency: 3700.000 MHz, CPU Physical cores: 4, Host memory: 16720 MB
 #-----------------------------------------------------------
 start_gui
 source xsim.dir/top_logic_tb/xsim_script.tcl
@@ -75,14 +75,15 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:1.0 availab
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home_local/Xilinx/Vivado/2021.2/data/ip'.
-# xsim {top_logic_tb} -autoloadwcfg -tclbatch {/student/lperczynski/Vivado/RoboZapGame/tools/sim_cmd.tcl}
+current_fileset: Time (s): cpu = 00:00:12 ; elapsed = 00:00:05 . Memory (MB): peak = 10087.582 ; gain = 0.000 ; free physical = 1311 ; free virtual = 13920
+# xsim {top_logic_tb} -autoloadwcfg -tclbatch {/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/tools/sim_cmd.tcl}
 Time resolution is 1 ps
-source /student/lperczynski/Vivado/RoboZapGame/tools/sim_cmd.tcl
+source /home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/tools/sim_cmd.tcl
 ## log_wave *      # top module signals only
 ## run all
-$finish called at time : 600 ns : File "/home/student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic_tb.sv" Line 132
+$finish called at time : 620 ns : File "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/sim/top_logic/top_logic_tb.sv" Line 141
 ## add_wave /      # top module signals only
 close_sim
 INFO: [Simtcl 6-16] Simulation closed
 exit
-INFO: [Common 17-206] Exiting xsim at Mon Aug 26 16:38:48 2024...
+INFO: [Common 17-206] Exiting xsim at Wed Aug 28 19:07:14 2024...

@@ -1,26 +1,21 @@
 Vivado Simulator v2021.2
 Copyright 1986-1999, 2001-2021 Xilinx, Inc. All Rights Reserved.
-Running: /home_local/Xilinx/Vivado/2021.2/bin/unwrapped/lnx64.o/xelab work.top_logic_tb -snapshot top_logic_tb -prj /student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic.prj -timescale 1ns/1ps -L unisims_ver -debug typical 
+Running: /home_local/Xilinx/Vivado/2021.2/bin/unwrapped/lnx64.o/xelab work.top_logic_tb -snapshot top_logic_tb -prj /home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/sim/top_logic/top_logic.prj -timescale 1ns/1ps -L unisims_ver -debug typical 
 Multi-threading is on. Using 6 slave threads.
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/game_state.sv" into library work
 INFO: [VRFC 10-311] analyzing module game_state
-WARNING: [VRFC 10-8426] non-net output port 'who_won' cannot be initialized at declaration in SystemVerilog mode [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:28]
-WARNING: [VRFC 10-8426] non-net output port 'current_player' cannot be initialized at declaration in SystemVerilog mode [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:31]
-WARNING: [VRFC 10-8426] non-net output port 'player0_health' cannot be initialized at declaration in SystemVerilog mode [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:33]
-WARNING: [VRFC 10-8426] non-net output port 'player1_health' cannot be initialized at declaration in SystemVerilog mode [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:34]
-WARNING: [VRFC 10-8426] non-net output port 'tableselected' cannot be initialized at declaration in SystemVerilog mode [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv:35]
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/lever_select.sv" into library work
 INFO: [VRFC 10-311] analyzing module lever_select
-WARNING: [VRFC 10-8426] non-net output port 'position' cannot be initialized at declaration in SystemVerilog mode [/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv:18]
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/table_base.sv" into library work
+WARNING: [VRFC 10-8426] non-net output port 'position' cannot be initialized at declaration in SystemVerilog mode [/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/lever_select.sv:18]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/table_base.sv" into library work
 INFO: [VRFC 10-311] analyzing module table_base
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/top_logic.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/top_logic.sv" into library work
 INFO: [VRFC 10-311] analyzing module top_logic
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic_tb.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/sim/top_logic/top_logic_tb.sv" into library work
 INFO: [VRFC 10-311] analyzing module top_logic_tb
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-5021] port 'buttonC' is not connected on this instance [/home/student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic_tb.sv:46]
+WARNING: [VRFC 10-5021] port 'buttonC' is not connected on this instance [/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/sim/top_logic/top_logic_tb.sv:50]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

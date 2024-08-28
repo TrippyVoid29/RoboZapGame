@@ -1,4 +1,4 @@
- `timescale 1 ns / 1 ps
+`timescale 1 ns / 1 ps
 
  module draw_start_bg(
 
@@ -1623,9 +1623,9 @@ always_comb begin : bg_comb_blk
                 begin
                     rgb_nxt = 0;
                 end
-        else
-            rgb_nxt = 12'h0_0_0;
-        end
+                
+        
+    end
 end
  
 endmodule

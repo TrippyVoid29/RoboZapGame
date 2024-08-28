@@ -8,14 +8,12 @@ module top_uart (
     input  logic [7:0] tx_in,
 
     output  logic tx_out,   
-    output  logic [7:0] rx_out,
-    output  logic [7:0] dout
+    output  logic [7:0] rx_out
 );
 
 wire uclk;
 logic rx_done_tick;
 logic [7:0] rx_read;
-assign dout = rx_read;
 
 uart_clock u_uart_clock
     (

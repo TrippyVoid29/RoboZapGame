@@ -6,7 +6,7 @@ INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/
 INFO: [VRFC 10-311] analyzing module game_state
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/lever_select.sv" into library work
 INFO: [VRFC 10-311] analyzing module lever_select
-WARNING: [VRFC 10-8426] non-net output port 'position' cannot be initialized at declaration in SystemVerilog mode [/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/lever_select.sv:18]
+WARNING: [VRFC 10-8426] non-net output port 'position' cannot be initialized at declaration in SystemVerilog mode [/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/lever_select.sv:19]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/table_base.sv" into library work
 INFO: [VRFC 10-311] analyzing module table_base
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/top_logic.sv" into library work
@@ -16,6 +16,7 @@ INFO: [VRFC 10-311] analyzing module top_logic_tb
 Starting static elaboration
 Pass Through NonSizing Optimizer
 WARNING: [VRFC 10-5021] port 'buttonC' is not connected on this instance [/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/sim/top_logic/top_logic_tb.sv:50]
+WARNING: [VRFC 10-3645] port 'game_state' remains unconnected for this instance [/home/student/trys/Documents/Vivado/RoboZap/RoboZapGame/rtl/logic/top_logic.sv:58]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

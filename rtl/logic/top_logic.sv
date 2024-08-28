@@ -32,7 +32,7 @@ module top_logic (
     game_state u_game_state(
         .clk,
         .rst,
-        .uart_rx,
+        //.uart_rx,
         .buttonU,
         .buttonD,
         .buttonL,
@@ -46,7 +46,7 @@ module top_logic (
         .tableselected(tablecode),
         .who_won,
         .lever_left_out,
-        .state_output,
+        .state(state_output),
         .player0_health,
         .player1_health,
         .tx_start
@@ -67,7 +67,8 @@ module top_logic (
         .lever_left_in(lever_left_out),
         .table_lethality(lethality_table),
         .turn_done(turn_done),
-        .position
+        .position,
+        .game_state(state_output)
         
     );
     

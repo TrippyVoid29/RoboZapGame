@@ -8,7 +8,7 @@ module table_base #(
     output reg [7:0] table_lethality
     );
 
-always @(*) begin
+always_comb begin
     case (tablecode)
         3'b000: table_lethality = 8'b10101010;
         3'b001: table_lethality = 8'b01010101;

@@ -15,7 +15,7 @@ module game_state #(
     )(
     input wire clk,
     input wire rst,
-    input wire [7:0] uart_rx,        //info received from uart
+    //input wire [7:0] uart_rx,        //info received from uart
     input wire [4:0] lever_select,
     input wire buttonC, //middle button
     input wire buttonU, //upper button
@@ -28,7 +28,7 @@ module game_state #(
     output logic [7:0] lever_left_out,
     output wire [7:0] data_output, //send info to uart
     output logic current_player, // saved which player i am
-    output logic [2:0] state_output,
+    output logic [2:0] state,
     output logic [1:0] player0_health,
     output logic [1:0] player1_health,
     output logic [2:0] tableselected, // for now 8 tables
@@ -37,6 +37,7 @@ module game_state #(
 
     reg [7:0] uart_state; //for updating changes in uart
     
+    logic [7:0] uart_rx = 8'b00000000;
     logic [2:0] turn, turn_next;
 
 //STATES
@@ -49,7 +50,7 @@ module game_state #(
     newgame = 3'b100; // new game
 
     // signal declaration
-    logic [2:0] state_current, state_next;
+    logic [2:0] state_next;
     logic [7:0] uart_state_next;
     logic current_player_next;
     logic [2:0] tableselected_next;
@@ -62,36 +63,34 @@ module game_state #(
     // body
     always_ff@(posedge clk)
     if (rst)
-       begin
-          state_current <= init;
-          //add signals
-          uart_state <= 8'b00000000;
-          current_player <= 1'b0;
-          tableselected <= 3'b000;
-          lever_left_out <= 8'b11111111;
-          player0_health <= 2'b10;
-          player1_health <= 2'b10;
-          who_won <= 2'b00;
-          turn <= 3'b000;
-       end
+        begin
+            state <= init;
+            uart_state <= 8'b00000000;
+            current_player <= 1'b0;
+            tableselected <= 3'b000;
+            lever_left_out <= 8'b11111111;
+            player0_health <= 2'b10;
+            player1_health <= 2'b10;
+            who_won <= 2'b00;
+            turn <= 3'b000;
+        end
     else
-       begin
-          state_current <= state_next;
-          uart_state <= uart_state_next;
-          current_player <= current_player_next;
-          tableselected <= tableselected_next;
-          lever_left_out <= lever_left_out_next;
-          player1_health <= player1_health_next;
-          player0_health <= player0_health_next;
-          who_won <= who_won_next;
-          turn <= turn_next;
-          //add signals
-       end
+        begin
+            state <= state_next;
+            uart_state <= uart_state_next;
+            current_player <= current_player_next;
+            tableselected <= tableselected_next;
+            lever_left_out <= lever_left_out_next;
+            player1_health <= player1_health_next;
+            player0_health <= player0_health_next;
+            who_won <= who_won_next;
+            turn <= turn_next;
+        end
     
     always_comb
         begin
             //add signals
-            case(state_current)
+            case(state)
                 init:
                     begin
                         who_won_next = who_won;
@@ -152,7 +151,7 @@ module game_state #(
                 player0:
                     begin
                         tx_start = 1'b0;
-                        if(uart_state_next == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
+                        if(lever_left_out == 8'b00000000 || player0_health == 2'b00 || player1_health == 2'b00)
                             begin
                                 state_next = gameend;
                             end
@@ -229,7 +228,7 @@ module game_state #(
                 player1:
                 begin
                     tx_start = 1'b0;
-                    if(uart_state_next == 8'b111xxxxx || player0_health == 2'b00 || player1_health == 2'b00)
+                    if(lever_left_out == 8'b00000000 || player0_health == 2'b00 || player1_health == 2'b00)
                         begin
                             state_next = gameend;
                         end
@@ -369,6 +368,6 @@ module game_state #(
         end
 
     assign data_output = uart_state; // send everything to uart
-    assign state_output = state_current;
+    //assign state_output = state;
 
 endmodule

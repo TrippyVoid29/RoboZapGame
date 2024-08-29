@@ -41,16 +41,17 @@ module game_state #(
     logic [2:0] turn, turn_next;
 
 //STATES
-    localparam [2:0]
-    init = 3'b000, // wait for action (button) = sends info who is player0 and player1, starts counter for table selector
-    menu = 3'b001, // open menu on dispaly, wait for button to start game = get value for table counter, send/receive table with level data
-    player0 = 3'b011, // turn of player0, even turns
-    player1 = 3'b010, // turn of player1, odd turns
-    gameend = 3'b110, // game end
-    newgame = 3'b100; // new game
+    typedef enum bit [2:0] {    
+        INIT = 3'b000,
+        MENU = 3'b001,
+        PLAYER0 = 3'b011,
+        PLAYER1 = 3'b010,
+        GAMEEND = 3'b110,
+        NEWGAME = 3'b100} game_state;
+
+    game_state state_next;
 
     // signal declaration
-    logic [2:0] state_next;
     logic [7:0] uart_state_next;
     logic current_player_next;
     logic [2:0] tableselected_next;
@@ -64,7 +65,7 @@ module game_state #(
     always_ff@(posedge clk)
     if (rst)
         begin
-            state <= init;
+            state <= INIT;
             uart_state <= 8'b00000000;
             current_player <= 1'b0;
             tableselected <= 3'b000;
@@ -91,7 +92,7 @@ module game_state #(
         begin
             //add signals
             case(state)
-                init:
+                INIT:
                     begin
                         who_won_next = who_won;
                         lever_left_out_next = lever_left_out;
@@ -101,7 +102,7 @@ module game_state #(
 
                         if(buttonL && buttonR == 1'b1) //button pressed
                             begin
-                                state_next = menu;
+                                state_next = MENU;
                                 current_player_next = 1'b0;
                                 uart_state_next = 8'b10000000; //I'm player_0 u re player_1
                                 tx_start = 1'b1;
@@ -109,15 +110,15 @@ module game_state #(
                         else if(uart_rx == 8'b10000000) //uart signal recived
                             begin
                                 current_player_next = 1'b1; // I'm player_1
-                                state_next = menu;
+                                state_next = MENU;
                             end
                         else
                             begin
-                                state_next = init;
+                                state_next = INIT;
                                 tableselected_next =   + 1;
                             end
                     end
-                menu:
+                MENU:
                     begin
                         tx_start = 1'b0;
                         if(current_player_next == 1'b0) //for player_0
@@ -128,12 +129,12 @@ module game_state #(
                                     uart_state_next [4] = tableselected_next [1];
                                     uart_state_next [5] = tableselected_next [2];
                                     uart_state_next [6] = 1'b1;
-                                    state_next = player0;
+                                    state_next = PLAYER0;
                                     tx_start = 1'b1;
                                 end
                             else
                                 begin
-                                    state_next = menu;
+                                    state_next = MENU;
                                 end
                             end
                         else if(current_player_next == 1'b1 && uart_rx[6] == 1'b1) //for player_1
@@ -141,19 +142,19 @@ module game_state #(
                                     tableselected_next [0] = uart_rx [3]; //code information to the memory
                                     tableselected_next [1] = uart_rx [4];
                                     tableselected_next [2] = uart_rx [5];
-                                    state_next = player0;
+                                    state_next = PLAYER0;
                             end
                         else    //added for safety
                             begin
-                                state_next = menu;
+                                state_next = MENU;
                             end
                     end                    
-                player0:
+                PLAYER0:
                     begin
                         tx_start = 1'b0;
                         if(lever_left_out == 8'b00000000 || player0_health == 2'b00 || player1_health == 2'b00)
                             begin
-                                state_next = gameend;
+                                state_next = GAMEEND;
                             end
                         else
                             begin
@@ -183,12 +184,12 @@ module game_state #(
                                                 
                                             tx_start = 1'b1;
                                             lever_left_out_next[lever_select[3:1]] = 1'b0;
-                                            state_next = player1;
+                                            state_next = PLAYER1;
                                             
                                         end
                                     else
                                         begin
-                                            state_next = player0;
+                                            state_next = PLAYER0;
                                         end
                                 end 
                             else if(current_player_next == 1'b1) 
@@ -216,21 +217,21 @@ module game_state #(
                                                 end
                                             
                                             
-                                            state_next = player1;
+                                            state_next = PLAYER1;
                                         end
                                     else
                                         begin
-                                            state_next = player0;
+                                            state_next = PLAYER0;
                                         end
                                 end
                         end
                     end 
-                player1:
+                PLAYER1:
                 begin
                     tx_start = 1'b0;
                     if(lever_left_out == 8'b00000000 || player0_health == 2'b00 || player1_health == 2'b00)
                         begin
-                            state_next = gameend;
+                            state_next = GAMEEND;
                         end
                     else
                         begin
@@ -260,11 +261,11 @@ module game_state #(
 
                                         tx_start = 1'b1;
                                         lever_left_out_next[lever_select[3:1]] = 1'b0;
-                                        state_next = player0;
+                                        state_next = PLAYER0;
                                     end
                                 else
                                     begin
-                                        state_next = player1;
+                                        state_next = PLAYER1;
                                     end
                             end 
                         else if(current_player_next == 1'b0) 
@@ -292,24 +293,24 @@ module game_state #(
                                             end
                                         
                                         
-                                        state_next = player0;
+                                        state_next = PLAYER0;
                                     end
                                 else
                                     begin
-                                        state_next = player1;
+                                        state_next = PLAYER1;
                                     end
                             end
                     end
                 end
-                gameend:
+                GAMEEND:
                     begin
                         if(buttonU || buttonD || buttonL || buttonR == 1'b1)
                             begin
-                                state_next = newgame;
+                                state_next = NEWGAME;
                             end
                         else
                             begin
-                                state_next = gameend;
+                                state_next = GAMEEND;
                             end
 
 
@@ -338,11 +339,11 @@ module game_state #(
                                 who_won_next = 2'b00;
                             end
                     end 
-                newgame:
+                NEWGAME:
                     begin
                         if(current_player_next == 1'b0 && (buttonU || buttonD || buttonL || buttonR || buttonC == 1'b1)) //button pressed
                             begin
-                                state_next = menu;
+                                state_next = MENU;
                                 uart_state_next = 8'b10000000;
                                 lever_left_out_next = 8'b11111111;
                                 player0_health_next = 2'b10;
@@ -352,7 +353,7 @@ module game_state #(
                         else if(uart_rx == 8'b10000000) //uart signal recived
                             begin
                                 current_player_next = 1'b1; // I'm player_1
-                                state_next = menu;
+                                state_next = MENU;
                                 lever_left_out_next = 8'b11111111;
                                 player0_health_next = 2'b10;
                                 player1_health_next = 2'b10;
@@ -360,14 +361,15 @@ module game_state #(
                             end
                         else
                             begin
-                                state_next = init;
+                                state_next = INIT;
                                 tableselected_next = tableselected + 1;
                             end
                     end
+                default:
+                    state_next = INIT;
             endcase
         end
 
     assign data_output = uart_state; // send everything to uart
-    //assign state_output = state;
 
 endmodule

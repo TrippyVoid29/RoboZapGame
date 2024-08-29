@@ -16,7 +16,7 @@ module lever_select #(
 
     output logic [4:0] lever_select,
     output logic turn_done,
-    output logic [2:0] position = 3'b000
+    output logic [2:0] position
 
     );
 
@@ -30,16 +30,17 @@ module lever_select #(
     logic [4:0] lever_select_next;
     logic turn_done_next;
 
-    logic [2:0] state_current, state_next;
-
     //STATES
-    localparam [2:0]
-    IDLE = 3'b000,
-    LEFT = 3'b001,
-    RIGHT = 3'b010,
-    LOCKED = 3'b011,
-    UP = 3'b100,
-    DOWN = 3'b101;
+    typedef enum bit [2:0] {    
+        IDLE = 3'b000,
+        LEFT = 3'b001,
+        RIGHT = 3'b010,
+        LOCKED = 3'b011,
+        UP = 3'b100,
+        DOWN = 3'b101} direction_state;
+
+        direction_state state_current, state_next;
+
 
     // body
     always_ff@(posedge clk)
@@ -71,13 +72,13 @@ module lever_select #(
                         position_next = position;
                         button_pressed_next = button_pressed;
 
-                        if((game_state == 3'b011 && current_player == 1'b1) || (game_state == 3'b010 && current_player == 1'b0) )
+                        //unique if((game_state == 3'b011 && current_player == 1'b1) || (game_state == 3'b010 && current_player == 1'b0) )
+                        //    begin
+                        //        state_next = LOCKED;
+                        //    end
+                        if((game_state == 3'b011 && current_player == 1'b0) || (game_state == 3'b010 && current_player == 1'b1))
                             begin
-                                state_next = LOCKED;
-                            end
-                        else if((game_state == 3'b011 && current_player == 1'b0) || (game_state == 3'b010 && current_player == 1'b1))
-                            begin
-                                if(buttonR == 1'b1)
+                                unique if(buttonR == 1'b1)
                                 begin
                                     button_pressed_next = 1'b1;
                                     state_next = RIGHT;
@@ -179,24 +180,13 @@ module lever_select #(
                     begin
                         
                         turn_done_next = 1'b0;
-                        //turn_next = ^lever_left_in;
                         button_pressed_next = 1'b0;
+                        state_next = IDLE;
 
-                        if(current_player == 1'b0 && game_state == 3'b011)
-                            begin
-                                state_next = IDLE;
-                            end
-                        else if(current_player == 1'b1 && game_state == 3'b010)
-                            begin
-                                state_next = IDLE;
-                            end
-                        else
-                            state_next = LOCKED;
                     end
+                default:
+                    state_next = IDLE;
             endcase 
         end
 
-        //assign lever_select = {target, position, lever_lethality};
-        //assign turn_done = turn_done_next;
-        //assign state_current_lever = state_next;
 endmodule

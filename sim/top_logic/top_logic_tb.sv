@@ -125,8 +125,8 @@ initial begin
 
     #20 press_lever(left);
     press_lever(left);
-    press_lever(left);
-    press_lever(left);
+    press_lever(right);
+    press_lever(right);
     press_lever(left);
     press_lever(up);
     #40 uart_rx = 8'b00011001;

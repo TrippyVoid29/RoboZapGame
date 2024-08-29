@@ -40,7 +40,7 @@ game_state dut(
     //.player0_health,
     //.player1_health,
     .rst,
-    .state_output(state_output),
+    .state(state_output),
     //.tablecode,
     .turn_done(turn_done)
     //.uart_rx,

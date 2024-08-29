@@ -71,7 +71,7 @@ top_vga dut (
     .player0_health(player0_health), 
     .player1_health(player1_health),
     .current_player(current_player),
-    .lever_used_in(lever_used_in),
+    .lever_left_in(lever_used_in),
     .who_won(who_won)
 );
 

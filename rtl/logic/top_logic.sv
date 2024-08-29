@@ -21,8 +21,8 @@ module top_logic (
     output logic [7:0] lever_left_out,
     output wire current_player,
     output wire [1:0] player0_health,
-    output wire [1:0] player1_health,
-    output logic tx_start
+    output wire [1:0] player1_health
+    //output logic tx_start
     );
 
     wire turn_done;
@@ -47,9 +47,9 @@ module top_logic (
     game_state u_game_state(
         .clk,
         .rst,
-        //.uart_rx,
-        .buttonU(buttonU_pressed),
-        .buttonD(buttonD_pressed),
+        .uart_rx,
+        //.buttonU(buttonU_pressed),
+        //.buttonD(buttonD_pressed),
         .buttonL(buttonL_pressed),
         .buttonR(buttonR_pressed),
         .lever_select(lever_select),
@@ -62,8 +62,8 @@ module top_logic (
         .lever_left_out,
         .state(state_output),
         .player0_health,
-        .player1_health,
-        .tx_start
+        .player1_health
+        //.tx_start
     );
 
     wire [7:0] lethality_table;

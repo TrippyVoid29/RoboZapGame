@@ -10,6 +10,7 @@
  `timescale 1 ns / 1 ps
 
  module top_logic_tb;
+
     //inputs -> logic/reg    outputs -> wires
     logic clk;
     logic rst;
@@ -25,7 +26,12 @@
     wire current_player;
 
     wire buttonD_pressed, buttonL_pressed, buttonR_pressed, buttonU_pressed;
-
+    wire [2:0] game_state;
+    wire [4:0] lever_select;
+    wire turn_done;
+    wire [7:0] lever_left_in;
+    wire [2:0] tablecode;
+/*
 // microcode
 // 0000 0000
 // 0,1,2 - turn
@@ -33,15 +39,14 @@
 // 4,5,6 - which switch
 // 7 - who was targeted
 
-/*
-      //STATES
-    localparam [2:0]
-    idle = 3'b000,
-    left = 3'b001,
-    right = 3'b010,
-    locked = 3'b011,
-    up = 3'b100,
-    down = 3'b101;
+    STATES----------------
+
+    PLAYER_SELECT = 3'b000,
+    MENU = 3'b001,
+    LEVERS = 3'b010,
+    PLAYER_0 = 3'b011,
+    PLAYER_1 = 3'b100,
+    GAMEEND = 3'b101
     */
 
 initial begin
@@ -49,6 +54,7 @@ initial begin
     forever #5 clk = ~clk;
 end
 
+/*
 top_logic dut(
     .buttonD(ButtonD),
     .buttonL(ButtonL),
@@ -57,14 +63,14 @@ top_logic dut(
     .clk,
     .rst,
     .uart_rx,
-    .tx_start(tx_start),
+    //.tx_start(tx_start),
 
     .player0_health,
     .player1_health,
     .current_player,
     .state_output(state_output),
-    .position,
     .data_output,
+    .position,
     .lever_left_out,
     .who_won
 );
@@ -82,6 +88,65 @@ buttons_handler buttons_handler_dut(
     .buttonR_pressed(buttonR_pressed),
     .buttonU_pressed(buttonU_pressed)
 );
+*/
+    buttons_handler u_buttons_handler(
+        .clk,
+        .rst,
+        .buttonD(ButtonD),
+        .buttonL(ButtonL),
+        .buttonR(ButtonR),
+        .buttonU(ButtonU),
+
+        .buttonD_pressed(buttonD_pressed),
+        .buttonL_pressed(buttonL_pressed),
+        .buttonR_pressed(buttonR_pressed),
+        .buttonU_pressed(buttonU_pressed)
+    );
+
+    game_state u_game_state(
+        .clk,
+        .rst,
+        .uart_rx,
+        .buttonL(buttonL_pressed),
+        .buttonR(buttonR_pressed),
+        .lever_select(lever_select),
+        .turn_done(turn_done),
+        
+        .data_output,
+        .current_player(current_player),
+        .tableselected(tablecode),
+        .who_won,
+        .lever_left_out,
+        .state(state_output),
+        .player0_health,
+        .player1_health
+    );
+
+    wire [7:0] lethality_table;
+    
+
+    lever_select u_lever_select(
+        .clk,
+        .rst,
+        .buttonD(buttonD_pressed),
+        .buttonL(buttonL_pressed),
+        .buttonR(buttonR_pressed),
+        .buttonU(buttonU_pressed),
+        .current_player(current_player),
+        .lever_select(lever_select),
+        .lever_left_in(lever_left_out),
+        .table_lethality(lethality_table),
+        .turn_done(turn_done),
+        .position,
+        .game_state(state_output)
+        
+    );
+    
+    table_base u_table_base(
+        .tablecode(tablecode),
+        .table_lethality(lethality_table)
+    );
+
 
 task reset();
     begin
@@ -136,23 +201,44 @@ endtask
 initial begin
 
     reset();
-
-    start_game();
-
-    #20 press_lever(left);
+    #50 
     press_lever(left);
     press_lever(right);
+    #30
     press_lever(right);
+    press_lever(left);
+
+    #40 
+    uart_rx = 8'b11000000;
+    #40 
+    uart_rx = 8'b00000000;
+    #40
+    press_lever(left);
+    press_lever(left);
     press_lever(left);
     press_lever(up);
-    #40 uart_rx = 8'b00011001;
-    #40 uart_rx = 8'b00011010;
-    #40 press_lever(down);
+    #100
+    uart_rx = 8'b01111010;
+    #100
     press_lever(left);
-    press_lever(down);
-    #60
+    press_lever(left);
+    press_lever(up);
+    #100
 
-    //add code here
+    reset();
+    #50
+    uart_rx = 8'b10000000;
+    #50
+    uart_rx = 8'b10100101;
+    #50
+    uart_rx = 8'b00000000;
+    #100
+    uart_rx = 8'b10001001;
+    #50
+    press_lever(left);
+    press_lever(left);
+    press_lever(up);
+    #100
 
     $finish;
 end

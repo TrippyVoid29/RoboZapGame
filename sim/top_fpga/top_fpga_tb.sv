@@ -37,9 +37,13 @@ localparam CLK_PERIOD = 10;     // 100 MHz
  */
 
 logic clk, rst;
-wire pclk;
-wire vs, hs;
-wire [3:0] r, g, b;
+wire clk100, clk40;
+logic buttonD, buttonL, buttonR, buttonU, rx_in;
+wire tx_out, tx_start, current_player;
+logic [7:0] tx_conn, rx_logic_in, lever_left;
+wire [1:0] player0_health, player1_health, who_won;
+wire [2:0] position, states;
+
 
 
 /**
@@ -51,54 +55,123 @@ initial begin
     forever #(CLK_PERIOD/2) clk = ~clk;
 end
 
+clk_wiz_0_clk_wiz clk_wizard(
+    .clk,
+    .clk100MHz(clk100),
+    .clk40MHz(clk40)
+);
 
 /**
  * Submodules instances
  */
 
-top_vga_basys3 dut (
-    .clk(clk),
-    .buttonC(rst),
-    .Vsync(vs),
-    .Hsync(hs),
-    .vgaRed(r),
-    .vgaGreen(g),
-    .vgaBlue(b),
-    .JA1(pclk)
+top_logic top_logic_dut(
+    .clk(clk100),
+    .rst,
+    .buttonD(buttonD),
+    .buttonL(buttonL),
+    .buttonR(buttonR),
+    .buttonU(buttonU),
+    .uart_rx(rx_logic_in),
+
+    .current_player,
+    .data_output(tx_conn),
+    .lever_left_out(lever_left),
+    .player0_health,
+    .player1_health,
+    .position,
+    .state_output(states),
+    .tx_start(tx_start),
+    .who_won
 );
 
-tiff_writer #(
-    .XDIM(16'd1056),
-    .YDIM(16'd628),
-    .FILE_DIR("../../results")
-) u_tiff_writer (
-    .clk(pclk),
-    .r({r,r}), // fabricate an 8-bit value
-    .g({g,g}), // fabricate an 8-bit value
-    .b({b,b}), // fabricate an 8-bit value
-    .go(vs)
+top_vga top_vga_dut(
+    .clk(clk40),
+    .rst,
+    .current_player,
+    .lever_left_in(lever_left),
+    .player0_health,
+    .player1_health,
+    .position,
+    .states(states),
+    .who_won
 );
 
+top_uart top_uart_dut(
+    .clk(clk100),
+    .rst,
+    .rx_in(rx_in),
+    .tx_start(tx_start),
+    .tx_in(tx_conn),
+
+    .rx_out(rx_logic_in),
+    .tx_out(tx_out)
+);
+
+task reset();
+    begin
+        rst = 1'b0;
+        #10 rst = 1'b1;
+        #10 rst = 1'b0;
+    end
+endtask
+
+localparam [1:0]
+UP = 2'b00,
+LEFT = 2'b10,
+RIGHT = 2'b01,
+DOWN = 2'b11;
+
+task press_lever(input [1:0] direction);
+    begin
+    if(direction == LEFT) begin
+        buttonL = 1'b1;
+        #500 buttonL = 1'b0;
+        #20;
+    end else if (direction == RIGHT) begin
+        buttonR = 1'b1;
+        #500 buttonR = 1'b0;
+        #20;
+    end else if (direction == UP) begin
+        buttonU = 1'b1;
+        #500 buttonU = 1'b0;
+        #20;
+    end else if (direction == DOWN) begin
+        buttonD = 1'b1;
+        #500 buttonD = 1'b0;
+        #20;
+    end 
+    end
+endtask
+
+    integer rx_counter;
+
+task get_rx(input logic [7:0] data);
+    begin
+        rx_in = 1'b0;
+        #10400
+        for (rx_counter = 0; rx_counter < 8; rx_counter = rx_counter + 1)
+        begin
+            rx_in = data[rx_counter];
+            #10400;
+        end
+        rx_in = 1'b1;
+        #10400;
+    end
+endtask
 
 /**
  * Main test
  */
 
 initial begin
-    rst = 1'b0;
-    # 10 rst = 1'b1;
-    # 20 rst = 1'b0;
+    reset();
+    #100 press_lever(RIGHT);
+    #1000 press_lever(LEFT);
+    #1000 get_rx(8'b11000000);
+    #1000 get_rx(8'b00000000);
+    #1000
 
-    $display("If simulation ends before the testbench");
-    $display("completes, use the menu option to run all.");
-    $display("Prepare to wait a long time...");
-
-    wait (vs == 1'b0);
-    @(negedge vs) $display("Info: negedge VS at %t",$time);
-    @(negedge vs) $display("Info: negedge VS at %t",$time);
-
-    // End the simulation.
-    $display("Simulation is over, check the waveforms.");
     $finish;
 end
 

@@ -23,6 +23,7 @@ sv work ../../rtl/vga_files/vga_pkg.sv \
         ../../rtl/logic/lever_select.sv \
         ../../rtl/logic/table_base.sv \
         ../../rtl/logic/top_logic.sv \
+        ../../rtl/logic/buttons_handler.sv \
         ../../rtl/uart_files/top_uart.sv \
         ../../rtl/uart_files/uart_clock.sv \
         ../../rtl/uart_files/uart_rec.sv \

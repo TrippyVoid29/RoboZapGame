@@ -18,8 +18,6 @@ module game_state #(
     input wire rst,
     input wire [7:0] uart_rx,        //info received from uart
     input wire [4:0] lever_select,
-    //input wire buttonU, //upper button
-    //input wire buttonD, //down button
     input wire buttonL, //left button
     input wire buttonR, //right button
     input wire turn_done, // if turn was done 1-Y, 0-N
@@ -31,8 +29,8 @@ module game_state #(
     output logic [2:0] state,
     output logic [1:0] player0_health,
     output logic [1:0] player1_health,
-    output logic [2:0] tableselected // for now 8 tables
-    //output logic tx_start
+    output logic [2:0] tableselected, // for now 8 tables
+    output logic tx_start
     );
 
     //STATES
@@ -68,6 +66,7 @@ module game_state #(
             player0_health <= 2'b10;
             player1_health <= 2'b10;
             who_won <= 2'b00;
+            tx_start <= 1'b1;
         end
     else
         begin
@@ -198,6 +197,7 @@ module game_state #(
                                                 player1_health_next = player1_health;
                                                 player0_health_next = player0_health;
                                             end
+                                            state_next = PLAYER_0;
                                     end
                                 else
                                     begin
@@ -232,6 +232,7 @@ module game_state #(
                                                 player1_health_next = player1_health;
                                                 player0_health_next = player0_health;
                                             end
+                                        state_next = PLAYER_0;
 
                                     end
                                 else

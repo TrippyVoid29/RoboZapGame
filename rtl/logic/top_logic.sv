@@ -11,7 +11,7 @@ module top_logic (
     input wire clk,
     input wire rst,
     input wire [7:0] uart_rx,
-    input wire buttonU, buttonD, buttonL, buttonR, buttonC,
+    input wire buttonU, buttonD, buttonL, buttonR,
 
     
     output wire [7:0] data_output,
@@ -28,16 +28,30 @@ module top_logic (
     wire turn_done;
     wire [2:0] tablecode;
     wire [4:0] lever_select;
+    wire buttonL_pressed, buttonR_pressed, buttonD_pressed, buttonU_pressed;
+
+    buttons_handler u_buttons_handler(
+        .clk,
+        .rst,
+        .buttonD,
+        .buttonL,
+        .buttonR,
+        .buttonU,
+
+        .buttonD_pressed(buttonD_pressed),
+        .buttonL_pressed(buttonL_pressed),
+        .buttonR_pressed(buttonR_pressed),
+        .buttonU_pressed(buttonU_pressed)
+    );
 
     game_state u_game_state(
         .clk,
         .rst,
         //.uart_rx,
-        .buttonU,
-        .buttonD,
-        .buttonL,
-        .buttonR,
-        .buttonC,
+        .buttonU(buttonU_pressed),
+        .buttonD(buttonD_pressed),
+        .buttonL(buttonL_pressed),
+        .buttonR(buttonR_pressed),
         .lever_select(lever_select),
         .turn_done(turn_done),
         
@@ -58,10 +72,10 @@ module top_logic (
     lever_select u_lever_select(
         .clk,
         .rst,
-        .buttonD,
-        .buttonL,
-        .buttonR,
-        .buttonU,
+        .buttonD(buttonD_pressed),
+        .buttonL(buttonL_pressed),
+        .buttonR(buttonR_pressed),
+        .buttonU(buttonU_pressed),
         .current_player(current_player),
         .lever_select(lever_select),
         .lever_left_in(lever_left_out),

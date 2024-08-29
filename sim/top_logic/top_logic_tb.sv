@@ -24,6 +24,8 @@
     wire [7:0] lever_left_out, data_output;
     wire current_player;
 
+    wire buttonD_pressed, buttonL_pressed, buttonR_pressed, buttonU_pressed;
+
 // microcode
 // 0000 0000
 // 0,1,2 - turn
@@ -65,6 +67,20 @@ top_logic dut(
     .data_output,
     .lever_left_out,
     .who_won
+);
+
+buttons_handler buttons_handler_dut(
+    .clk,
+    .rst,
+    .buttonD(ButtonD),
+    .buttonL(ButtonL),
+    .buttonR(ButtonR),
+    .buttonU(ButtonU),
+    
+    .buttonD_pressed(buttonD_pressed),
+    .buttonL_pressed(buttonL_pressed),
+    .buttonR_pressed(buttonR_pressed),
+    .buttonU_pressed(buttonU_pressed)
 );
 
 task reset();

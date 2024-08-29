@@ -2,8 +2,9 @@
 2020.2
 Oct 19 2021
 02:56:52
-/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv,1724924164,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv,,game_state,,unisims_ver,,,,,,
-/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv,1724922828,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/table_base.sv,,lever_select,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/buttons_handler.sv,1724931201,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv,,buttons_handler,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv,1724931905,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/buttons_handler.sv,,game_state,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_select.sv,1724932322,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/table_base.sv,,lever_select,,unisims_ver,,,,,,
 /home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/table_base.sv,1724879870,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/top_logic.sv,,table_base,,unisims_ver,,,,,,
-/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/top_logic.sv,1724879870,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic_tb.sv,,top_logic,,unisims_ver,,,,,,
+/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/top_logic.sv,1724931213,systemVerilog,,/home/student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic_tb.sv,,top_logic,,unisims_ver,,,,,,
 /home/student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic_tb.sv,1724921889,systemVerilog,,,,top_logic_tb,,unisims_ver,,,,,,

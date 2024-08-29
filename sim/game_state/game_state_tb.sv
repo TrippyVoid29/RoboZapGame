@@ -27,7 +27,6 @@ initial begin
 end
 
 game_state dut(
-    .buttonC(ButtonC),
     .buttonD(ButtonD),
     .buttonL(ButtonL),
     .buttonR(ButtonR),

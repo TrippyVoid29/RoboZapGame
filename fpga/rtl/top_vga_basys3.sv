@@ -129,7 +129,6 @@ top_logic u_top_logic (
     .rst(buttonC),
     .uart_rx(uart_rx), //receiver uart
     .who_won,
-    .buttonC,
     .buttonD,
     .buttonL,
     .buttonR,

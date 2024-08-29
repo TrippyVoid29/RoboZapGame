@@ -10,6 +10,7 @@
 
 
 sv work ../../rtl/logic/game_state.sv \
+        ../../rtl/logic/buttons_handler.sv \
         ../../rtl/logic/lever_select.sv \
         ../../rtl/logic/table_base.sv \
         ../../rtl/logic/top_logic.sv \

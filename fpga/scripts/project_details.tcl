@@ -47,6 +47,7 @@ set sv_files {
     ../rtl/uart_files/uart_tx.sv
     ../rtl/uart_files/uart_rec.sv
     ../rtl/logic/game_state.sv
+    ../rtl/logic/buttons_handler.sv \
     ../rtl/logic/lever_select.sv
     ../rtl/logic/top_logic.sv
     ../rtl/logic/table_base.sv

@@ -28,7 +28,7 @@ end
 
 
 always_comb begin
-    if(counter==54)begin
+    if(counter==651)begin
         counter_next=0;
         uclk_next=1;
     end

@@ -94,7 +94,7 @@ module game_state #(
                     begin
                         who_won_next = who_won;
                         lever_left_out_next = 8'b11111111; //INIT
-                        //data_output_next = data_output;
+                        data_output_next = data_output;
                         current_player_next = current_player;
                         player0_health_next = 2'b10; //INIT
                         player1_health_next = 2'b10; //INIT

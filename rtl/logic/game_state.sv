@@ -101,7 +101,6 @@ module game_state #(
                         tableselected_next = tableselected;
                         tx_start_next = tx_start;
                         turn_next = turn; //INIT
-                        $cast(state, state_next);
 
                         if(buttonR == 1'b1)
                             begin

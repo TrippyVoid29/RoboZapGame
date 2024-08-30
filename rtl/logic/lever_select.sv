@@ -11,7 +11,7 @@ module lever_select #(
     input wire buttonR, //RIGHT button
     input wire current_player,
     input wire [7:0] lever_left_in,
-    input reg [7:0] table_lethality,
+    input wire [7:0] table_lethality,
     input wire [2:0] game_state,
 
     output logic [4:0] lever_select,
@@ -24,9 +24,9 @@ module lever_select #(
     logic lever_lethality, lever_lethality_next;
     logic target, target_next;
 
-    logic [2:0] position_next;
     logic [4:0] lever_select_next;
     logic turn_done_next;
+    logic [2:0] position_next;
 
     //STATES
     typedef enum bit [2:0] {    
@@ -53,12 +53,12 @@ module lever_select #(
        end
     else
        begin
-          state_current <= state_next;
-          position <= position_next;
-          lever_select <= lever_select_next;
-          turn_done <= turn_done_next;
           lever_lethality <= lever_lethality_next;
           target <= target_next;
+          lever_select <= lever_select_next;
+          turn_done <= turn_done_next;
+          position <= position_next;
+          state_current <= state_next;
        end
 
     always_comb
@@ -67,6 +67,9 @@ module lever_select #(
             case(state_current)
                 IDLE:
                     begin
+                        lever_lethality_next =  lever_lethality;
+                        target_next = target;
+                        lever_select_next = lever_select;
                         position_next = position;
                         turn_done_next = 1'b0;
 
@@ -98,27 +101,31 @@ module lever_select #(
                     end
                 LEFT:
                     begin
-                        position_next = position - 1;
+                        if(position > 0) begin
+                            position_next = position - 1;
+                        end else begin
+                            position_next = position;
+                        end
                         state_next = IDLE;
                     end
                 RIGHT:
                     begin
-                        position_next = position + 1;
+                        if(position < 7) begin
+                            position_next = position + 1;
+                        end else begin
+                            position_next = position;
+                        end
                         state_next = IDLE;
                     end
                 UP:
                     begin
                         if(lever_left_in[position] == 1'b1) begin
                             lever_lethality_next = table_lethality[position];
-                            //turn_done_next = 1'b1;
                             if(current_player == 1'b0)
-                                begin
-                                    target_next = 1'b1;
-                                end 
-                            else if(current_player == 1'b1)
-                                begin
-                                    target_next = 1'b0;
-                                end
+                                target_next = 1'b1;
+                            else
+                                target_next = 1'b0;
+
                             state_next = LOCKED;
 
                         end else if(lever_left_in[position] == 1'b0) begin
@@ -128,15 +135,12 @@ module lever_select #(
                 DOWN:
                     begin
                         if(lever_left_in[position] == 1'b1) begin
-                            //turn_done_next = 1'b1;
+                            lever_lethality_next = table_lethality[position];
                             if(current_player == 1'b0) 
-                                begin
                                     target_next = 1'b0;
-                                end 
-                            else if(current_player == 1'b1)
-                                begin
+                            else
                                     target_next = 1'b1;
-                                end
+                                    
                             state_next = LOCKED;
 
                         end else if(lever_left_in[position] == 1'b0) begin

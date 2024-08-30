@@ -7,9 +7,7 @@ module buttons_handler (
     input wire buttonD, //DOWN button
     input wire buttonL, //LEFT button
     input wire buttonR, //RIGHT button
-    //input wire current_player,
 
-    //input wire [2:0] game_state,
 
     output logic buttonL_pressed, buttonR_pressed, buttonD_pressed, buttonU_pressed
 
@@ -51,6 +49,7 @@ module buttons_handler (
             case(state_current)
                 IDLE:
                     begin
+                    state_next = state_current;
                     buttonL_pressed_next = buttonL_pressed;
                     buttonR_pressed_next = buttonR_pressed;
                     buttonD_pressed_next = buttonD_pressed;
@@ -121,7 +120,7 @@ module buttons_handler (
                             state_next = IDLE;
                         end 
                     else begin
-                            state_next = RIGHT;
+                            state_next = DOWN;
                         end
                     end
                 default:

@@ -25,8 +25,8 @@ module top_vga_basys3 (
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
     output wire [3:0] vgaBlue,
-    output wire RsTx,
-    output wire JA1
+    output wire JA1,
+    output wire [7:0] led
 );
 
 
@@ -53,7 +53,6 @@ logic [7:0] safe_start = 0;
 wire rx_in, tx_out;
 assign rx_in = JA2;
 assign JA1 = tx_out;
-assign RsTx = tx_out;
 
 /**
  * FPGA submodules placement
@@ -118,7 +117,7 @@ top_uart u_top_uart (
     .rx_in(rx_in),
     .tx_out(tx_out),
     .tx_in(uart_tx),   
-    .rx_out(uart_rx),
+    .rx_out(led),
     .tx_start
 );
 
@@ -126,7 +125,7 @@ top_logic u_top_logic (
     .clk(clk100),
     .data_output(uart_tx), //trasmitter uart
     .rst(buttonC),
-    .uart_rx(uart_rx), //receiver uart
+    .uart_rx(led), //receiver uart
     .who_won,
     .buttonD,
     .buttonL,

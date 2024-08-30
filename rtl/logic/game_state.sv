@@ -26,11 +26,12 @@ module game_state #(
     output logic [7:0] lever_left_out,
     output logic [7:0] data_output, //send info to uart
     output logic current_player, // saved which player i am
-    output logic [2:0] state,
     output logic [1:0] player0_health,
     output logic [1:0] player1_health,
     output logic [2:0] tableselected, // for now 8 tables
-    output logic tx_start
+    output logic tx_start,
+    output logic [2:0] state
+   
     );
 
     //STATES
@@ -42,46 +43,47 @@ module game_state #(
     PLAYER_1 = 3'b100,
     GAMEEND = 3'b101} egame_state;
 
-    egame_state state_next;
+    
 
     //local signals
-    logic current_player_next;
-    logic [7:0] data_output_next;
-    logic [2:0] tableselected_next;
-    logic [2:0] turn, turn_next;
-    logic [7:0] lever_left_out_next;
-    logic [1:0] player0_health_next, player1_health_next;
     logic [1:0] who_won_next;
+    logic [7:0] lever_left_out_next;
+    logic [7:0] data_output_next;
+    logic current_player_next;
+    logic [1:0] player0_health_next, player1_health_next;
+    logic [2:0] tableselected_next;
     logic tx_start_next;
+    logic [2:0] turn, turn_next;
 
+    egame_state state_next;
 
     // body
     always_ff@(posedge clk)
     if (rst)
         begin
-            state <= PLAYER_SELECT;
-            current_player <= 1'b0;
-            data_output <= 8'b00000000;
-            tableselected <= 3'b000;
-            turn <= 3'b000;
+            who_won <= 2'b00;
             lever_left_out <= 8'b11111111;
+            data_output <= 8'b00000000;
+            current_player <= 1'b0;
             player0_health <= 2'b10;
             player1_health <= 2'b10;
-            who_won <= 2'b00;
+            tableselected <= 3'b000;
             tx_start <= 1'b1;
+            turn <= 3'b000;
+            state <= PLAYER_SELECT;
         end
     else
         begin
-            state <= state_next;
-            current_player <= current_player_next;
-            data_output <= data_output_next;
-            tableselected <= tableselected_next;
-            turn <= turn_next;
+            who_won <= who_won_next;
             lever_left_out <= lever_left_out_next;
+            data_output <= data_output_next;
+            current_player <= current_player_next;
             player0_health <= player0_health_next;
             player1_health <= player1_health_next;
-            who_won <= who_won_next;
+            tableselected <= tableselected_next;
             tx_start <= tx_start_next;
+            turn <= turn_next;
+            state <= state_next;
         end
 
 
@@ -90,12 +92,16 @@ module game_state #(
             case(state)
                 PLAYER_SELECT:
                     begin
+                        who_won_next = who_won;
+                        lever_left_out_next = 8'b11111111; //INIT
+                        data_output_next = data_output;
+                        current_player_next = current_player;
                         player0_health_next = 2'b10; //INIT
                         player1_health_next = 2'b10; //INIT
-                        lever_left_out_next = 8'b11111111; //INIT
-                        turn_next = turn; //INIT
-                        current_player_next = current_player;
+                        tableselected_next = tableselected;
                         tx_start_next = tx_start;
+                        turn_next = turn; //INIT
+                        $cast(state, state_next);
 
                         if(buttonR == 1'b1)
                             begin
@@ -120,6 +126,7 @@ module game_state #(
                     end
                 MENU:
                     begin
+                        data_output_next = data_output;
                         if(buttonL == 1'b1)
                             begin
                                 state_next = LEVERS;
@@ -135,6 +142,7 @@ module game_state #(
                     end
                 LEVERS:
                     begin
+                        data_output_next = data_output;
                         if(current_player == 1'b0)
                             begin
                                 if(uart_rx == 8'b11000000)
@@ -149,7 +157,7 @@ module game_state #(
                             end
                         else
                             begin
-                                if(uart_rx == 8'b10100xxx)
+                                if(uart_rx [7:3] == 5'b10100)
                                     begin
                                         tableselected_next = uart_rx [2:0];
                                         data_output_next = 8'b11000000;
@@ -168,6 +176,8 @@ module game_state #(
                     end
                 PLAYER_0:
                     begin
+                        turn_next = turn;
+                        data_output_next = data_output;
                         if(lever_left_out == 8'b00000000 || player0_health == 2'b00 || player1_health == 2'b00)
                             begin
                                 state_next = GAMEEND;
@@ -248,6 +258,7 @@ module game_state #(
                     end
                 PLAYER_1:
                     begin
+                        data_output_next = data_output;
                         turn_next = turn;
 
                         if(lever_left_out == 8'b00000000 || player0_health == 2'b00 || player1_health == 2'b00)

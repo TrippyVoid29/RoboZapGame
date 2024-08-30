@@ -3,7 +3,7 @@
 module table_base #(
 
     )(
-    input logic [2:0] tablecode,
+    input wire [2:0] tablecode,
 
     output reg [7:0] table_lethality
     );

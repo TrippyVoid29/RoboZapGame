@@ -17,16 +17,12 @@
 module top_vga_basys3 (
     input  wire clk,
     input  wire buttonC, buttonU, buttonD, buttonL, buttonR,
-    //input wire RsRx,
-    input wire JA2,
 
     output wire Vsync,
     output wire Hsync,
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
-    output wire [3:0] vgaBlue,
-    output wire JA1,
-    output wire [7:0] led
+    output wire [3:0] vgaBlue
 );
 
 
@@ -50,9 +46,6 @@ logic [7:0] safe_start = 0;
 /**
  * Signals assignments
  */
-wire rx_in, tx_out;
-assign rx_in = JA2;
-assign JA1 = tx_out;
 
 /**
  * FPGA submodules placement
@@ -87,7 +80,7 @@ ODDR pclk_oddr (
  *  Project functional top module
  */
 
- wire current_player, tx_start;
+ wire current_player;
  wire [1:0] player0_health, player1_health, who_won; 
  wire [2:0] position, states;
  wire [7:0] lever_left;
@@ -109,35 +102,20 @@ top_vga u_top_vga (
     .who_won
 );
 
-wire [7:0] uart_tx, uart_rx;
-
-top_uart u_top_uart (
-    .clk(clk100),
-    .rst(buttonC),
-    .rx_in(rx_in),
-    .tx_out(tx_out),
-    .tx_in(uart_tx),   
-    .rx_out(led),
-    .tx_start
-);
-
 top_logic u_top_logic (
     .clk(clk100),
-    .data_output(uart_tx), //trasmitter uart
     .rst(buttonC),
-    .uart_rx(led), //receiver uart
-    .who_won,
     .buttonD,
     .buttonL,
     .buttonR,
     .buttonU,
+    .who_won,
     .current_player,
     .lever_left_out(lever_left),
     .player0_health,
     .player1_health,
     .position,
-    .state_output(states),
-    .tx_start
+    .state_output(states)
 );
 
 endmodule

@@ -15,14 +15,11 @@
     logic clk;
     logic rst;
     logic ButtonD, ButtonL, ButtonR, ButtonU;
-    logic tx_start;
-
-    logic [7:0] uart_rx;
 
     wire [2:0] state_output; 
     logic [2:0] position;
     logic [1:0] player0_health, player1_health, who_won;
-    wire [7:0] lever_left_out, data_output;
+    wire [7:0] lever_left_out;
     wire current_player;
 
     wire buttonD_pressed, buttonL_pressed, buttonR_pressed, buttonU_pressed;
@@ -106,13 +103,11 @@ buttons_handler buttons_handler_dut(
     game_state u_game_state(
         .clk,
         .rst,
-        .uart_rx,
         .buttonL(buttonL_pressed),
         .buttonR(buttonR_pressed),
         .lever_select(lever_select),
         .turn_done(turn_done),
         
-        .data_output,
         .current_player(current_player),
         .tableselected(tablecode),
         .who_won,

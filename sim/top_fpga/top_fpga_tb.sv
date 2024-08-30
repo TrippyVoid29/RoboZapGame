@@ -37,10 +37,9 @@ localparam CLK_PERIOD = 10;     // 100 MHz
 
 logic clk, rst;
 wire clk100, clk40;
-logic buttonD, buttonL, buttonR, buttonU, rx_in;
-wire tx_out;
-logic tx_start, current_player;
-logic [7:0] tx_conn, rx_logic_in, lever_left;
+logic buttonD, buttonL, buttonR, buttonU;
+logic current_player;
+logic [7:0] lever_left;
 wire [1:0] player0_health, player1_health, who_won;
 wire [2:0] position, states;
 
@@ -73,16 +72,13 @@ top_logic top_logic_dut(
     .buttonL(buttonL),
     .buttonR(buttonR),
     .buttonU(buttonU),
-    .uart_rx(rx_logic_in),
 
     .current_player(current_player),
-    .data_output(tx_conn),
     .lever_left_out(lever_left),
     .player0_health,
     .player1_health,
     .position(position),
     .state_output(states),
-    .tx_start(tx_start),
     .who_won
 );
 

@@ -9,32 +9,20 @@
 
  `timescale 1 ns / 1 ps
 
- module top_uart_tb;
+ module top_uart_rx_tb;
     //inputs -> logic/reg    outputs -> wires
     logic clk, uclk;
     logic rst;
-    logic tx_start, rx_in, rx_done_tick;
-    logic [7:0] tx_in;
+    logic rx_in, rx_done_tick;
 
-    wire tx_out; //signal transmitted to second basys3
-    wire [7:0] rx_out; //signal received from the other basys3
-    logic [7:0] dout; 
+
+    logic [7:0] dout, dout_logic; 
     localparam CLK_PERIOD_100M = 10;
 
 initial begin
     clk = 0;
     forever #(CLK_PERIOD_100M/2) clk = ~clk;
 end
-
-/*top_uart dut(
-    .clk(clk),
-    .rst(rst),
-    .rx_in(rx_in),
-    .rx_out(rx_out),
-    .tx_in(tx_in),
-    .tx_out(tx_out),
-    .tx_start(tx_start)
-);*/
 
 uart_clock dut_u_uart_clock(
     .clk(clk),
@@ -52,6 +40,15 @@ uart_rx dut_rx(
 
 );
 
+uart_rec dut_uart_rec(
+    .clk,
+    .rst,
+    .din(dout),
+    .dout(dout_logic),
+    .rx_done_tick(rx_done_tick)
+
+);
+
 task reset();
     begin
         rst = 1'b0;
@@ -60,27 +57,19 @@ task reset();
     end
 endtask
 
-    integer rx_counter;
+    logic [3:0] rx_counter;
 
 task get_rx(input logic [7:0] data);
     begin
         rx_in = 1'b0;
-        #10400
+        #8800
         for (rx_counter = 0; rx_counter < 8; rx_counter = rx_counter + 1)
         begin
             rx_in = data[rx_counter];
-            #10400;
+            #8800;
         end
         rx_in = 1'b1;
-        #10400;
-    end
-endtask
- 
-task send_tx_in(logic [7:0] data);
-    begin
-        tx_in = data;
-        #10 tx_start = 1'b1;
-        #10 tx_start = 1'b0;
+        #8800;
     end
 endtask
 
@@ -90,8 +79,10 @@ initial begin
     reset();
     rx_in = 1'b1;
 
-    #10400 get_rx(8'b10001100);
-    #10400
+    #8800 get_rx(8'b10001100);
+    #8800 get_rx(8'b00000000);
+    #8800 get_rx(8'b11110000);
+    #104000
 
 
     //add code here

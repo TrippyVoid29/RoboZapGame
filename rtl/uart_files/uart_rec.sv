@@ -55,8 +55,7 @@ case(state_reg)
 
 
     s3: begin
-        dout_next = dout;
-        state_reg_next=s1;   
+        dout_next = dout;  
 
         if(rx_done_tick==0) 
         state_reg_next=s1;

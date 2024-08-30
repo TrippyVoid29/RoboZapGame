@@ -14,4 +14,4 @@ sv work ../../rtl/uart_files/top_uart.sv \
         ../../rtl/uart_files/uart_rec.sv \
         ../../rtl/uart_files/uart_rx.sv \
         ../../rtl/uart_files/uart_tx.sv \
-        top_uart_tb.sv
+        top_uart_rx_tb.sv

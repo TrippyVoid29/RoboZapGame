@@ -50,7 +50,8 @@ uart_tx u_uart_tx
      .tx(tx_out), 
      .din(tx_in),
      .s_tick(uclk),
-     .tx_start
+     .tx_start,
+     .tx_done_tick()
     );
 
 endmodule

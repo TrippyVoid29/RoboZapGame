@@ -61,7 +61,7 @@ module top_logic (
         .state(state_output),
         .player0_health,
         .player1_health,
-        .tx_start
+        .tx_start(tx_start)
     );
 
     wire [7:0] lethality_table;

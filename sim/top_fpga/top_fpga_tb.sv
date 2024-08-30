@@ -24,7 +24,6 @@
 
 module top_fpga_tb;
 
-
 /**
  *  Local parameters
  */
@@ -39,7 +38,8 @@ localparam CLK_PERIOD = 10;     // 100 MHz
 logic clk, rst;
 wire clk100, clk40;
 logic buttonD, buttonL, buttonR, buttonU, rx_in;
-wire tx_out, tx_start, current_player;
+wire tx_out;
+logic tx_start, current_player;
 logic [7:0] tx_conn, rx_logic_in, lever_left;
 wire [1:0] player0_health, player1_health, who_won;
 wire [2:0] position, states;
@@ -55,6 +55,7 @@ initial begin
     forever #(CLK_PERIOD/2) clk = ~clk;
 end
 
+
 clk_wiz_0_clk_wiz clk_wizard(
     .clk,
     .clk100MHz(clk100),
@@ -64,7 +65,7 @@ clk_wiz_0_clk_wiz clk_wizard(
 /**
  * Submodules instances
  */
-
+ 
 top_logic top_logic_dut(
     .clk(clk100),
     .rst,
@@ -74,25 +75,26 @@ top_logic top_logic_dut(
     .buttonU(buttonU),
     .uart_rx(rx_logic_in),
 
-    .current_player,
+    .current_player(current_player),
     .data_output(tx_conn),
     .lever_left_out(lever_left),
     .player0_health,
     .player1_health,
-    .position,
+    .position(position),
     .state_output(states),
     .tx_start(tx_start),
     .who_won
 );
 
+
 top_vga top_vga_dut(
     .clk(clk40),
     .rst,
-    .current_player,
+    .current_player(current_player),
     .lever_left_in(lever_left),
     .player0_health,
     .player1_health,
-    .position,
+    .position(position),
     .states(states),
     .who_won
 );
@@ -113,6 +115,7 @@ task reset();
         rst = 1'b0;
         #10 rst = 1'b1;
         #10 rst = 1'b0;
+        rx_in = 1'b1;
     end
 endtask
 
@@ -144,19 +147,19 @@ task press_lever(input [1:0] direction);
     end
 endtask
 
-    integer rx_counter;
+    logic [2:0] rx_counter;
 
 task get_rx(input logic [7:0] data);
     begin
         rx_in = 1'b0;
-        #10400
+        #8800
         for (rx_counter = 0; rx_counter < 8; rx_counter = rx_counter + 1)
         begin
             rx_in = data[rx_counter];
-            #10400;
+            #8800;
         end
         rx_in = 1'b1;
-        #10400;
+        #8800;
     end
 endtask
 
@@ -166,11 +169,11 @@ endtask
 
 initial begin
     reset();
-    #100 press_lever(RIGHT);
-    #1000 press_lever(LEFT);
-    #1000 get_rx(8'b11000000);
-    #1000 get_rx(8'b00000000);
-    #1000
+    #10000 press_lever(RIGHT);
+    #10000 press_lever(LEFT);
+    #10000 get_rx(8'b11000000);
+    #10000 get_rx(8'b00000000);
+    #10000
 
     $finish;
 end

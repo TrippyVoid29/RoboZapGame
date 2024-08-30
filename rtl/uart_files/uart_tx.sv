@@ -8,6 +8,7 @@ module uart_tx
      input wire clk, reset,
      input wire tx_start, s_tick,
      input wire [7:0] din,
+     output reg tx_done_tick,
      output wire tx
     );
  
@@ -49,6 +50,7 @@ module uart_tx
     always @*
     begin
        state_next = state_reg;
+       tx_done_tick = 1'b0;
        s_next = s_reg;
        n_next = n_reg;
        b_next = b_reg;
@@ -100,6 +102,7 @@ module uart_tx
                    if (s_reg==(SB_TICK-1))
                       begin
                          state_next = idle;
+                         tx_done_tick = 1'b1;
                       end
                    else
                       s_next = s_reg + 1;

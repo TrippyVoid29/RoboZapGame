@@ -2,16 +2,16 @@
 # xsim v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Thu Aug 29 23:32:42 2024
-# Process ID: 20222
+# Start of session at: Fri Aug 30 10:58:15 2024
+# Process ID: 12099
 # Current directory: /home/student/lperczynski/Vivado/RoboZapGame/sim/build
-# Command line: xsim -source {xsim.dir/top_fpga_tb/xsim_script.tcl}
+# Command line: xsim -source {xsim.dir/top_uart_tx_tb/xsim_script.tcl}
 # Log file: /home/student/lperczynski/Vivado/RoboZapGame/sim/build/xsim.log
 # Journal file: /home/student/lperczynski/Vivado/RoboZapGame/sim/build/xsim.jou
-# Running On: cadence28, OS: Linux, CPU Frequency: 3942.578 MHz, CPU Physical cores: 4, Host memory: 16720 MB
+# Running On: cadence28, OS: Linux, CPU Frequency: 3649.218 MHz, CPU Physical cores: 4, Host memory: 16720 MB
 #-----------------------------------------------------------
 start_gui
-source xsim.dir/top_fpga_tb/xsim_script.tcl
+source xsim.dir/top_uart_tx_tb/xsim_script.tcl
 # set_param project.enableReportConfiguration 0
 # load_feature core
 # current_fileset
@@ -75,16 +75,14 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:1.0 availab
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home_local/Xilinx/Vivado/2021.2/data/ip'.
-current_fileset: Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 10089.875 ; gain = 79.293 ; free physical = 4547 ; free virtual = 15870
-# xsim {top_fpga_tb} -autoloadwcfg -tclbatch {/student/lperczynski/Vivado/RoboZapGame/tools/sim_cmd.tcl}
+# xsim {top_uart_tx_tb} -autoloadwcfg -tclbatch {/student/lperczynski/Vivado/RoboZapGame/tools/sim_cmd.tcl}
 Time resolution is 1 ps
 source /student/lperczynski/Vivado/RoboZapGame/tools/sim_cmd.tcl
 ## log_wave *      # top module signals only
 ## run all
-$finish called at time : 213160 ns : File "/home/student/lperczynski/Vivado/RoboZapGame/sim/top_fpga/top_fpga_tb.sv" Line 175
+$finish called at time : 270020 ns : File "/home/student/lperczynski/Vivado/RoboZapGame/sim/top_uart_tx/top_uart_tx_tb.sv" Line 76
 ## add_wave /      # top module signals only
-xsim: Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 10857.746 ; gain = 767.871 ; free physical = 4522 ; free virtual = 15847
 close_sim
 INFO: [Simtcl 6-16] Simulation closed
 exit
-INFO: [Common 17-206] Exiting xsim at Thu Aug 29 23:35:41 2024...
+INFO: [Common 17-206] Exiting xsim at Fri Aug 30 11:00:21 2024...

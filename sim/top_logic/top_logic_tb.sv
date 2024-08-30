@@ -192,9 +192,9 @@ endtask
 
 task start_game();
     begin
-    #20 ButtonL <= 1; ButtonR <= 1;
-    #20 ButtonL <= 0; ButtonR <= 1;
-    #20 ButtonR <= 0;
+    #20 ButtonL = 1; ButtonR = 1;
+    #20 ButtonL = 0; ButtonR = 1;
+    #20 ButtonR = 0;
     end
 endtask
 

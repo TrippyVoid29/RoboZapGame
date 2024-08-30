@@ -88,11 +88,10 @@ ODDR pclk_oddr (
  *  Project functional top module
  */
 
- wire current_player;
+ wire current_player, tx_start;
  wire [1:0] player0_health, player1_health, who_won; 
  wire [2:0] position, states;
  wire [7:0] lever_left;
- logic tx_start;
 
 top_vga u_top_vga (
     .clk(pclk),
@@ -120,7 +119,7 @@ top_uart u_top_uart (
     .tx_out(tx_out),
     .tx_in(uart_tx),   
     .rx_out(uart_rx),
-    .tx_start(tx_start)
+    .tx_start
 );
 
 top_logic u_top_logic (
@@ -139,7 +138,7 @@ top_logic u_top_logic (
     .player1_health,
     .position,
     .state_output(states),
-    .tx_start(tx_start)
+    .tx_start
 );
 
 endmodule

@@ -52,6 +52,8 @@ module game_state #(
     logic [7:0] lever_left_out_next;
     logic [1:0] player0_health_next, player1_health_next;
     logic [1:0] who_won_next;
+    logic tx_start_next;
+
 
     // body
     always_ff@(posedge clk)
@@ -79,6 +81,7 @@ module game_state #(
             player0_health <= player0_health_next;
             player1_health <= player1_health_next;
             who_won <= who_won_next;
+            tx_start <= tx_start_next;
         end
 
 
@@ -91,6 +94,8 @@ module game_state #(
                         player1_health_next = 2'b10; //INIT
                         lever_left_out_next = 8'b11111111; //INIT
                         turn_next = turn; //INIT
+                        current_player_next = current_player;
+                        tx_start_next = tx_start;
 
                         if(buttonR == 1'b1)
                             begin

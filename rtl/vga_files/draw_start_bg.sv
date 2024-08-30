@@ -24,6 +24,7 @@
  parameter start_posit_x = 100;
  parameter start_posit_y = 285;
  parameter vertical_fix = 200;
+ parameter new_line = pixel * 8;
  
  /**
   * Internal logic
@@ -65,7 +66,7 @@ always_comb begin : bg_comb_blk
         begin
 // --------------------- BG 1: PLAYER_SELECT ------------------------
         if(states == 3'b000)
-            //PRESS LB AND RB TO START
+            //PRESS RB TO START
             // first letter - P
             if (vga_start_bg_in.hcount >= start_posit_x && 
                 vga_start_bg_in.hcount <= start_posit_x + 4 * pixel && 
@@ -326,6 +327,7 @@ always_comb begin : bg_comb_blk
             begin
                 rgb_nxt = 12'h8_8_8;
             end
+        /*
         //space
         // next letter - A
         else if(vga_start_bg_in.hcount >= start_posit_x + 9 * letter_width && 
@@ -480,14 +482,15 @@ always_comb begin : bg_comb_blk
             begin
                 rgb_nxt = 12'h8_8_8;
             end
+            */
         
             //end
             else
                 rgb_nxt = 12'h1_1_1;
 
-// --------------------- BG 2: MENU, LEVERS ------------------------
+// --------------------- BG 2: MENU ------------------------
         // letter - S
-        else if(states == 3'b001 || states == 3'b010)
+        else if(states == 3'b001)
             if(vga_start_bg_in.hcount >= start_posit_x + 0 * letter_width + pixel && 
                 vga_start_bg_in.hcount <= start_posit_x + 0 * letter_width + 5 * pixel && 
                 vga_start_bg_in.vcount >= start_posit_y && 
@@ -946,13 +949,563 @@ always_comb begin : bg_comb_blk
                 begin
                     rgb_nxt = 12'h8_8_8;
                 end
-            // letter - ...
+            // new line
+            // letter - P 
+            else if (vga_start_bg_in.hcount >= start_posit_x && 
+                vga_start_bg_in.hcount <= start_posit_x + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + pixel + new_line )
+                    begin
+                        rgb_nxt = 12'h8_8_8;
+                    end
+            else if(vga_start_bg_in.hcount >= start_posit_x && 
+                vga_start_bg_in.hcount <= start_posit_x + pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + pixel * 4 && 
+                vga_start_bg_in.hcount <= start_posit_x + pixel * 5 && 
+                vga_start_bg_in.vcount >= start_posit_y + pixel + new_line  && 
+                vga_start_bg_in.vcount <= start_posit_y + 2 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x && 
+                vga_start_bg_in.hcount <= start_posit_x + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 2 * pixel + new_line  && 
+                vga_start_bg_in.vcount <= start_posit_y + 3 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            // second letter - R
+            else if(vga_start_bg_in.hcount >= start_posit_x + letter_width && 
+                vga_start_bg_in.hcount <= start_posit_x + letter_width + pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + letter_width + 4 * pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 2 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 2 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 3 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + letter_width + 3 * pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 3 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 4 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + letter_width + 4 * pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 4 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            // next letter - E
+            else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width && 
+                vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 2 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 3 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 5 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            // next letter - S
+            else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 2 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 3 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width && 
+                vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 2 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width && 
+                vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 5 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width + 4 * pixel&& 
+                vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 3 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 5 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            // next letter - S
+            else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 2 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 3 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width && 
+                vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 2 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width && 
+                vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 5 * pixel + new_line  && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width + 4 * pixel&& 
+                vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 3 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 5 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            //space
+                
+            // next letter - L
+            else if(vga_start_bg_in.hcount >= start_posit_x + 6 * letter_width + 0 * pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 6 * letter_width + 1 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 0 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 6 * letter_width + 1 * pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 6 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 5 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            
+            // next letter - B
+            else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width && 
+                vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line  && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 2 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 3 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width + pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + 4 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 5 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 6 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width + 4 * pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 1 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 2 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
+            else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width + 4 * pixel && 
+                vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + 5 * pixel && 
+                vga_start_bg_in.vcount >= start_posit_y + 3 * pixel + new_line && 
+                vga_start_bg_in.vcount <= start_posit_y + 5 * pixel + new_line )
+                begin
+                    rgb_nxt = 12'h8_8_8;
+                end
             
             //end
             else
-                rgb_nxt = 12'h1_1_1;
+                begin
+                    rgb_nxt = 12'h1_1_1;
+                end
+
+// --------------------- BG 3: LEVERS -------------------------------------------
+            if(states == 3'b010)
+                begin
+                // letter - C
+                    if(vga_start_bg_in.hcount >= start_posit_x + 0 * letter_width + 0 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 0 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 5 * pixel)
+                    begin
+                        rgb_nxt = 12'h8_8_8;
+                    end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 0 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 0 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 0 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 1 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 0 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 0 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    //letter - O
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 1 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 1 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 0 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 1 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 1 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 1 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 1 * letter_width + 0 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 1 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 5 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 1 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 1 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 5 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    //letter - N
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width && 
+                        vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 2 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 2 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 3 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 2 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 2 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 3 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 4 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    //letter - N
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width && 
+                        vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 2 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 2 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 3 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 3 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 3 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 3 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 4 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    //letter - E
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width && 
+                        vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width + pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y && 
+                        vga_start_bg_in.vcount <= start_posit_y + pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width + pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 2 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 3 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 4 * letter_width + pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 4 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    // letter - C
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 5 * letter_width + 0 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 5 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 5 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 5 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 5 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 0 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 1 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 5 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 5 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    // letter - T
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 6 * letter_width + 0 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 6 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 0 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 1 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 6 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 6 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    // letter - I
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 5 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 0 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 1 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 7 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 7 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    //next letter - N
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 8 * letter_width && 
+                        vga_start_bg_in.hcount <= start_posit_x + 8 * letter_width + pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 8 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 8 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 8 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 8 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 2 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 8 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 8 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 2 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 3 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 8 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 8 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 3 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 4 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    //letter - G
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 9 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 9 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 0 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 1 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 9 * letter_width + 0 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 9 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 1 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 5 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 9 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 9 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 9 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 9 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 3 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 5 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 9 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 9 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 2 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 3 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    // letter - ...
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 10 * letter_width + 0 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 10 * letter_width + 1 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 10 * letter_width + 2 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 10 * letter_width + 3 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else if(vga_start_bg_in.hcount >= start_posit_x + 10 * letter_width + 4 * pixel && 
+                        vga_start_bg_in.hcount <= start_posit_x + 10 * letter_width + 5 * pixel && 
+                        vga_start_bg_in.vcount >= start_posit_y + 5 * pixel && 
+                        vga_start_bg_in.vcount <= start_posit_y + 6 * pixel)
+                        begin
+                            rgb_nxt = 12'h8_8_8;
+                        end
+                    else
+                        begin
+                            rgb_nxt = 12'h1_1_1;
+                        end    
+                end
             
-//----------------------- BG 3 (Baldur's Gate 3): PLAYER_1 --------------------------
+//----------------------- BG 4 (Baldur's Gate 3): PLAYER_1 --------------------------
 
             else if(states == 3'b100)//player1
                 begin  

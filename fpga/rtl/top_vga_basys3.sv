@@ -82,7 +82,8 @@ ODDR pclk_oddr (
 
  wire current_player;
  wire [1:0] player0_health, player1_health, who_won; 
- wire [2:0] position, states;
+ wire [2:0] position;
+ wire [1:0] states;
  wire [7:0] lever_left;
 
 top_vga u_top_vga (
@@ -109,12 +110,14 @@ top_logic u_top_logic (
     .buttonL,
     .buttonR,
     .buttonU,
+    .position,
 
     .turn(current_player),
     .winner(who_won),
     .player0_health,
     .player1_health,
-    .lever_left
+    .lever_left,
+    .state_output(states)
 );
 
 endmodule

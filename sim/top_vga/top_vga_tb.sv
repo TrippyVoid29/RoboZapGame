@@ -37,7 +37,8 @@ localparam CLK_PERIOD = 25;     // 40 MHz
 logic clk, rst;
 wire vs, hs;
 wire [3:0] r, g, b;
-logic [2:0] states, position;
+logic [1:0] states; 
+logic [2:0] position;
 logic [1:0] player0_health, player1_health;
 logic current_player;
 logic [7:0]lever_used_in;
@@ -97,13 +98,13 @@ initial begin
     # 30 rst = 1'b1;
     # 30 rst = 1'b0;
 
-    states = 3'b010;
+    states = 2'b01;
     who_won = 2'b00;
     lever_used_in = 8'b11111111;
     position = 3'b010;
     player0_health = 2'b11;
     player1_health = 2'b11;
-    current_player = 1'b0;
+    current_player = 1'b1;
 
     $display("If simulation ends before the testbench");
     $display("completes, use the menu option to run all.");

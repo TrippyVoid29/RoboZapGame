@@ -11,13 +11,14 @@ module top_logic (
     output logic [1:0] player0_health,
     output logic [1:0] player1_health,
     output logic [7:0] lever_left,
-    output logic [2:0] position
+    output logic [2:0] position,
+    output logic [1:0] state_output
 
 );
 
     wire start_game, end_game, new_game;
     wire target_wire, lever_used;
-    wire [1:0] state_output, lever_info;
+    wire [1:0] lever_info;
     
     wire buttonD_P, buttonU_P, buttonR_P, buttonL_P;
     wire [7:0] levers_lethality;

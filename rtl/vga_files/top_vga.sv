@@ -18,7 +18,7 @@ module top_vga (
     input  logic clk,
     input  logic rst,
     //logika
-    input  logic [2:0] states,
+    input  logic [1:0] states,
     input  logic [2:0] position,
     input  logic [7:0] lever_left_in,
     input  logic current_player,
@@ -108,6 +108,7 @@ draw_start_bg u_draw_start_bg (
     .rst,
     .states,
     .who_won,
+    .current_player,
 
     .vga_start_bg_in(vga_lever),
     .vga_start_bg_out(vga_start_bg)

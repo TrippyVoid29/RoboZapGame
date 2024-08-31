@@ -1,47 +1,42 @@
 Vivado Simulator v2021.2
 Copyright 1986-1999, 2001-2021 Xilinx, Inc. All Rights Reserved.
-Running: /home_local/Xilinx/Vivado/2021.2/bin/unwrapped/lnx64.o/xelab work.top_logic_tb -snapshot top_logic_tb -prj /student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic.prj -timescale 1ns/1ps -L unisims_ver -debug typical 
+Running: /home_local/Xilinx/Vivado/2021.2/bin/unwrapped/lnx64.o/xelab work.top_vga_tb -snapshot top_vga_tb -prj /student/lperczynski/Vivado/RoboZapGame/sim/top_vga/top_vga.prj -timescale 1ns/1ps -L unisims_ver -standalone -runall 
 Multi-threading is on. Using 6 slave threads.
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/game_state.sv" into library work
-INFO: [VRFC 10-311] analyzing module game_state
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/buttons_handler.sv" into library work
-INFO: [VRFC 10-311] analyzing module buttons_handler
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/lever_selector.sv" into library work
-INFO: [VRFC 10-311] analyzing module lever_selector
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/top_logic.sv" into library work
-INFO: [VRFC 10-311] analyzing module top_logic
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/health_calculator.sv" into library work
-INFO: [VRFC 10-311] analyzing module health_calculator
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/levers_info.sv" into library work
-INFO: [VRFC 10-311] analyzing module levers_info
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/map_randomizer.sv" into library work
-INFO: [VRFC 10-311] analyzing module map_randomizer
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/new_game.sv" into library work
-INFO: [VRFC 10-311] analyzing module new_game
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/start_game.sv" into library work
-INFO: [VRFC 10-311] analyzing module start_game
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/target.sv" into library work
-INFO: [VRFC 10-311] analyzing module target
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/logic/who_won.sv" into library work
-INFO: [VRFC 10-311] analyzing module who_won
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic_tb.sv" into library work
-INFO: [VRFC 10-311] analyzing module top_logic_tb
-INFO: [VRFC 10-2458] undeclared symbol target, assumed default net type wire [/home/student/lperczynski/Vivado/RoboZapGame/sim/top_logic/top_logic_tb.sv:113]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_timing.sv" into library work
+INFO: [VRFC 10-311] analyzing module vga_timing
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/vga_if.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_bg.sv" into library work
+INFO: [VRFC 10-311] analyzing module draw_bg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_lever.sv" into library work
+INFO: [VRFC 10-311] analyzing module draw_lever
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/top_vga.sv" into library work
+INFO: [VRFC 10-311] analyzing module top_vga
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_stats.sv" into library work
+INFO: [VRFC 10-311] analyzing module draw_stats
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_highlight.sv" into library work
+INFO: [VRFC 10-311] analyzing module draw_highlight
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/rtl/vga_files/draw_start_bg.sv" into library work
+INFO: [VRFC 10-311] analyzing module draw_start_bg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/sim/common/tiff_writer.sv" into library work
+INFO: [VRFC 10-311] analyzing module tiff_writer
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/lperczynski/Vivado/RoboZapGame/sim/top_vga/top_vga_tb.sv" into library work
+INFO: [VRFC 10-311] analyzing module top_vga_tb
 Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module work.game_state
-Compiling module work.buttons_handler
-Compiling module work.start_game
-Compiling module work.new_game
-Compiling module work.lever_selector
-Compiling module work.map_randomizer
-Compiling module work.levers_info
-Compiling module work.health_calculator
-Compiling module work.target
-Compiling module work.who_won
-Compiling module work.top_logic_tb
-Built simulation snapshot top_logic_tb
+Compiling package work.vga_pkg
+Compiling module work.vga_if
+Compiling module work.vga_timing
+Compiling module work.draw_bg
+Compiling module work.draw_stats
+Compiling module work.draw_highlight_default
+Compiling module work.draw_lever_default
+Compiling module work.draw_start_bg_default
+Compiling module work.top_vga
+Compiling module work.tiff_writer
+Compiling module work.top_vga_tb
+Built simulation snapshot top_vga_tb

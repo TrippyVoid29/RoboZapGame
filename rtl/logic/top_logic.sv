@@ -1,79 +1,24 @@
 `timescale 1 ns / 1 ps
 
 module top_logic (
-    input wire clk,
-    input wire rst,
-    input wire buttonU, buttonD, buttonL, buttonR,
 
-    output wire [1:0] who_won,
-    output wire [2:0] state_output,
-    output logic [2:0] position,
-    output logic [7:0] lever_left_out,
-    output wire current_player,
-    output wire [1:0] player0_health,
-    output wire [1:0] player1_health
-    );
 
-    wire turn_done;
-    wire [2:0] tablecode;
-    wire [4:0] lever_select;
-    wire buttonL_pressed, buttonR_pressed, buttonD_pressed, buttonU_pressed;
+);
 
-    buttons_handler u_buttons_handler(
-        .clk,
-        .rst,
-        .buttonD,
-        .buttonL,
-        .buttonR,
-        .buttonU,
 
-        .buttonD_pressed(buttonD_pressed),
-        .buttonL_pressed(buttonL_pressed),
-        .buttonR_pressed(buttonR_pressed),
-        .buttonU_pressed(buttonU_pressed)
-    );
+buttons_handler u_buttons_handler(
+    .buttonD,
+    .buttonU,
+    .buttonR,
+    .buttonL,
+    .clk,
+    .rst,
 
-    game_state u_game_state(
-        .clk,
-        .rst,
-        .buttonL(buttonL_pressed),
-        .buttonR(buttonR_pressed),
-        .lever_select(lever_select),
-        .turn_done(turn_done),
-        .current_player(current_player),
-        
-        .tableselected(tablecode),
-        .who_won,
-        .lever_left_out(lever_left_out),
-        .state_output(state_output),
-        .player0_health,
-        .player1_health
-    );
+    .buttonD_pressed(),
+    .buttonL_pressed(),
+    .buttonR_pressed(),
+    .buttonU_pressed()
 
-    wire [7:0] lethality_table;
-    
-
-    lever_select u_lever_select(
-        .clk,
-        .rst,
-        .buttonD(buttonD_pressed),
-        .buttonL(buttonL_pressed),
-        .buttonR(buttonR_pressed),
-        .buttonU(buttonU_pressed),
-        .current_player(current_player),
-        .lever_select(lever_select),
-        .lever_left_in(lever_left_out),
-        .table_lethality(lethality_table),
-        .turn_done(turn_done),
-        .position,
-        .game_state(state_output)
-        
-    );
-    
-    table_base u_table_base(
-        .tablecode(tablecode),
-        .table_lethality(lethality_table)
-    );
-
+);
 
 endmodule

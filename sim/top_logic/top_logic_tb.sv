@@ -23,10 +23,8 @@
     wire current_player;
 
     wire buttonD_pressed, buttonL_pressed, buttonR_pressed, buttonU_pressed;
-    wire [2:0] game_state;
     wire [4:0] lever_select;
     wire turn_done;
-    wire [7:0] lever_left_in;
     wire [2:0] tablecode;
 /*
 // microcode
@@ -51,41 +49,7 @@ initial begin
     forever #5 clk = ~clk;
 end
 
-/*
-top_logic dut(
-    .buttonD(ButtonD),
-    .buttonL(ButtonL),
-    .buttonR(ButtonR),
-    .buttonU(ButtonU),
-    .clk,
-    .rst,
-    .uart_rx,
-    //.tx_start(tx_start),
 
-    .player0_health,
-    .player1_health,
-    .current_player,
-    .state_output(state_output),
-    .data_output,
-    .position,
-    .lever_left_out,
-    .who_won
-);
-
-buttons_handler buttons_handler_dut(
-    .clk,
-    .rst,
-    .buttonD(ButtonD),
-    .buttonL(ButtonL),
-    .buttonR(ButtonR),
-    .buttonU(ButtonU),
-    
-    .buttonD_pressed(buttonD_pressed),
-    .buttonL_pressed(buttonL_pressed),
-    .buttonR_pressed(buttonR_pressed),
-    .buttonU_pressed(buttonU_pressed)
-);
-*/
     buttons_handler u_buttons_handler(
         .clk,
         .rst,
@@ -112,7 +76,7 @@ buttons_handler buttons_handler_dut(
         .tableselected(tablecode),
         .who_won,
         .lever_left_out,
-        .state(state_output),
+        .state_output(state_output),
         .player0_health,
         .player1_health
     );
@@ -196,43 +160,25 @@ endtask
 initial begin
 
     reset();
-    #50 
-    press_lever(left);
+    #50
     press_lever(right);
-    #30
+    #100
+    press_lever(left);
+    #100
     press_lever(right);
-    press_lever(left);
-
-    #40 
-    uart_rx = 8'b11000000;
-    #40 
-    uart_rx = 8'b00000000;
-    #40
-    press_lever(left);
-    press_lever(left);
-    press_lever(left);
     press_lever(up);
     #100
-    uart_rx = 8'b01111010;
+    press_lever(right);
+    press_lever(down);
     #100
-    press_lever(left);
-    press_lever(left);
-    press_lever(up);
+    press_lever(right);
+    press_lever(down);
     #100
-
-    reset();
-    #50
-    uart_rx = 8'b10000000;
-    #50
-    uart_rx = 8'b10100101;
-    #50
-    uart_rx = 8'b00000000;
+    press_lever(right);
+    press_lever(down);
     #100
-    uart_rx = 8'b10001001;
-    #50
-    press_lever(left);
-    press_lever(left);
-    press_lever(up);
+    press_lever(right);
+    press_lever(down);
     #100
 
     $finish;

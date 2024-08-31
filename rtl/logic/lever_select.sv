@@ -33,9 +33,9 @@ module lever_select #(
         IDLE = 3'b000,
         LEFT = 3'b001,
         RIGHT = 3'b010,
-        LOCKED = 3'b011,
-        UP = 3'b100,
-        DOWN = 3'b101} direction_state;
+        UP = 3'b011,
+        DOWN = 3'b100,
+        SEND = 3'b101} direction_state;
 
         direction_state state_current, state_next;
 
@@ -73,7 +73,7 @@ module lever_select #(
                         position_next = position;
                         turn_done_next = 1'b0;
 
-                        if((game_state == 3'b011 && current_player == 1'b0) || (game_state == 3'b100 && current_player == 1'b1))
+                        if(game_state == 3'b010 || game_state == 3'b011)
                             begin
                             if(buttonR == 1'b1)
                                 begin
@@ -92,12 +92,15 @@ module lever_select #(
                                     state_next = DOWN;
                                 end
                             else
-                                state_next = IDLE;
+                                begin
+                                    state_next = IDLE;
+                                end
                             end
                         else
                             begin
                                 state_next = IDLE;
                             end
+
                     end
                 LEFT:
                     begin
@@ -121,12 +124,13 @@ module lever_select #(
                     begin
                         if(lever_left_in[position] == 1'b1) begin
                             lever_lethality_next = table_lethality[position];
+
                             if(current_player == 1'b0)
                                 target_next = 1'b1;
                             else
                                 target_next = 1'b0;
 
-                            state_next = LOCKED;
+                            state_next = SEND;
 
                         end else if(lever_left_in[position] == 1'b0) begin
                             state_next = IDLE;
@@ -136,18 +140,19 @@ module lever_select #(
                     begin
                         if(lever_left_in[position] == 1'b1) begin
                             lever_lethality_next = table_lethality[position];
+
                             if(current_player == 1'b0) 
                                     target_next = 1'b0;
                             else
                                     target_next = 1'b1;
                                     
-                            state_next = LOCKED;
+                            state_next = SEND;
 
                         end else if(lever_left_in[position] == 1'b0) begin
                             state_next = IDLE;
                         end
                     end
-                LOCKED:
+                SEND:
                     begin
                         lever_select_next = {target, position, lever_lethality};
                         turn_done_next = 1'b1;

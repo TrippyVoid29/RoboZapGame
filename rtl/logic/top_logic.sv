@@ -1,12 +1,5 @@
 `timescale 1 ns / 1 ps
 
-// microcode
-// 0000 0000
-// 0 - parity bit
-// 1,2,3 - turn
-// 4,5,6 - which switch
-// 7 - who was targeted
-
 module top_logic (
     input wire clk,
     input wire rst,
@@ -47,12 +40,12 @@ module top_logic (
         .buttonR(buttonR_pressed),
         .lever_select(lever_select),
         .turn_done(turn_done),
-        
         .current_player(current_player),
+        
         .tableselected(tablecode),
         .who_won,
         .lever_left_out,
-        .state(state_output),
+        .state_output(state_output),
         .player0_health,
         .player1_health
     );

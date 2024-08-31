@@ -64,7 +64,7 @@ always_comb begin : bg_comb_blk
     end 
     else 
         begin
-// --------------------- BG 1: PLAYER_SELECT ------------------------
+// --------------------- BG 1: INIT ------------------------
         if(states == 3'b000)
             //PRESS RB TO START
             // first letter - P
@@ -1192,7 +1192,7 @@ always_comb begin : bg_comb_blk
                 end
 
 // --------------------- BG 3: LEVERS -------------------------------------------
-            if(states == 3'b010)
+            if(states == 3'b111)
                 begin
                 // letter - C
                     if(vga_start_bg_in.hcount >= start_posit_x + 0 * letter_width + 0 * pixel && 
@@ -1507,7 +1507,7 @@ always_comb begin : bg_comb_blk
             
 //----------------------- BG 4 (Baldur's Gate 3): PLAYER_1 --------------------------
 
-            else if(states == 3'b100)//player1
+            else if(states == 3'b011)//player1
                 begin  
                 // letter - P
                 if (vga_start_bg_in.hcount >= start_posit_x && 
@@ -1568,7 +1568,7 @@ always_comb begin : bg_comb_blk
 
 //----------------------- BG 4: PLAYER_0 --------------------------
 
-                else if(states == 3'b011)//player0
+                else if(states == 3'b010)//player0
                 begin  
                 // letter - P
                 if (vga_start_bg_in.hcount >= start_posit_x && 
@@ -1638,8 +1638,12 @@ always_comb begin : bg_comb_blk
 
 // --------------------- BG 5: GAMEEND ------------------------
 
-        else if(states == 3'b101) // gameend
+        else if(states == 3'b100) // gameend
+                begin
+                    rgb_nxt = 12'h1_2_1;
+                end
 
+/*
             if(who_won == 2'b01) //u lost
                 begin
                 // letter - Y
@@ -2182,7 +2186,7 @@ always_comb begin : bg_comb_blk
                 begin
                     rgb_nxt = 0;
                 end
-                
+*/
         
     end
 end

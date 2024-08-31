@@ -97,7 +97,7 @@ initial begin
     # 30 rst = 1'b1;
     # 30 rst = 1'b0;
 
-    states = 3'b001;
+    states = 3'b100;
     who_won = 2'b10;
     lever_used_in = 8'b00010111;
     position = 3'b000;

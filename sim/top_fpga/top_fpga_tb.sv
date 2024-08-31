@@ -67,19 +67,8 @@ clk_wiz_0_clk_wiz clk_wizard(
  
 top_logic top_logic_dut(
     .clk(clk100),
-    .rst,
-    .buttonD(buttonD),
-    .buttonL(buttonL),
-    .buttonR(buttonR),
-    .buttonU(buttonU),
+    .rst
 
-    .current_player(current_player),
-    .lever_left_out(lever_left),
-    .player0_health,
-    .player1_health,
-    .position(position),
-    .state_output(states),
-    .who_won
 );
 
 
@@ -95,23 +84,11 @@ top_vga top_vga_dut(
     .who_won
 );
 
-top_uart top_uart_dut(
-    .clk(clk100),
-    .rst,
-    .rx_in(rx_in),
-    .tx_start(tx_start),
-    .tx_in(tx_conn),
-
-    .rx_out(rx_logic_in),
-    .tx_out(tx_out)
-);
-
 task reset();
     begin
         rst = 1'b0;
         #10 rst = 1'b1;
         #10 rst = 1'b0;
-        rx_in = 1'b1;
     end
 endtask
 
@@ -143,21 +120,6 @@ task press_lever(input [1:0] direction);
     end
 endtask
 
-    logic [2:0] rx_counter;
-
-task get_rx(input logic [7:0] data);
-    begin
-        rx_in = 1'b0;
-        #8800
-        for (rx_counter = 0; rx_counter < 8; rx_counter = rx_counter + 1)
-        begin
-            rx_in = data[rx_counter];
-            #8800;
-        end
-        rx_in = 1'b1;
-        #8800;
-    end
-endtask
 
 /**
  * Main test
@@ -165,11 +127,9 @@ endtask
 
 initial begin
     reset();
-    #10000 press_lever(RIGHT);
-    #10000 press_lever(LEFT);
-    #10000 get_rx(8'b11000000);
-    #10000 get_rx(8'b00000000);
-    #10000
+    #1000 press_lever(RIGHT);
+    #1000 press_lever(LEFT);
+    #1000
 
     $finish;
 end

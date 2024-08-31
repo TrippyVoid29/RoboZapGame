@@ -9,6 +9,5 @@
 # https://docs.xilinx.com/r/en-US/ug900-vivado-logic-simulation/Project-File-.prj-Syntax
 
 
-sv work ../../rtl/logic/game_state.sv \
-        ../../rtl/logic/lever_select.sv \
-        game_state_tb.sv
+sv work ../../rtl/logic/levers_info.sv \
+        levers_info_tb.sv

@@ -41,6 +41,8 @@ always_comb
         case(state)
             IDLE:
                 begin
+                    position_next = position;
+                    
                     if(game_state_in == 2'b01)
                         begin
                             if(buttonL == 1'b1)

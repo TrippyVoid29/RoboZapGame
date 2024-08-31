@@ -3,7 +3,7 @@
 module start_game (
     input wire clk,
     input wire rst,
-    input logic state_input,
+    input logic [1:0] state_input,
     input logic buttonL,
 
     output logic start_game_out
@@ -11,6 +11,7 @@ module start_game (
 
 
 always_ff@(posedge clk)
+begin
     if (rst)
         begin
             start_game_out <= 1'b0;
@@ -33,5 +34,5 @@ always_ff@(posedge clk)
                     start_game_out <= 1'b0;
                 end
         end
-        
+end
 endmodule

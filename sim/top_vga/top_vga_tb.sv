@@ -97,12 +97,12 @@ initial begin
     # 30 rst = 1'b1;
     # 30 rst = 1'b0;
 
-    states = 3'b100;
-    who_won = 2'b10;
-    lever_used_in = 8'b00010111;
-    position = 3'b000;
-    player0_health = 2'b01;
-    player1_health = 2'b10;
+    states = 3'b010;
+    who_won = 2'b00;
+    lever_used_in = 8'b11111111;
+    position = 3'b010;
+    player0_health = 2'b11;
+    player1_health = 2'b11;
     current_player = 1'b0;
 
     $display("If simulation ends before the testbench");

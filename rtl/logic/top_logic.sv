@@ -44,7 +44,7 @@ module top_logic (
         
         .tableselected(tablecode),
         .who_won,
-        .lever_left_out,
+        .lever_left_out(lever_left_out),
         .state_output(state_output),
         .player0_health,
         .player1_health

@@ -1192,7 +1192,7 @@ always_comb begin : bg_comb_blk
                 end
 
 // --------------------- BG 3: LEVERS -------------------------------------------
-            if(states == 3'b111)
+            else if(states == 3'b111)
                 begin
                 // letter - C
                     if(vga_start_bg_in.hcount >= start_posit_x + 0 * letter_width + 0 * pixel && 
@@ -2180,13 +2180,13 @@ always_comb begin : bg_comb_blk
                 begin
                     rgb_nxt = 0;
                 end
-                
+*/           
 
             else //safety
                 begin
                     rgb_nxt = 0;
                 end
-*/
+
         
     end
 end

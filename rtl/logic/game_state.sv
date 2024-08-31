@@ -1,16 +1,5 @@
 `timescale 1 ns / 1 ps
 
-// microcode
-// 0000 0000
-// 0,1,2 - turn
-// 3 - lever lethality
-// 4,5,6 - which switch
-// 7 - who was targeted
-
-// code for reset = 0000 0000
-// code for player set = 1000 0000
-
-
 module game_state #(
 
     )(
@@ -93,6 +82,11 @@ module game_state #(
                             begin
                                 tableselected_next = tableselected + 1;
                                 state_next = INIT;
+                                player0_health_next = player0_health;
+                                player1_health_next = player1_health;
+                                current_player_next = current_player;
+                                who_won_next =  who_won;
+                                lever_left_out_next = lever_left_out;
                             end
                     end
                 MENU:
@@ -109,7 +103,7 @@ module game_state #(
                     end
                 PLAYER_0:
                     begin
-                        if(lever_left_out == 8'b00000000 || player0_health == 2'b00 || player1_health == 2'b00)
+                        if(player0_health == 2'b00 || player1_health == 2'b00)
                             begin
                                 state_next = GAMEEND;
                             end
@@ -156,7 +150,7 @@ module game_state #(
                     end
                 PLAYER_1:
                     begin
-                        if(lever_left_out == 8'b00000000 || player0_health == 2'b00 || player1_health == 2'b00)
+                        if(player0_health == 2'b00 || player1_health == 2'b00)
                             begin
                                 state_next = GAMEEND;
                             end

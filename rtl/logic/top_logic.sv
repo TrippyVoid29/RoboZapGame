@@ -114,6 +114,8 @@ target u_target(
     .buttonD(buttonD_P),
     .buttonU(buttonU_P),
     .game_state_in(state_output),
+    .lever_left_in(lever_left),
+    .position(position),
     
     .target(target_wire),
     .lever_used(lever_used),

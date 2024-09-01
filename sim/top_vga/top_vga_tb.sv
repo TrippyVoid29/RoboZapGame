@@ -103,7 +103,7 @@ initial begin
     lever_used_in = 8'b11111111;
     position = 3'b010;
     player0_health = 2'b11;
-    player1_health = 2'b11;
+    player1_health = 2'b10;
     current_player = 1'b1;
 
     $display("If simulation ends before the testbench");

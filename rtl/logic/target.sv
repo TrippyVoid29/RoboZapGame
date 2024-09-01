@@ -9,10 +9,13 @@ module target (
     input wire buttonD,
 
     input wire [1:0] game_state_in,
+    input wire [7:0] lever_left_in,
+    input wire [2:0] position,
 
     output logic target,
     output logic turn,
     output logic lever_used
+    
 
 );
 
@@ -78,7 +81,10 @@ always_comb
                         target_next = 1'b0;
 
                     lever_used_next = 1'b1;
-                    turn_next = ~turn;
+                    if(lever_left_in[position] == 1'b1)
+                        turn_next = ~turn;
+                    else
+                        turn_next = turn;
                     state_next = IDLE;
                     
                 end

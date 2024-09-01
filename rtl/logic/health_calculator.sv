@@ -55,6 +55,7 @@ begin
                                 end
                             else
                             player1_health_next = player1_health;
+                            player0_health_next = player0_health;
                         end
                     else
                         begin
@@ -67,6 +68,7 @@ begin
                                 end
                             else
                             player0_health_next = player0_health;
+                            player1_health_next = player1_health;
                         end
                 end
             else

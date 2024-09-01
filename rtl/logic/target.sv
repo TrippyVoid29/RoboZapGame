@@ -70,6 +70,8 @@ always_comb
                             state_next = IDLE;
                             lever_used_next = 1'b0;
                             turn_next = 1'b0;
+                            target_next = 1'b0;
+
                         end
 
                 end

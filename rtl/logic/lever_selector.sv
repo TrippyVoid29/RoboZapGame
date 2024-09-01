@@ -42,7 +42,7 @@ always_comb
             IDLE:
                 begin
                     position_next = position;
-                    
+
                     if(game_state_in == 2'b01)
                         begin
                             if(buttonL == 1'b1)
@@ -61,6 +61,7 @@ always_comb
                     else
                         begin
                             state_next = IDLE;
+                            position_next = 3'b000;
                         end
                 end
             LEFT:

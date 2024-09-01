@@ -53,6 +53,13 @@ always_ff@(posedge clk)
                         end
                     
                 end
+            else if(game_state_in == 2'b00)
+                begin
+                    is_usable_next = 1'b0;
+                    is_lethal_next = 1'b0;
+                    lever_left_next = 8'b11111111;
+                    lever_info_next = 2'b00;
+                end
             else
                 begin
                     is_lethal_next = is_lethal;

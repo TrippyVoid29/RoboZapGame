@@ -85,8 +85,8 @@ begin
         end
     else
         begin
-            player0_health_next = player0_health;
-            player1_health_next = player1_health;
+            player0_health_next = 2'b11;
+            player1_health_next = 2'b11;
         end
 end
 

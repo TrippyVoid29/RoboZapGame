@@ -30,8 +30,10 @@ begin
                     else
                         winner <= winner;
                 end
-            else
+            else if(game_state_in == 2'b10)
                 winner <= winner;
+            else
+                winner <= 2'b00;
         end
 end
 

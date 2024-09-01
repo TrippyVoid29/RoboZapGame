@@ -66,12 +66,18 @@ always_comb
                 end
             LEFT:
                 begin
-                    position_next = position - 1;
+                    if(position > 0)
+                        position_next = position - 1;
+                    else
+                        position_next = position;
                     state_next = IDLE;
                 end
             RIGHT:
                 begin
-                    position_next = position + 1;
+                    if(position < 7)
+                        position_next = position + 1;
+                    else
+                        position_next = position;
                     state_next = IDLE;
                 end 
         endcase

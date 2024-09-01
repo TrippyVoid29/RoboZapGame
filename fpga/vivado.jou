@@ -2,12 +2,12 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Sun Sep  1 02:14:45 2024
-# Process ID: 24125
+# Start of session at: Sun Sep  1 02:58:28 2024
+# Process ID: 12047
 # Current directory: /home/student/lperczynski/Vivado/RoboZapGame/fpga
 # Command line: vivado -mode tcl -source scripts/generate_bitstream.tcl
 # Log file: /home/student/lperczynski/Vivado/RoboZapGame/fpga/vivado.log
 # Journal file: /home/student/lperczynski/Vivado/RoboZapGame/fpga/vivado.jou
-# Running On: cadence28, OS: Linux, CPU Frequency: 3720.117 MHz, CPU Physical cores: 4, Host memory: 16720 MB
+# Running On: cadence28, OS: Linux, CPU Frequency: 3326.367 MHz, CPU Physical cores: 4, Host memory: 16720 MB
 #-----------------------------------------------------------
 source scripts/generate_bitstream.tcl

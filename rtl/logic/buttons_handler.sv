@@ -13,7 +13,7 @@ module buttons_handler (
 
     );
     
-        logic buttonL_pressed_next, buttonR_pressed_next, buttonD_pressed_next, buttonU_pressed_next;
+    logic buttonL_pressed_next, buttonR_pressed_next, buttonD_pressed_next, buttonU_pressed_next;
 
     //STATES
     typedef enum bit [2:0] {    
@@ -129,3 +129,4 @@ module buttons_handler (
         end
 
 endmodule
+

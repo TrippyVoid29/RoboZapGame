@@ -41,17 +41,17 @@ set sv_files {
     ../rtl/vga_files/draw_start_bg.sv
     ../rtl/vga_files/top_vga.sv
     rtl/top_vga_basys3.sv
-    ../rtl/uart_files/top_uart.sv
-    ../rtl/uart_files/uart_clock.sv
-    ../rtl/uart_files/uart_rx.sv
-    ../rtl/uart_files/uart_tx.sv
-    ../rtl/uart_files/uart_rec.sv
     ../rtl/logic/game_state.sv
-    ../rtl/logic/buttons_handler.sv \
-    ../rtl/logic/lever_select.sv
+    ../rtl/logic/buttons_handler.sv
+    ../rtl/logic/lever_selector.sv
     ../rtl/logic/top_logic.sv
-    ../rtl/logic/table_base.sv
-
+    ../rtl/logic/health_calculator.sv
+    ../rtl/logic/levers_info.sv
+    ../rtl/logic/map_randomizer.sv
+    ../rtl/logic/new_game.sv
+    ../rtl/logic/start_game.sv
+    ../rtl/logic/target.sv
+    ../rtl/logic/who_won.sv \
 }
 
 # Specify Verilog design files location         -- EDIT

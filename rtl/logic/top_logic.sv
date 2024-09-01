@@ -1,93 +1,135 @@
 `timescale 1 ns / 1 ps
 
-// microcode
-// 0000 0000
-// 0 - parity bit
-// 1,2,3 - turn
-// 4,5,6 - which switch
-// 7 - who was targeted
-
 module top_logic (
+
     input wire clk,
     input wire rst,
-    input wire [7:0] uart_rx,
-    input wire buttonU, buttonD, buttonL, buttonR,
+    input wire buttonD, buttonU, buttonR, buttonL,
 
-    
-    output wire [7:0] data_output,
-    output wire [1:0] who_won,
-    output wire [2:0] state_output,
+    output logic turn,
+    output logic [1:0] winner,
+    output logic [1:0] player0_health,
+    output logic [1:0] player1_health,
+    output logic [7:0] lever_left,
     output logic [2:0] position,
-    output logic [7:0] lever_left_out,
-    output wire current_player,
-    output wire [1:0] player0_health,
-    output wire [1:0] player1_health,
-    output logic tx_start
-    );
+    output logic [1:0] state_output
 
-    wire turn_done;
-    wire [2:0] tablecode;
-    wire [4:0] lever_select;
-    wire buttonL_pressed, buttonR_pressed, buttonD_pressed, buttonU_pressed;
+);
 
-    buttons_handler u_buttons_handler(
-        .clk,
-        .rst,
-        .buttonD,
-        .buttonL,
-        .buttonR,
-        .buttonU,
-
-        .buttonD_pressed(buttonD_pressed),
-        .buttonL_pressed(buttonL_pressed),
-        .buttonR_pressed(buttonR_pressed),
-        .buttonU_pressed(buttonU_pressed)
-    );
-
-    game_state u_game_state(
-        .clk,
-        .rst,
-        .uart_rx,
-        .buttonL(buttonL_pressed),
-        .buttonR(buttonR_pressed),
-        .lever_select(lever_select),
-        .turn_done(turn_done),
-        
-        .data_output,
-        .current_player(current_player),
-        .tableselected(tablecode),
-        .who_won,
-        .lever_left_out,
-        .state(state_output),
-        .player0_health,
-        .player1_health,
-        .tx_start(tx_start)
-    );
-
-    wire [7:0] lethality_table;
+    wire start_game, end_game, new_game;
+    wire target_wire, lever_used;
+    wire [1:0] lever_info;
     
+    wire buttonD_P, buttonU_P, buttonR_P, buttonL_P;
+    wire [7:0] levers_lethality;
 
-    lever_select u_lever_select(
-        .clk,
-        .rst,
-        .buttonD(buttonD_pressed),
-        .buttonL(buttonL_pressed),
-        .buttonR(buttonR_pressed),
-        .buttonU(buttonU_pressed),
-        .current_player(current_player),
-        .lever_select(lever_select),
-        .lever_left_in(lever_left_out),
-        .table_lethality(lethality_table),
-        .turn_done(turn_done),
-        .position,
-        .game_state(state_output)
-        
-    );
+game_state u_game_state(
+    .clk,
+    .rst,
+    .start_game,
+    .end_game,
+    .new_game,
+
+    .state_output
+);
+
+buttons_handler u_buttons_handler(
+    .buttonD,
+    .buttonU,
+    .buttonR,
+    .buttonL,
+    .clk,
+    .rst,
+
+    .buttonD_pressed(buttonD_P),
+    .buttonL_pressed(buttonL_P),
+    .buttonR_pressed(buttonR_P),
+    .buttonU_pressed(buttonU_P)
+
+);
+
+start_game u_start_game(
+    .clk,
+    .rst,
+    .buttonL(buttonL_P),
+    .state_input(state_output),
+
+    .start_game_out(start_game)
+);
+
+new_game u_new_game(
+    .clk,
+    .rst,
+    .buttonL(buttonL_P),
+    .state_input(state_output),
+    .new_game_out(new_game)
+);
+
+lever_selector u_lever_selector(
+    .clk,
+    .rst,
+    .buttonL(buttonL_P),
+    .buttonR(buttonR_P),
+    .game_state_in(state_output),
+
+    .position(position)
+);
+
+map_randomizer u_map_randomizer(
+    .clk,
+    .rst,
+    .state_input(state_output),
+
+    .table_lethality(levers_lethality)
+);
+
+levers_info u_levers_info(
+    .clk,
+    .rst,
+    .position(position),
+    .lever_used(lever_used),
+    .game_state_in(state_output),
+    .levers_lethality(levers_lethality),
+
+    .lever_info(lever_info),
+    .lever_left(lever_left)
+);
+
+health_calculator u_health_calculator(
+    .clk,
+    .rst,
+    .game_state_in(state_output),
+    .target(target_wire),
+    .lever_info(lever_info),
+    .lever_used_in(lever_used),
+
+    .player0_health(player0_health),
+    .player1_health(player1_health),
+    .end_game(end_game)
+);
+
+target u_target(
+    .clk,
+    .rst,
+    .buttonD(buttonD_P),
+    .buttonU(buttonU_P),
+    .game_state_in(state_output),
+    .lever_left_in(lever_left),
+    .position(position),
     
-    table_base u_table_base(
-        .tablecode(tablecode),
-        .table_lethality(lethality_table)
-    );
+    .target(target_wire),
+    .lever_used(lever_used),
+    .turn(turn)
+);
 
+who_won u_who_won(
+    .rst,
+    .clk,
+    .player0_health(player0_health), 
+    .player1_health(player1_health),
+    .game_state_in(state_output),
+
+    .winner
+);
 
 endmodule

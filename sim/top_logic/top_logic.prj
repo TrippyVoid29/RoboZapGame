@@ -11,7 +11,13 @@
 
 sv work ../../rtl/logic/game_state.sv \
         ../../rtl/logic/buttons_handler.sv \
-        ../../rtl/logic/lever_select.sv \
-        ../../rtl/logic/table_base.sv \
+        ../../rtl/logic/lever_selector.sv \
         ../../rtl/logic/top_logic.sv \
+        ../../rtl/logic/health_calculator.sv \
+        ../../rtl/logic/levers_info.sv \
+        ../../rtl/logic/map_randomizer.sv \
+        ../../rtl/logic/new_game.sv \
+        ../../rtl/logic/start_game.sv  \
+        ../../rtl/logic/target.sv  \
+        ../../rtl/logic/who_won.sv \
         top_logic_tb.sv

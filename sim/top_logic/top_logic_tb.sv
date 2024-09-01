@@ -14,138 +14,133 @@
     //inputs -> logic/reg    outputs -> wires
     logic clk;
     logic rst;
-    logic ButtonD, ButtonL, ButtonR, ButtonU;
-    logic tx_start;
+    logic buttonD, buttonL, buttonR, buttonU;
+    logic buttonD_P, buttonL_P, buttonR_P, buttonU_P;
 
-    logic [7:0] uart_rx;
+    wire lever_used;
+    wire turn;
+    wire [1:0] winner, lever_info;
+    wire [1:0] player0_health, player1_health;
+    wire [7:0] lever_left;
+    wire wire_start_game, new_game;
+    wire [1:0] state_game_wire;
+    wire [2:0] position;
+    wire [7:0] levers_lethality;
+    wire end_game_wire;
 
-    wire [2:0] state_output; 
-    logic [2:0] position;
-    logic [1:0] player0_health, player1_health, who_won;
-    wire [7:0] lever_left_out, data_output;
-    wire current_player;
-
-    wire buttonD_pressed, buttonL_pressed, buttonR_pressed, buttonU_pressed;
-    wire [2:0] game_state;
-    wire [4:0] lever_select;
-    wire turn_done;
-    wire [7:0] lever_left_in;
-    wire [2:0] tablecode;
-/*
-// microcode
-// 0000 0000
-// 0,1,2 - turn
-// 3 - lever lethality
-// 4,5,6 - which switch
-// 7 - who was targeted
-
-    STATES----------------
-
-    PLAYER_SELECT = 3'b000,
-    MENU = 3'b001,
-    LEVERS = 3'b010,
-    PLAYER_0 = 3'b011,
-    PLAYER_1 = 3'b100,
-    GAMEEND = 3'b101
-    */
 
 initial begin
     clk = 0;
     forever #5 clk = ~clk;
 end
 
-/*
-top_logic dut(
-    .buttonD(ButtonD),
-    .buttonL(ButtonL),
-    .buttonR(ButtonR),
-    .buttonU(ButtonU),
+game_state u_game_state(
     .clk,
     .rst,
-    .uart_rx,
-    //.tx_start(tx_start),
+    .start_game(wire_start_game),
+    .end_game(end_game_wire),
+    .new_game,
 
-    .player0_health,
-    .player1_health,
-    .current_player,
-    .state_output(state_output),
-    .data_output,
-    .position,
-    .lever_left_out,
-    .who_won
+    .state_output(state_game_wire)
 );
 
-buttons_handler buttons_handler_dut(
+buttons_handler u_buttons_handler(
+    .buttonD,
+    .buttonU,
+    .buttonR,
+    .buttonL,
     .clk,
     .rst,
-    .buttonD(ButtonD),
-    .buttonL(ButtonL),
-    .buttonR(ButtonR),
-    .buttonU(ButtonU),
-    
-    .buttonD_pressed(buttonD_pressed),
-    .buttonL_pressed(buttonL_pressed),
-    .buttonR_pressed(buttonR_pressed),
-    .buttonU_pressed(buttonU_pressed)
+
+    .buttonD_pressed(buttonD_P),
+    .buttonL_pressed(buttonL_P),
+    .buttonR_pressed(buttonR_P),
+    .buttonU_pressed(buttonU_P)
+
 );
-*/
-    buttons_handler u_buttons_handler(
-        .clk,
-        .rst,
-        .buttonD(ButtonD),
-        .buttonL(ButtonL),
-        .buttonR(ButtonR),
-        .buttonU(ButtonU),
 
-        .buttonD_pressed(buttonD_pressed),
-        .buttonL_pressed(buttonL_pressed),
-        .buttonR_pressed(buttonR_pressed),
-        .buttonU_pressed(buttonU_pressed)
-    );
+start_game u_start_game(
+    .clk,
+    .rst,
+    .buttonL(buttonL_P),
+    .state_input(state_game_wire),
 
-    game_state u_game_state(
-        .clk,
-        .rst,
-        .uart_rx,
-        .buttonL(buttonL_pressed),
-        .buttonR(buttonR_pressed),
-        .lever_select(lever_select),
-        .turn_done(turn_done),
-        
-        .data_output,
-        .current_player(current_player),
-        .tableselected(tablecode),
-        .who_won,
-        .lever_left_out,
-        .state(state_output),
-        .player0_health,
-        .player1_health
-    );
+    .start_game_out(wire_start_game)
+);
 
-    wire [7:0] lethality_table;
+new_game u_new_game(
+    .clk,
+    .rst,
+    .buttonL(buttonL_P),
+    .state_input(state_game_wire),
+    .new_game_out(new_game)
+);
+
+lever_selector u_lever_selector(
+    .clk,
+    .rst,
+    .buttonL(buttonL_P),
+    .buttonR(buttonR_P),
+    .game_state_in(state_game_wire),
+
+    .position(position)
+);
+
+map_randomizer u_map_randomizer(
+    .clk,
+    .rst,
+    .state_input(state_game_wire),
+
+    .table_lethality(levers_lethality)
+);
+
+levers_info u_levers_info(
+    .clk,
+    .rst,
+    .position(position),
+    .lever_used(lever_used),
+    .game_state_in(state_game_wire),
+    .levers_lethality(levers_lethality),
+
+    .lever_info(lever_info),
+    .lever_left(lever_left)
+);
+
+health_calculator u_health_calculator(
+    .clk,
+    .rst,
+    .game_state_in(state_game_wire),
+    .target(target),
+    .lever_info(lever_info),
+    .lever_used_in(lever_used),
+
+    .player0_health(player0_health),
+    .player1_health(player1_health),
+    .end_game(end_game_wire)
+);
+
+target u_target(
+    .clk,
+    .rst,
+    .buttonD(buttonD_P),
+    .buttonU(buttonU_P),
+    .game_state_in(state_game_wire),
     
+    .target(target),
+    .lever_used(lever_used),
+    .turn(turn)
+);
 
-    lever_select u_lever_select(
-        .clk,
-        .rst,
-        .buttonD(buttonD_pressed),
-        .buttonL(buttonL_pressed),
-        .buttonR(buttonR_pressed),
-        .buttonU(buttonU_pressed),
-        .current_player(current_player),
-        .lever_select(lever_select),
-        .lever_left_in(lever_left_out),
-        .table_lethality(lethality_table),
-        .turn_done(turn_done),
-        .position,
-        .game_state(state_output)
-        
-    );
-    
-    table_base u_table_base(
-        .tablecode(tablecode),
-        .table_lethality(lethality_table)
-    );
+who_won u_who_won(
+    .rst,
+    .clk,
+    .player0_health(player0_health), 
+    .player1_health(player1_health),
+    .game_state_in(state_game_wire),
+
+    .winner
+);
+
 
 
 task reset();
@@ -153,10 +148,10 @@ task reset();
         rst = 1'b0;
         #10 rst = 1'b1;
 
-        ButtonL = 1'b0;
-        ButtonR = 1'b0;
-        ButtonU = 1'b0;
-        ButtonD = 1'b0;
+        buttonL = 1'b0;
+        buttonR = 1'b0;
+        buttonU = 1'b0;
+        buttonD = 1'b0;
 
         #10 rst = 1'b0;
     end
@@ -171,20 +166,20 @@ down = 2'b11;
 task press_lever(input [1:0] direction);
     begin
     if(direction == left) begin
-        ButtonL = 1'b1;
-        #20 ButtonL = 1'b0;
+        buttonL = 1'b1;
+        #20 buttonL = 1'b0;
         #20;
     end else if (direction == right) begin
-        ButtonR = 1'b1;
-        #20 ButtonR = 1'b0;
+        buttonR = 1'b1;
+        #20 buttonR = 1'b0;
         #20;
     end else if (direction == up) begin
-        ButtonU = 1'b1;
-        #10 ButtonU = 1'b0;
+        buttonU = 1'b1;
+        #10 buttonU = 1'b0;
         #10;
     end else if (direction == down) begin
-        ButtonD = 1'b1;
-        #20 ButtonD = 1'b0;
+        buttonD = 1'b1;
+        #20 buttonD = 1'b0;
         #20;
     end 
     end
@@ -192,52 +187,39 @@ endtask
 
 task start_game();
     begin
-    #20 ButtonL = 1; ButtonR = 1;
-    #20 ButtonL = 0; ButtonR = 1;
-    #20 ButtonR = 0;
+    #20 buttonL = 1; buttonR = 1;
+    #20 buttonL = 0; buttonR = 1;
+    #20 buttonR = 0;
     end
 endtask
 
 initial begin
 
     reset();
-    #50 
-    press_lever(left);
+    #50
     press_lever(right);
-    #30
+    #100
+    press_lever(left);
+    #100
     press_lever(right);
-    press_lever(left);
-
-    #40 
-    uart_rx = 8'b11000000;
-    #40 
-    uart_rx = 8'b00000000;
-    #40
-    press_lever(left);
-    press_lever(left);
-    press_lever(left);
     press_lever(up);
     #100
-    uart_rx = 8'b01111010;
+    press_lever(right);
+    press_lever(down);
+    #100
+    press_lever(right);
+    press_lever(down);
+    #100
+    press_lever(right);
+    press_lever(down);
+    #100
+    press_lever(right);
+    press_lever(down);
+    #100
+    press_lever(right);
+    press_lever(down);
     #100
     press_lever(left);
-    press_lever(left);
-    press_lever(up);
-    #100
-
-    reset();
-    #50
-    uart_rx = 8'b10000000;
-    #50
-    uart_rx = 8'b10100101;
-    #50
-    uart_rx = 8'b00000000;
-    #100
-    uart_rx = 8'b10001001;
-    #50
-    press_lever(left);
-    press_lever(left);
-    press_lever(up);
     #100
 
     $finish;

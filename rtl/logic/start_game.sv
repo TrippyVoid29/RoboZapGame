@@ -1,3 +1,12 @@
+/**
+ * 2024  AGH University of Science and Technology
+ * MTM UEC2
+ * Author: Łukasz Perczyński & Tymon Ryś
+ *
+ * Description:
+ * Sends flag to start game from init.
+ */
+
 `timescale 1 ns / 1 ps
 
 module start_game (

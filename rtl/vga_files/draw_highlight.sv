@@ -1,7 +1,12 @@
 /**
+ * 2024  AGH University of Science and Technology
+ * MTM UEC2
+ * Author: Łukasz Perczyński & Tymon Ryś
+ *
  * Description:
- * Draw lever
+ * Lever highlight.
  */
+
 `timescale 1 ns / 1 ps
 
 module draw_highlight #(

@@ -1,3 +1,12 @@
+/**
+ * 2024  AGH University of Science and Technology
+ * MTM UEC2
+ * Author: Łukasz Perczyński & Tymon Ryś
+ *
+ * Description:
+ * Inforamtion about current lever.
+ */
+
 `timescale 1 ns / 1 ps
 
 module lever_selector (

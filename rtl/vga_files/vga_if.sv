@@ -1,11 +1,12 @@
 /**
- * Copyright (C) 2023  AGH University of Science and Technology
+ * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Tymon Rys
+ * Author: Łukasz Perczyński & Tymon Ryś
  *
  * Description:
- * Modport define.
+ * Interface for graphics.
  */
+
 `timescale 1 ns / 1 ps
 interface vga_if();
 

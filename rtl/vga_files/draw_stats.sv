@@ -1,10 +1,10 @@
 /**
- * Copyright (C) 2023  AGH University of Science and Technology
+ * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Piotr Kaczmarczyk
+ * Author: Łukasz Perczyński & Tymon Ryś
  *
  * Description:
- * Draw background.
+ * Module for drawing stats - HP.
  */
 
 

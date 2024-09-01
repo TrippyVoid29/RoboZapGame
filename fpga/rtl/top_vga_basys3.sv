@@ -30,15 +30,15 @@ module top_vga_basys3 (
  * Local variables and signals
  */
 
-wire locked;
+//wire locked;
 wire pclk;
 wire clk100;
-wire pclk_mirror;
+//wire pclk_mirror;
 
 
 (* KEEP = "TRUE" *)
 (* ASYNC_REG = "TRUE" *)
-logic [7:0] safe_start = 0;
+//logic [7:0] safe_start = 0;
 // For details on synthesis attributes used above, see AMD Xilinx UG 901:
 // https://docs.xilinx.com/r/en-US/ug901-vivado-synthesis/Synthesis-Attributes
 
@@ -57,14 +57,14 @@ clk_wiz_0_clk_wiz u_clk_wiz_0_clk_wiz (
   .clk100MHz(clk100),
   .clk40MHz(pclk),
   // Status and control signals               
-  .locked(locked),
+  .locked(),
  // Clock in ports
   .clk(clk)
   );
 
 // Mirror pclk on a pin for use by the testbench;
 // not functionally required for this design to work.
-
+/*
 ODDR pclk_oddr (
     .Q(pclk_mirror),
     .C(pclk),
@@ -74,7 +74,7 @@ ODDR pclk_oddr (
     .R(1'b0),
     .S(1'b0)
 );
-
+*/
 
 /**
  *  Project functional top module

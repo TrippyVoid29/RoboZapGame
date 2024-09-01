@@ -1,3 +1,12 @@
+/**
+ * 2024  AGH University of Science and Technology
+ * MTM UEC2
+ * Author: Łukasz Perczyński & Tymon Ryś
+ *
+ * Description:
+ * Module for converting input signal from switches to latch when relased.
+ */
+
 `timescale 1 ns / 1 ps
 
 module buttons_handler (

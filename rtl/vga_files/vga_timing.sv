@@ -2,7 +2,7 @@
    * Copyright (C) 2023  AGH University of Science and Technology
    * MTM UEC2
    * Author: Piotr Kaczmarczyk
-   * Editor: Tymon Rys
+   * Editor: Tymon Ryś & Łukasz Perczyński
    * 
    * Description:
    * Vga timing controller.
@@ -19,11 +19,6 @@
    
        import vga_pkg::*;
    
-   
-       /**
-        * Local variables and signals
-        */
-   
        // Add your signals and variables here.
        logic [10:0] hcount_nxt;
        logic [10:0] vcount_nxt;
@@ -31,7 +26,6 @@
        logic vblnk_nxt;
        logic hsync_nxt;
        logic vsync_nxt;
-   
    
        /**
         * Internal logic
@@ -99,3 +93,4 @@
    
    
    endmodule
+   

@@ -18,8 +18,8 @@
     logic buttonD_P, buttonL_P, buttonR_P, buttonU_P;
 
     wire lever_used;
-    wire turn;
-    wire [1:0] winner, lever_info;
+    wire turn; //turn -> VGA
+    wire [1:0] winner, lever_info; //winner -> VGA
     wire [1:0] player0_health, player1_health;
     wire [7:0] lever_left;
     wire wire_start_game, new_game;
@@ -125,6 +125,8 @@ target u_target(
     .buttonD(buttonD_P),
     .buttonU(buttonU_P),
     .game_state_in(state_game_wire),
+    .lever_left_in(lever_left),
+    .position,
     
     .target(target),
     .lever_used(lever_used),
@@ -138,7 +140,7 @@ who_won u_who_won(
     .player1_health(player1_health),
     .game_state_in(state_game_wire),
 
-    .winner
+    .winner(winner)
 );
 
 

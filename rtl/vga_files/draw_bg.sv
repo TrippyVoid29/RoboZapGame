@@ -1,12 +1,11 @@
 /**
- * Copyright (C) 2023  AGH University of Science and Technology
+ * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Piotr Kaczmarczyk
+ * Author: Łukasz Perczyński & Tymon Ryś
  *
  * Description:
- * Draw background.
+ * Module drawing background dependant on current_player.
  */
-
 
 `timescale 1 ns / 1 ps
 
@@ -194,11 +193,8 @@ always_comb begin : bg_comb_blk
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-
-
-
-        else                          // The rest of active display pixels:
-            rgb_nxt = 12'h0_0_2;           // - fill with gray.
+        else                          
+            rgb_nxt = 12'h0_0_2;           // - fill with drak blue - background_color
     end
 end
 

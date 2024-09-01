@@ -1,15 +1,10 @@
 /**
- * San Jose State University
- * EE178 Lab #4
- * Author: prof. Eric Crabilla
- *
- * Modified by:
- * 2023  AGH University of Science and Technology
+ * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Piotr Kaczmarczyk
+ * Author: Łukasz Perczyński & Tymon Ryś
  *
  * Description:
- * The project top module.
+ * VGA top module.
  */
 
 `timescale 1 ns / 1 ps
@@ -17,7 +12,7 @@
 module top_vga (
     input  logic clk,
     input  logic rst,
-    //logika
+
     input  logic [1:0] states,
     input  logic [2:0] position,
     input  logic [7:0] lever_left_in,

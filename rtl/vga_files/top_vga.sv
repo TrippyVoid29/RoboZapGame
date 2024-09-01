@@ -70,6 +70,7 @@ draw_bg u_draw_bg (
     .clk,
     .rst,
     .position,
+    .current_player,
 
     .vga_bg_in(vga_tim),
     .vga_bg_out(vga_bg)

@@ -27,7 +27,7 @@ module draw_stats #(
     input  logic rst,
     input  logic [1:0] player0_health,
     input  logic [1:0] player1_health,
-    input logic current_player,
+    input logic player_selected,
 
     vga_if.out vga_stats_out,
     vga_if.in vga_stats_in
@@ -75,7 +75,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
             vga_stats_out.rgb    <= vga_stats_in.rgb;
         end
             // ---------------- HEALTH_CALCULATION ---------------------------
-        if(current_player == 1'b0)
+        if(player_selected == 1'b0)
             begin
                 my_health [1:0] <= player0_health [1:0];
                 enemy_health [1:0] <= player1_health [1:0];
@@ -144,10 +144,10 @@ always_comb begin : bg_comb_blk
         end
 //-------------------- HEALTH ENEMY ---------------------------
     // 1_HP
-    else  if (vga_stats_out.hcount >= (310) && 
-        vga_stats_out.hcount <= (330) && 
-        vga_stats_out.vcount >= (170) && 
-        vga_stats_out.vcount <= 200)       
+    else  if (vga_stats_out.hcount >= (410) && 
+        vga_stats_out.hcount <= (430) && 
+        vga_stats_out.vcount >= (270) && 
+        vga_stats_out.vcount <= 300)       
 
         begin
             if(enemy_health >= 2'b01)
@@ -161,10 +161,10 @@ always_comb begin : bg_comb_blk
         end
 
     // 2_HP
-    else if (vga_stats_out.hcount >= (390) && 
-        vga_stats_out.hcount <= (410) && 
-        vga_stats_out.vcount >= (170) && 
-        vga_stats_out.vcount <= 200) 
+    else if (vga_stats_out.hcount >= (490) && 
+        vga_stats_out.hcount <= (510) && 
+        vga_stats_out.vcount >= (270) && 
+        vga_stats_out.vcount <= 300) 
 
         begin
             if(enemy_health >= 2'b10)
@@ -178,10 +178,10 @@ always_comb begin : bg_comb_blk
         end
 
     // 3_HP
-    else if (vga_stats_out.hcount >= (470) && 
-        vga_stats_out.hcount <= (490) && 
-        vga_stats_out.vcount >= (170) && 
-        vga_stats_out.vcount <= 200)
+    else if (vga_stats_out.hcount >= (570) && 
+        vga_stats_out.hcount <= (590) && 
+        vga_stats_out.vcount >= (270) && 
+        vga_stats_out.vcount <= 300)
 
         begin
             if(enemy_health == 2'b11)

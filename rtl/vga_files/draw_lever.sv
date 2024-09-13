@@ -11,8 +11,8 @@
 
 module draw_lever #(
 
-    parameter lever_posit_x = 100,
-    parameter lever_posit_y = 500,
+    parameter lever_posit_x = 200,
+    parameter lever_posit_y = 600,
     parameter width = 50,
     parameter height = 50
 )(

@@ -4,7 +4,7 @@
  * Author: Łukasz Perczyński & Tymon Ryś
  *
  * Description:
- * Module drawing background dependant on current_player.
+ * Module drawing background dependant on player_selected.
  */
 
 `timescale 1 ns / 1 ps
@@ -14,7 +14,7 @@ module draw_bg (
     input  logic clk,
     input  logic rst,
     input logic [2:0]  position,
-    input logic current_player,
+    input logic player_selected,
 
     vga_if.out vga_bg_out,
     vga_if.in vga_bg_in
@@ -71,125 +71,125 @@ always_comb begin : bg_comb_blk
             rgb_nxt = 12'h0_0_f;                // - - make a blue line.
 
 // --------------------- Table for switches ------------------------
-        else if (vga_bg_in.hcount >= 75 && vga_bg_in.hcount <= 700 && 
-                vga_bg_in.vcount >= 475 && vga_bg_in.vcount <= 575)
+        else if (vga_bg_in.hcount >= 175 && vga_bg_in.hcount <= 800 && 
+                vga_bg_in.vcount >= 575 && vga_bg_in.vcount <= 675)
             begin
                 rgb_nxt = 12'h4_1_0;
             end
 
 // --------------------- ROBOT HEAD ------------------------
-        else if (vga_bg_in.hcount >= 465 && vga_bg_in.hcount <= 495 && vga_bg_in.vcount >= 165 && vga_bg_in.vcount <= 200)
+        else if (vga_bg_in.hcount >= 565 && vga_bg_in.hcount <= 595 && vga_bg_in.vcount >= 265 && vga_bg_in.vcount <= 300)
             begin
                 rgb_nxt = 12'h5_5_2;
             end
-        else if (vga_bg_in.hcount >= 385 && vga_bg_in.hcount <= 415 && vga_bg_in.vcount >= 165 && vga_bg_in.vcount <= 200)
+        else if (vga_bg_in.hcount >= 485 && vga_bg_in.hcount <= 515 && vga_bg_in.vcount >= 265 && vga_bg_in.vcount <= 300)
             begin
                 rgb_nxt = 12'h5_5_2;
             end
-        else if (vga_bg_in.hcount >= 305 && vga_bg_in.hcount <= 335 && vga_bg_in.vcount >= 165 && vga_bg_in.vcount <= 200)
+        else if (vga_bg_in.hcount >= 405 && vga_bg_in.hcount <= 435 && vga_bg_in.vcount >= 265 && vga_bg_in.vcount <= 300)
             begin
                 rgb_nxt = 12'h5_5_2;
             end
-        else if (vga_bg_in.hcount >= 445 && vga_bg_in.hcount <= 465 && vga_bg_in.vcount >= 235 && vga_bg_in.vcount <= 245)
+        else if (vga_bg_in.hcount >= 545 && vga_bg_in.hcount <= 565 && vga_bg_in.vcount >= 335 && vga_bg_in.vcount <= 345)
             begin
                 rgb_nxt = 12'h5_2_2;
             end
-        else if (vga_bg_in.hcount >= 335 && vga_bg_in.hcount <= 355 && vga_bg_in.vcount >= 235 && vga_bg_in.vcount <= 245)
+        else if (vga_bg_in.hcount >= 435 && vga_bg_in.hcount <= 455 && vga_bg_in.vcount >= 335 && vga_bg_in.vcount <= 345)
             begin
                 rgb_nxt = 12'h5_2_2;
             end
         //stripes
-        else if (vga_bg_in.hcount >= 355 && vga_bg_in.hcount <= 360 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 455 && vga_bg_in.hcount <= 460 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 365 && vga_bg_in.hcount <= 370 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 465 && vga_bg_in.hcount <= 470 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 375 && vga_bg_in.hcount <= 380 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 475 && vga_bg_in.hcount <= 480 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 385 && vga_bg_in.hcount <= 390 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 485 && vga_bg_in.hcount <= 490 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 395 && vga_bg_in.hcount <= 400 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 495 && vga_bg_in.hcount <= 500 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 405 && vga_bg_in.hcount <= 410 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 505 && vga_bg_in.hcount <= 510 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 415 && vga_bg_in.hcount <= 420 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 515 && vga_bg_in.hcount <= 520 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 425 && vga_bg_in.hcount <= 430 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 525 && vga_bg_in.hcount <= 530 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 435 && vga_bg_in.hcount <= 440 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 535 && vga_bg_in.hcount <= 540 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
-        else if (vga_bg_in.hcount >= 445 && vga_bg_in.hcount <= 450 && vga_bg_in.vcount >= 302 && vga_bg_in.vcount <= 318)
+        else if (vga_bg_in.hcount >= 545 && vga_bg_in.hcount <= 550 && vga_bg_in.vcount >= 402 && vga_bg_in.vcount <= 418)
             begin
                 rgb_nxt = 12'h1_1_1;
             end
         //stripes_end
-        else if (vga_bg_in.hcount >= 330 && vga_bg_in.hcount <= 360 && vga_bg_in.vcount >= 230 && vga_bg_in.vcount <= 250)
+        else if (vga_bg_in.hcount >= 430 && vga_bg_in.hcount <= 460 && vga_bg_in.vcount >= 330 && vga_bg_in.vcount <= 350)
             begin
-                if (current_player == 1'b0)
+                if (player_selected == 1'b0)
                 rgb_nxt = 12'h2_2_4;
-                else if (current_player == 1'b1)
+                else if (player_selected == 1'b1)
                 rgb_nxt = 12'h2_4_2;
             end
-        else if (vga_bg_in.hcount >= 440 && vga_bg_in.hcount <= 470 && vga_bg_in.vcount >= 230 && vga_bg_in.vcount <= 250)
+        else if (vga_bg_in.hcount >= 540 && vga_bg_in.hcount <= 570 && vga_bg_in.vcount >= 330 && vga_bg_in.vcount <= 350)
             begin
-                if (current_player == 1'b0)
+                if (player_selected == 1'b0)
                     rgb_nxt = 12'h2_2_4;
-                else if (current_player == 1'b1)
+                else if (player_selected == 1'b1)
                     rgb_nxt = 12'h2_4_2;
             end
-        else if (vga_bg_in.hcount >= 350 && vga_bg_in.hcount <= 455 && vga_bg_in.vcount >= 300 && vga_bg_in.vcount <= 320)
+        else if (vga_bg_in.hcount >= 450 && vga_bg_in.hcount <= 555 && vga_bg_in.vcount >= 400 && vga_bg_in.vcount <= 420)
             begin
-                if (current_player == 1'b0)
+                if (player_selected == 1'b0)
                 rgb_nxt = 12'h2_2_4;
-                else if (current_player == 1'b1)
+                else if (player_selected == 1'b1)
                 rgb_nxt = 12'h2_4_2;
             end
-        else if (vga_bg_in.hcount >= 300 && vga_bg_in.hcount <= 500 && vga_bg_in.vcount >= 200 && vga_bg_in.vcount <= 350)
+        else if (vga_bg_in.hcount >= 400 && vga_bg_in.hcount <= 600 && vga_bg_in.vcount >= 300 && vga_bg_in.vcount <= 450)
             begin
                 rgb_nxt = 12'h4_4_4;
             end
-        else if (vga_bg_in.hcount >= 290 && vga_bg_in.hcount <= 510 && vga_bg_in.vcount >= 195 && vga_bg_in.vcount <= 360)
+        else if (vga_bg_in.hcount >= 390 && vga_bg_in.hcount <= 610 && vga_bg_in.vcount >= 295 && vga_bg_in.vcount <= 460)
             begin
-                if (current_player == 1'b0)
+                if (player_selected == 1'b0)
                 rgb_nxt = 12'h2_2_4;
-                else if (current_player == 1'b1)
+                else if (player_selected == 1'b1)
                 rgb_nxt = 12'h2_4_2;
             end
         //chasis
-        else if (vga_bg_in.hcount >= 300 && vga_bg_in.hcount <= 500 && vga_bg_in.vcount >= 400 && vga_bg_in.vcount <= 410)
+        else if (vga_bg_in.hcount >= 400 && vga_bg_in.hcount <= 600 && vga_bg_in.vcount >= 500 && vga_bg_in.vcount <= 510)
             begin
                 rgb_nxt = 12'h3_3_3;
             end
-        else if (vga_bg_in.hcount >= 290 && vga_bg_in.hcount <= 510 && vga_bg_in.vcount >= 390 && vga_bg_in.vcount <= 490)
+        else if (vga_bg_in.hcount >= 390 && vga_bg_in.hcount <= 610 && vga_bg_in.vcount >= 490 && vga_bg_in.vcount <= 590)
             begin
                 rgb_nxt = 12'h4_4_4;
             end
-        else if (vga_bg_in.hcount >= 280 && vga_bg_in.hcount <= 520 && vga_bg_in.vcount >= 380 && vga_bg_in.vcount <= 500)
+        else if (vga_bg_in.hcount >= 380 && vga_bg_in.hcount <= 620 && vga_bg_in.vcount >= 480 && vga_bg_in.vcount <= 600)
             begin
-                if (current_player == 1'b0)
+                if (player_selected == 1'b0)
                 rgb_nxt = 12'h2_2_4;
-                else if (current_player == 1'b1)
+                else if (player_selected == 1'b1)
                 rgb_nxt = 12'h2_4_2;
             end
         //connector
-        else if (vga_bg_in.hcount >= 330 && vga_bg_in.hcount <= 470 && vga_bg_in.vcount >= 310 && vga_bg_in.vcount <= 520)
+        else if (vga_bg_in.hcount >= 430 && vga_bg_in.hcount <= 570 && vga_bg_in.vcount >= 410 && vga_bg_in.vcount <= 620)
             begin
                 rgb_nxt = 12'h1_1_1;
             end

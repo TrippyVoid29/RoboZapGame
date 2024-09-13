@@ -28,7 +28,7 @@ module top_vga_tb;
  *  Local parameters
  */
 
-localparam CLK_PERIOD = 20;     // 50 MHz
+localparam CLK_PERIOD = 25;     // 40 MHz
 
 /**
  * Local variables and signals
@@ -77,8 +77,8 @@ top_vga dut (
 );
 
 tiff_writer #(
-    .XDIM(16'd1056),
-    .YDIM(16'd628),
+    .XDIM(16'd1344),
+    .YDIM(16'd806),
     .FILE_DIR("../../results")
 ) u_tiff_writer (
     .clk(clk),

@@ -25,7 +25,6 @@ module target (
     output logic turn,
     output logic lever_used
     
-
 );
 
     //STATES

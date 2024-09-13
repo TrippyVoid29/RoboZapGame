@@ -14,6 +14,7 @@ module top_logic (
     input wire clk,
     input wire rst,
     input wire buttonD, buttonU, buttonR, buttonL,
+    input wire uart_in, //new
 
     output logic turn,
     output logic [1:0] winner,
@@ -21,7 +22,9 @@ module top_logic (
     output logic [1:0] player1_health,
     output logic [7:0] lever_left,
     output logic [2:0] position,
-    output logic [1:0] state_output
+    output logic [1:0] state_output,
+
+    output logic [7:0] uart_out // new
 
 );
 
@@ -31,6 +34,9 @@ module top_logic (
     
     wire buttonD_P, buttonU_P, buttonR_P, buttonL_P;
     wire [7:0] levers_lethality;
+
+//uart wires
+
 
 game_state u_game_state(
     .clk,
@@ -139,6 +145,32 @@ who_won u_who_won(
     .game_state_in(state_output),
 
     .winner
+);
+
+uart_receiver u_uart_receiver(
+    .clk,
+    .rst,
+
+    .uart_code(uart_in),
+    
+    .lever_used(),
+    .position(),
+    .target(),
+    .turn(),
+    .usability()
+);
+
+uart_transmiter u_uart_transmiter(
+    .clk,
+    .rst,
+
+    .lever_used(),
+    .position(),
+    .target(),
+    .turn(),
+    .usability(),
+
+    .uart_code(uart_out)
 );
 
 endmodule

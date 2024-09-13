@@ -46,9 +46,9 @@ always_ff@(posedge clk)
         begin
             state <= state_next;
             if(turn_uart == player_selected)
-                position <= position_next;
-            else
                 position <= position_uart;
+            else
+                position <= position_next;
         end
 
 always_comb

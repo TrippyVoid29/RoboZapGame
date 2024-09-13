@@ -264,14 +264,16 @@ initial begin
     press_lever(right);
     press_lever(down);
     #100
-    uart_in = 8'b11010111;
+    uart_in = 8'b11110111;
     #10
     uart_in = 8'b00000000;
     #200
     press_lever(right);
     press_lever(down);
     #100
-
+    press_lever(right);
+    press_lever(up);
+    #200
 
     $finish;
 end

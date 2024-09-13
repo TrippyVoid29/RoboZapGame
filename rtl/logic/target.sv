@@ -64,7 +64,7 @@ begin
                     state <= state_next;
                     turn_flag <= turn_next;
                     target <= target_uart;
-                    lever_used <= lever_used_next;
+                    lever_used <= lever_used_uart;
                 end
         end
 end

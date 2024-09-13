@@ -46,16 +46,17 @@ always_ff@(posedge clk)
             if(turn_uart == player_selected)
             begin
                 lever_left <= lever_left_next;
-                is_lethal <= is_lethal_next;
-                is_usable <= is_usable_next;
-                lever_info <= lever_info_next;
+                is_lethal <= usability_uart[0];
+                is_usable <= usability_uart[1];
+                lever_info <= usability_uart;
+                
             end
             else 
             begin
                 lever_left <= lever_left_next;
-                is_lethal <= usability_uart[0];
-                is_usable <= usability_uart[1];
-                lever_info <= usability_uart;
+                is_lethal <= is_lethal_next;
+                is_usable <= is_usable_next;
+                lever_info <= lever_info_next;
             end
         end
 

@@ -28,7 +28,7 @@ module top_vga_tb;
  *  Local parameters
  */
 
-localparam CLK_PERIOD = 25;     // 40 MHz
+localparam CLK_PERIOD = 20;     // 50 MHz
 
 /**
  * Local variables and signals

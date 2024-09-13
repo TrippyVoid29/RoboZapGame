@@ -51,6 +51,8 @@ set sv_files {
     ../rtl/logic/new_game.sv
     ../rtl/logic/start_game.sv
     ../rtl/logic/target.sv
+    ../rtl/logic/uart_receiver.sv
+    ../rtl/logic/uart_transmiter.sv
     ../rtl/logic/who_won.sv \
 }
 

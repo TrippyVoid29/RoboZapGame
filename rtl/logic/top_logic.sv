@@ -14,7 +14,7 @@ module top_logic (
     input wire clk,
     input wire rst,
     input wire buttonD, buttonU, buttonR, buttonL,
-    input wire uart_in, //new
+    input wire [7:0] uart_in, //new
 
     output logic turn,
     output logic [1:0] winner,
@@ -30,7 +30,9 @@ module top_logic (
 
     wire start_game, end_game, new_game;
     wire target_wire, lever_used;
-    wire [1:0] lever_info;
+    wire [1:0] lever_info, usability_uart;
+    wire player_selected, turn_uart, lever_used_uart, target_uart;
+    wire [2:0] position_uart;
     
     wire buttonD_P, buttonU_P, buttonR_P, buttonL_P;
     wire [7:0] levers_lethality;
@@ -67,9 +69,11 @@ start_game u_start_game(
     .clk,
     .rst,
     .buttonL(buttonL_P),
+    .buttonR(buttonR_P),
     .state_input(state_output),
 
-    .start_game_out(start_game)
+    .start_game_out(start_game),
+    .player_selected
 );
 
 new_game u_new_game(
@@ -86,6 +90,9 @@ lever_selector u_lever_selector(
     .buttonL(buttonL_P),
     .buttonR(buttonR_P),
     .game_state_in(state_output),
+    .player_selected,
+    .position_uart,
+    .turn_uart,
 
     .position(position)
 );
@@ -105,6 +112,11 @@ levers_info u_levers_info(
     .lever_used(lever_used),
     .game_state_in(state_output),
     .levers_lethality(levers_lethality),
+    .player_selected,
+    .turn_uart,
+    .lever_used_uart,
+    .position_uart,
+    .usability_uart,
 
     .lever_info(lever_info),
     .lever_left(lever_left)
@@ -131,6 +143,10 @@ target u_target(
     .game_state_in(state_output),
     .lever_left_in(lever_left),
     .position(position),
+    .player_selected,
+    .turn_uart,
+    .target_uart,
+    .lever_used_uart,
     
     .target(target_wire),
     .lever_used(lever_used),
@@ -153,22 +169,22 @@ uart_receiver u_uart_receiver(
 
     .uart_code(uart_in),
     
-    .lever_used(),
-    .position(),
-    .target(),
-    .turn(),
-    .usability()
+    .lever_used(lever_used_uart),
+    .position(position_uart),
+    .target(target_uart),
+    .turn(turn_uart),
+    .usability(usability_uart)
 );
 
 uart_transmiter u_uart_transmiter(
     .clk,
     .rst,
 
-    .lever_used(),
-    .position(),
-    .target(),
-    .turn(),
-    .usability(),
+    .lever_used(lever_used),
+    .position(position),
+    .target(target_wire),
+    .turn(turn),
+    .usability(lever_info),
 
     .uart_code(uart_out)
 );

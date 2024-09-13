@@ -13,9 +13,10 @@ module start_game (
     input wire clk,
     input wire rst,
     input logic [1:0] state_input,
-    input logic buttonL,
+    input logic buttonL, buttonR,
 
-    output logic start_game_out
+    output logic start_game_out,
+    output logic player_selected
 );
 
 
@@ -24,6 +25,7 @@ begin
     if (rst)
         begin
             start_game_out <= 1'b0;
+            player_selected <= 1'b0;
         end
     else
         begin
@@ -32,6 +34,12 @@ begin
                     if(buttonL == 1'b1)
                         begin
                             start_game_out <= 1'b1;
+                            player_selected <= 1'b0;
+                        end
+                    else if(buttonR == 1'b1)
+                        begin
+                            start_game_out <= 1'b1;
+                            player_selected <= 1'b1;
                         end
                     else
                         begin

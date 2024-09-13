@@ -25,7 +25,7 @@ module uart_transmiter (
     input wire target,  //target
     input wire turn,     //target
 
-    output logic uart_code
+    output logic [7:0] uart_code
 
 );
 

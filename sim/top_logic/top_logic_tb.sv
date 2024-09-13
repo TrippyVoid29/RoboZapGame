@@ -16,6 +16,7 @@
     logic rst;
     logic buttonD, buttonL, buttonR, buttonU;
     logic buttonD_P, buttonL_P, buttonR_P, buttonU_P;
+    logic [7:0] uart_in;
 
     wire lever_used;
     wire turn; //turn -> VGA
@@ -25,8 +26,8 @@
     wire wire_start_game, new_game;
     wire [1:0] state_game_wire;
     wire [2:0] position;
-    wire [7:0] levers_lethality;
-    wire end_game_wire;
+    wire [7:0] levers_lethality, uart_out;
+    wire end_game_wire, player_selected_wire;
 
 
 initial begin
@@ -63,9 +64,11 @@ start_game u_start_game(
     .clk,
     .rst,
     .buttonL(buttonL_P),
+    .buttonR(buttonR_P),
     .state_input(state_game_wire),
 
-    .start_game_out(wire_start_game)
+    .start_game_out(wire_start_game),
+    .player_selected(player_selected_wire)
 );
 
 new_game u_new_game(
@@ -82,6 +85,7 @@ lever_selector u_lever_selector(
     .buttonL(buttonL_P),
     .buttonR(buttonR_P),
     .game_state_in(state_game_wire),
+    .player_selected(player_selected_wire),
 
     .position(position)
 );
@@ -101,6 +105,7 @@ levers_info u_levers_info(
     .lever_used(lever_used),
     .game_state_in(state_game_wire),
     .levers_lethality(levers_lethality),
+    .player_selected(player_selected_wire),
 
     .lever_info(lever_info),
     .lever_left(lever_left)
@@ -127,6 +132,7 @@ target u_target(
     .game_state_in(state_game_wire),
     .lever_left_in(lever_left),
     .position,
+    .player_selected(player_selected_wire),
     
     .target(target),
     .lever_used(lever_used),
@@ -141,6 +147,32 @@ who_won u_who_won(
     .game_state_in(state_game_wire),
 
     .winner(winner)
+);
+
+uart_receiver u_uart_receiver(
+    .clk,
+    .rst,
+
+    .uart_code(uart_in),
+    
+    .lever_used(lever_used_uart),
+    .position(position_uart),
+    .target(target_uart),
+    .turn(turn_uart),
+    .usability(usability_uart)
+);
+
+uart_transmiter u_uart_transmiter(
+    .clk,
+    .rst,
+
+    .lever_used(lever_used),
+    .position(position),
+    .target(target_wire),
+    .turn(turn),
+    .usability(lever_info),
+
+    .uart_code(uart_out)
 );
 
 

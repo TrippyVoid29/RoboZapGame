@@ -19,7 +19,7 @@ module uart_receiver (
     input wire clk,
     input wire rst,
 
-    input wire uart_code,
+    input wire [7:0] uart_code,
 
     output logic lever_used, //target
     output logic [1:0] usability, //lever_info lethality, uasbility
@@ -42,7 +42,8 @@ module uart_receiver (
             if(uart_code[7:6] == 2'b11)
                 begin
                     lever_used <= uart_code[7];
-                    usability <= uart_code[5:6];
+                    usability[0] <= uart_code[6];
+                    usability[1] <= uart_code[5];
                     position <= uart_code[3:1];
                     target <= uart_code[4];
                     turn <= uart_code[0];

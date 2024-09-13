@@ -20,6 +20,10 @@ module target (
     input wire [1:0] game_state_in,
     input wire [7:0] lever_left_in,
     input wire [2:0] position,
+    input wire player_selected,
+    input wire turn_uart,
+    input wire target_uart,
+    input wire lever_used_uart,
 
     output logic target,
     output logic turn,
@@ -49,9 +53,18 @@ begin
     else
         begin   
             state <= state_next;
-            turn <= turn_next;
-            target <= target_next;
-            lever_used <= lever_used_next;
+            if(turn_uart == player_selected)
+                begin
+                    turn <= turn_next;
+                    target <= target_next;
+                    lever_used <= lever_used_next;
+                end
+            else
+                begin
+                    turn <= turn_uart;
+                    target <= target_uart;
+                    lever_used <= lever_used_uart;
+                end
         end
 end
 

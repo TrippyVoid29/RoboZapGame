@@ -22,4 +22,5 @@ sv work ../../rtl/logic/game_state.sv \
         ../../rtl/logic/uart_transmiter.sv  \
         ../../rtl/logic/target.sv  \
         ../../rtl/logic/who_won.sv \
+        ../../rtl/logic/turn_handler.sv \
         top_logic_tb.sv

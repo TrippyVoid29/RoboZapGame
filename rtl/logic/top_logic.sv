@@ -29,13 +29,14 @@ module top_logic (
 );
 
     wire start_game, end_game, new_game;
-    wire target_wire, lever_used;
+    wire target_wire, lever_used, turn_flag;
     wire [1:0] lever_info, usability_uart;
     wire player_selected, turn_uart, lever_used_uart, target_uart;
     wire [2:0] position_uart;
     
     wire buttonD_P, buttonU_P, buttonR_P, buttonL_P;
     wire [7:0] levers_lethality;
+    wire data_received_wire;
 
 //uart wires
 
@@ -144,13 +145,13 @@ target u_target(
     .lever_left_in(lever_left),
     .position(position),
     .player_selected,
-    .turn_uart,
+    .turn_in(turn),
     .target_uart,
     .lever_used_uart,
     
     .target(target_wire),
     .lever_used(lever_used),
-    .turn(turn)
+    .turn_flag
 );
 
 who_won u_who_won(
@@ -173,7 +174,8 @@ uart_receiver u_uart_receiver(
     .position(position_uart),
     .target(target_uart),
     .turn(turn_uart),
-    .usability(usability_uart)
+    .usability(usability_uart),
+    .data_received(data_received_wire)
 );
 
 uart_transmiter u_uart_transmiter(
@@ -187,6 +189,19 @@ uart_transmiter u_uart_transmiter(
     .usability(lever_info),
 
     .uart_code(uart_out)
+);
+
+turn_handler u_turn_handler(
+    .clk,
+    .rst,
+    
+    .game_state_in(state_output),
+    .player_selected,
+    .turn_flag,
+    .turn_uart,
+    .data_received(data_received_wire),
+
+    .turn(turn)
 );
 
 endmodule

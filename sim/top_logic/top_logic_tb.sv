@@ -27,7 +27,7 @@
     wire [1:0] state_game_wire, usability_uart;
     wire [2:0] position, position_uart;
     wire [7:0] levers_lethality, uart_out;
-    wire end_game_wire, player_selected_wire;
+    wire end_game_wire, player_selected_wire, data_received_wire, turn_flag_wire;
 
 
 initial begin
@@ -141,11 +141,11 @@ target u_target(
     .player_selected(player_selected_wire),
     .lever_used_uart,
     .target_uart(target_uart),
-    .turn_uart,
+    .turn_in(turn),
 
     .target(target),
     .lever_used(lever_used),
-    .turn(turn)
+    .turn_flag(turn_flag_wire)
 );
 
 who_won u_who_won(
@@ -168,7 +168,8 @@ uart_receiver u_uart_receiver(
     .position(position_uart),
     .target(target_uart),
     .turn(turn_uart),
-    .usability(usability_uart)
+    .usability(usability_uart),
+    .data_received(data_received_wire)
 );
 
 uart_transmiter u_uart_transmiter(
@@ -184,6 +185,18 @@ uart_transmiter u_uart_transmiter(
     .uart_code(uart_out)
 );
 
+turn_handler u_turn_handler(
+    .clk,
+    .rst,
+    
+    .game_state_in(state_game_wire),
+    .player_selected(player_selected_wire),
+    .turn_flag(turn_flag_wire),
+    .turn_uart,
+    .data_received(data_received_wire),
+
+    .turn(turn)
+);
 
 
 task reset();
@@ -237,34 +250,28 @@ task start_game();
     end
 endtask
 
+// uart_code <= {lever_used, usability[0], usability[1], target, position, turn};
+// usability[1:0] = {lethality, uasbility}
+
 initial begin
 
     reset();
     #50
-    press_lever(left);
-    #100
     press_lever(right);
     #100
-    press_lever(right);
     press_lever(up);
     #100
     press_lever(right);
     press_lever(down);
     #100
+    uart_in = 8'b11010111;
+    #10
+    uart_in = 8'b00000000;
+    #200
     press_lever(right);
     press_lever(down);
     #100
-    press_lever(right);
-    press_lever(down);
-    #100
-    press_lever(right);
-    press_lever(down);
-    #100
-    press_lever(right);
-    press_lever(down);
-    #100
-    press_lever(left);
-    #100
+
 
     $finish;
 end

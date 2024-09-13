@@ -22,10 +22,11 @@ module uart_receiver (
     input wire [7:0] uart_code,
 
     output logic lever_used, //target
-    output logic [1:0] usability, //lever_info lethality, uasbility
+    output logic [1:0] usability, //lever_info lethality, usability
     output logic [2:0] position, //lever_selector
     output logic target,  //target
-    output logic turn     //target
+    output logic turn,     //target
+    output logic data_received
 );
 
  always_ff@(posedge clk)
@@ -36,6 +37,7 @@ module uart_receiver (
             position <= 3'b000;
             target <= 1'b0;
             turn <= 1'b0;
+            data_received <= 1'b0;
         end
     else
         begin
@@ -47,6 +49,7 @@ module uart_receiver (
                     position <= uart_code[3:1];
                     target <= uart_code[4];
                     turn <= uart_code[0];
+                    data_received <= 1'b1;
                 end
             else
                 begin
@@ -55,6 +58,7 @@ module uart_receiver (
                     position <= 3'b000;
                     target <= 1'b0;
                     turn <= 1'b0;
+                    data_received <= 1'b0;
                 end
         end
 

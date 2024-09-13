@@ -53,6 +53,7 @@ set sv_files {
     ../rtl/logic/target.sv
     ../rtl/logic/uart_receiver.sv
     ../rtl/logic/uart_transmiter.sv
+    ../rtl/logic/turn_handler.sv
     ../rtl/logic/who_won.sv \
 }
 

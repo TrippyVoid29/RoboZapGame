@@ -111,13 +111,15 @@ top_logic u_top_logic (
     .buttonR,
     .buttonU,
     .position,
+    .uart_in(8'b00000000),
 
     .turn(current_player),
     .winner(who_won),
     .player0_health,
     .player1_health,
     .lever_left,
-    .state_output(states)
+    .state_output(states),
+    .uart_out()
 );
 
 endmodule

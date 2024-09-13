@@ -52,15 +52,16 @@ begin
         end
     else
         begin   
-            state <= state_next;
             if(turn_uart == player_selected)
                 begin
+                    state <= state_next;
                     turn <= turn_next;
                     target <= target_next;
                     lever_used <= lever_used_next;
                 end
             else
                 begin
+                    state <= state_next;
                     turn <= turn_uart;
                     target <= target_uart;
                     lever_used <= lever_used_uart;

@@ -23,9 +23,9 @@
     wire [1:0] winner, lever_info; //winner -> VGA
     wire [1:0] player0_health, player1_health;
     wire [7:0] lever_left;
-    wire wire_start_game, new_game;
-    wire [1:0] state_game_wire;
-    wire [2:0] position;
+    wire wire_start_game, new_game, turn_uart, lever_used_uart, target_uart;
+    wire [1:0] state_game_wire, usability_uart;
+    wire [2:0] position, position_uart;
     wire [7:0] levers_lethality, uart_out;
     wire end_game_wire, player_selected_wire;
 
@@ -86,6 +86,8 @@ lever_selector u_lever_selector(
     .buttonR(buttonR_P),
     .game_state_in(state_game_wire),
     .player_selected(player_selected_wire),
+    .position_uart(position_uart),
+    .turn_uart(turn_uart),
 
     .position(position)
 );
@@ -106,6 +108,10 @@ levers_info u_levers_info(
     .game_state_in(state_game_wire),
     .levers_lethality(levers_lethality),
     .player_selected(player_selected_wire),
+    .lever_used_uart,
+    .position_uart,
+    .turn_uart,
+    .usability_uart,
 
     .lever_info(lever_info),
     .lever_left(lever_left)
@@ -133,7 +139,10 @@ target u_target(
     .lever_left_in(lever_left),
     .position,
     .player_selected(player_selected_wire),
-    
+    .lever_used_uart,
+    .target_uart(target_uart),
+    .turn_uart,
+
     .target(target),
     .lever_used(lever_used),
     .turn(turn)
@@ -168,7 +177,7 @@ uart_transmiter u_uart_transmiter(
 
     .lever_used(lever_used),
     .position(position),
-    .target(target_wire),
+    .target(target),
     .turn(turn),
     .usability(lever_info),
 
@@ -186,6 +195,7 @@ task reset();
         buttonR = 1'b0;
         buttonU = 1'b0;
         buttonD = 1'b0;
+        uart_in = 8'b00000000;
 
         #10 rst = 1'b0;
     end
@@ -231,9 +241,9 @@ initial begin
 
     reset();
     #50
-    press_lever(right);
-    #100
     press_lever(left);
+    #100
+    press_lever(right);
     #100
     press_lever(right);
     press_lever(up);

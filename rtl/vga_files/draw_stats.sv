@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Łukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Module for drawing stats - HP.
@@ -28,9 +28,11 @@ module draw_stats #(
     input  logic [1:0] player0_health,
     input  logic [1:0] player1_health,
     input logic player_selected,
+    input logic [7:0] lever_left_bg,
 
     vga_if.out vga_stats_out,
-    vga_if.in vga_stats_in
+    vga_if.in vga_stats_in,
+    output logic [7:0] lever_left_stats
 );
 
 import vga_pkg::*;
@@ -60,6 +62,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         my_health            <= 2'b10;
         enemy_health         <= 2'b10;
         vga_stats_out.position <= '0;
+        lever_left_stats <= 8'b00000000;
     end else begin
         vga_stats_out.vcount <= vga_stats_in.vcount;
         vga_stats_out.vsync  <= vga_stats_in.vsync;
@@ -69,6 +72,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         vga_stats_out.hblnk  <= vga_stats_in.hblnk;
         vga_stats_out.rgb    <= rgb_nxt;
         vga_stats_out.position <= vga_stats_in.position;
+        lever_left_stats <= lever_left_bg;
         if(rgb_nxt) begin
             vga_stats_out.rgb    <= rgb_nxt;
         end else begin

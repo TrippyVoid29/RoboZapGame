@@ -2,7 +2,7 @@
    * Copyright (C) 2023  AGH University of Science and Technology
    * MTM UEC2
    * Author: Piotr Kaczmarczyk
-   * Editor: Tymon Ryś & Łukasz Perczyński
+   * Editor: Tymon Ryś & �?ukasz Perczyński
    * 
    * Description:
    * Vga timing controller.
@@ -13,7 +13,9 @@
    module vga_timing (
            input  logic clk,
            input  logic rst,
-           vga_if.out vga_tim
+           input  logic [7:0] lever_left,
+           vga_if.out vga_tim,
+           output logic [7:0] lever_left_tim
    
        );
    
@@ -38,6 +40,7 @@
                vga_tim.vblnk <= 1'b0;
                vga_tim.hsync <= 1'b0;
                vga_tim.vsync <= 1'b0;
+               lever_left_tim <= 8'b00000000;
            end
            else begin
                vga_tim.hcount <= hcount_nxt;
@@ -46,6 +49,7 @@
                vga_tim.vblnk <= vblnk_nxt;
                vga_tim.hsync <= hsync_nxt;
                vga_tim.vsync <= vsync_nxt;
+               lever_left_tim <= lever_left;
            end
        end
        always_comb begin

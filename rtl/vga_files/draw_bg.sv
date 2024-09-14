@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Łukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Module drawing background dependant on player_selected.
@@ -15,9 +15,11 @@ module draw_bg (
     input  logic rst,
     input logic [2:0]  position,
     input logic player_selected,
+    input logic [7:0] lever_left_tim,
 
     vga_if.out vga_bg_out,
-    vga_if.in vga_bg_in
+    vga_if.in vga_bg_in,
+    output logic [7:0] lever_left_bg
 );
 
 import vga_pkg::*;
@@ -44,6 +46,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         vga_bg_out.hblnk  <= '0;
         vga_bg_out.rgb    <= '0;
         vga_bg_out.position <= '0;
+        lever_left_bg <= 8'b00000000;
     end else begin
         vga_bg_out.vcount <= vga_bg_in.vcount;
         vga_bg_out.vsync  <= vga_bg_in.vsync;
@@ -53,6 +56,7 @@ always_ff @(posedge clk) begin : bg_ff_blk
         vga_bg_out.hblnk  <= vga_bg_in.hblnk;
         vga_bg_out.rgb    <= rgb_nxt;
         vga_bg_out.position <= position;
+        lever_left_bg <= lever_left_tim;
     end
 end
 

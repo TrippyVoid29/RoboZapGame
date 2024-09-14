@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Łukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Lever highlight.
@@ -19,9 +19,11 @@ module draw_highlight #(
 )(
     input  logic clk,
     input  logic rst,
+    input  logic [7:0] lever_left_stats,
 
     vga_if.out vga_highlight_out,
-    vga_if.in vga_highlight_in
+    vga_if.in vga_highlight_in,
+    output logic [7:0] lever_left_hl
 );
 
 import vga_pkg::*;
@@ -38,6 +40,7 @@ always_ff @(posedge clk) begin : rect_ff_blk
         vga_highlight_out.hblnk  <= '0;
         vga_highlight_out.rgb    <= '0;
         vga_highlight_out.position <= '0;
+        lever_left_hl <= 8'b00000000;
     end else begin
         vga_highlight_out.vcount <= vga_highlight_in.vcount;
         vga_highlight_out.vsync  <= vga_highlight_in.vsync;
@@ -46,6 +49,7 @@ always_ff @(posedge clk) begin : rect_ff_blk
         vga_highlight_out.hsync  <= vga_highlight_in.hsync;
         vga_highlight_out.hblnk  <= vga_highlight_in.hblnk;
         vga_highlight_out.position <= vga_highlight_in.position;
+        lever_left_hl <= lever_left_stats;
         if(rgb_nxt) begin
             vga_highlight_out.rgb    <= rgb_nxt;
         end else begin

@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Łukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * VGA top module.
@@ -15,7 +15,7 @@ module top_vga (
 
     input  logic [1:0] states,
     input  logic [2:0] position,
-    input  logic [7:0] lever_left_in,
+    input  logic [7:0] lever_left,
     input  logic player_selected,
     input  logic [1:0] player0_health,
     input  logic [1:0] player1_health,
@@ -41,6 +41,8 @@ vga_if vga_highlight();
 vga_if vga_lever();
 vga_if vga_start_bg();
 
+wire [7:0] lever_left_tim, lever_left_bg, lever_left_stats, lever_left_hl;
+
 /**
  * Signals assignments
  */
@@ -57,8 +59,10 @@ assign {r,g,b} = vga_start_bg.rgb;
 vga_timing u_vga_timing (
     .clk,
     .rst,
+    .lever_left,
 
-    .vga_tim(vga_tim)
+    .vga_tim(vga_tim),
+    .lever_left_tim
 );
 
 draw_bg u_draw_bg (
@@ -66,9 +70,11 @@ draw_bg u_draw_bg (
     .rst,
     .position,
     .player_selected,
+    .lever_left_tim,
 
     .vga_bg_in(vga_tim),
-    .vga_bg_out(vga_bg)
+    .vga_bg_out(vga_bg),
+    .lever_left_bg
 );
 
 draw_stats u_draw_stats (
@@ -77,23 +83,27 @@ draw_stats u_draw_stats (
     .player_selected,
     .player0_health,
     .player1_health,
+    .lever_left_bg,
 
     .vga_stats_in(vga_bg),
-    .vga_stats_out(vga_stats)
+    .vga_stats_out(vga_stats),
+    .lever_left_stats
 );
 
 draw_highlight u_draw_highlight (
     .clk,
     .rst,
+    .lever_left_stats,
 
     .vga_highlight_in(vga_stats),
-    .vga_highlight_out(vga_highlight)
+    .vga_highlight_out(vga_highlight),
+    .lever_left_hl(lever_left_hl)
 );
 
 draw_lever u_draw_lever (
     .clk,
     .rst,
-    .lever_left_in,
+    .lever_left_in(lever_left_hl),
 
     .vga_lever_in(vga_highlight),
     .vga_lever_out(vga_lever)

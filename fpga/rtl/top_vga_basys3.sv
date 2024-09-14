@@ -33,7 +33,7 @@ module top_vga_basys3 (
  */
 
 //wire locked;
-wire pclk;
+wire clk65;
 wire clk100;
 //wire pclk_mirror;
 
@@ -57,47 +57,35 @@ wire clk100;
 clk_wiz_0_clk_wiz u_clk_wiz_0_clk_wiz (
   // Clock out ports  
   .clk100MHz(clk100),
-  .clk40MHz(pclk),
+  .clk65MHz(clk65),
   // Status and control signals               
   .locked(),
  // Clock in ports
   .clk(clk)
   );
 
-// Mirror pclk on a pin for use by the testbench;
-// not functionally required for this design to work.
-/*
-ODDR pclk_oddr (
-    .Q(pclk_mirror),
-    .C(pclk),
-    .CE(1'b1),
-    .D1(1'b1),
-    .D2(1'b0),
-    .R(1'b0),
-    .S(1'b0)
-);
-*/
+
 
 /**
  *  Project functional top module
  */
 
- wire current_player;
+ wire player_selected;
  wire [1:0] player0_health, player1_health, who_won; 
  wire [2:0] position;
  wire [1:0] states;
- wire [7:0] lever_left, uart_rx_wire, uart_tx_wire;
+ wire [7:0]  uart_rx_wire, uart_tx_wire, lever_left;
 
 top_vga u_top_vga (
-    .clk(pclk),
+    .clk(clk65),
     .rst(buttonC),
     .r(vgaRed),
     .g(vgaGreen),
     .b(vgaBlue),
     .hs(Hsync),
     .vs(Vsync),
-    .current_player,
-    .lever_left_in(lever_left),
+    .player_selected,
+    .lever_left,
     .player0_health,
     .player1_health,
     .position,
@@ -106,7 +94,7 @@ top_vga u_top_vga (
 );
 
 top_logic u_top_logic (
-    .clk(clk100),
+    .clk(clk65),
     .rst(buttonC),
     .buttonD,
     .buttonL,
@@ -114,25 +102,28 @@ top_logic u_top_logic (
     .buttonU,
     .position,
     .uart_in(uart_rx_wire),
+    .tx_done(tx_done_wire),
 
-    .turn(current_player),
+    .turn(),
     .winner(who_won),
     .player0_health,
     .player1_health,
     .lever_left,
     .state_output(states),
-    .uart_out(uart_tx_wire)
+    .uart_out(uart_tx_wire),
+    .tx_start(tx_start_wire),
+    .player_selected
 );
 
 top_uart u_top_uart(
-    .clk(clk100),
+    .clk(clk65),
     .rst(buttonC),
     .rx(JA1),
-    .tx_start(),  //necessary
+    .tx_start(tx_start_wire),
     .tx_in(uart_tx_wire),
 
     .tx(JA2),   
-    .tx_done(),  //could be useful
+    .tx_done(tx_done_wire),
     .uart_rx_out(uart_rx_wire)
 );
 

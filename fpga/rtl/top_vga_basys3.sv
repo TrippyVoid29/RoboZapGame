@@ -17,7 +17,9 @@
 module top_vga_basys3 (
     input  wire clk,
     input  wire buttonC, buttonU, buttonD, buttonL, buttonR,
+    input  wire JA1,
 
+    output wire JA2,
     output wire Vsync,
     output wire Hsync,
     output wire [3:0] vgaRed,
@@ -84,7 +86,7 @@ ODDR pclk_oddr (
  wire [1:0] player0_health, player1_health, who_won; 
  wire [2:0] position;
  wire [1:0] states;
- wire [7:0] lever_left;
+ wire [7:0] lever_left, uart_rx_wire, uart_tx_wire;
 
 top_vga u_top_vga (
     .clk(pclk),
@@ -111,7 +113,7 @@ top_logic u_top_logic (
     .buttonR,
     .buttonU,
     .position,
-    .uart_in(8'b00000000),
+    .uart_in(uart_rx_wire),
 
     .turn(current_player),
     .winner(who_won),
@@ -119,7 +121,19 @@ top_logic u_top_logic (
     .player1_health,
     .lever_left,
     .state_output(states),
-    .uart_out()
+    .uart_out(uart_tx_wire)
+);
+
+top_uart u_top_uart(
+    .clk(clk100),
+    .rst(buttonC),
+    .rx(JA1),
+    .tx_start(),  //necessary
+    .tx_in(uart_tx_wire),
+
+    .tx(JA2),   
+    .tx_done(),  //could be useful
+    .uart_rx_out(uart_rx_wire)
 );
 
 endmodule

@@ -41,6 +41,11 @@ set sv_files {
     ../rtl/vga_files/draw_start_bg.sv
     ../rtl/vga_files/top_vga.sv
     rtl/top_vga_basys3.sv
+    ../rtl/uart_files/top_uart.sv
+    ../rtl/uart_files/uart_clock.sv
+    ../rtl/uart_files/uart_rec.sv
+    ../rtl/uart_files/uart_rx.sv
+    ../rtl/uart_files/uart_tx.sv
     ../rtl/logic/game_state.sv
     ../rtl/logic/buttons_handler.sv
     ../rtl/logic/lever_selector.sv

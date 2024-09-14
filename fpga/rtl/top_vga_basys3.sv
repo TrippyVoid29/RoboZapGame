@@ -24,7 +24,9 @@ module top_vga_basys3 (
     output wire Hsync,
     output wire [3:0] vgaRed,
     output wire [3:0] vgaGreen,
-    output wire [3:0] vgaBlue
+    output wire [3:0] vgaBlue,
+    inout  wire PS2Clk,
+    inout  wire PS2Data
 );
 
 
@@ -35,6 +37,8 @@ module top_vga_basys3 (
 //wire locked;
 wire clk65;
 wire clk100;
+
+wire LMB, RMB;
 //wire pclk_mirror;
 
 
@@ -103,6 +107,8 @@ top_logic u_top_logic (
     .position,
     .uart_in(uart_rx_wire),
     .tx_done(tx_done_wire),
+    .mouse_left(LMB),
+    .mouse_right(RMB),
 
     .turn(),
     .winner(who_won),
@@ -127,4 +133,13 @@ top_uart u_top_uart(
     .uart_rx_out(uart_rx_wire)
 );
 
+MouseCtl u_MouseCtl (
+    .clk(clk65),
+    .rst(buttonC),
+
+    .ps2_data(PS2Data),
+    .ps2_clk(PS2Clk),
+    .left(LMB),
+    .right(RMB)
+);
 endmodule

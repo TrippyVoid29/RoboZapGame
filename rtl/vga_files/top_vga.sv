@@ -16,7 +16,7 @@ module top_vga (
     input  logic [1:0] states,
     input  logic [2:0] position,
     input  logic [7:0] lever_left_in,
-    input  logic current_player,
+    input  logic player_selected,
     input  logic [1:0] player0_health,
     input  logic [1:0] player1_health,
     input  logic [1:0] who_won,
@@ -65,7 +65,7 @@ draw_bg u_draw_bg (
     .clk,
     .rst,
     .position,
-    .current_player,
+    .player_selected,
 
     .vga_bg_in(vga_tim),
     .vga_bg_out(vga_bg)
@@ -74,7 +74,7 @@ draw_bg u_draw_bg (
 draw_stats u_draw_stats (
     .clk,
     .rst,
-    .current_player,
+    .player_selected,
     .player0_health,
     .player1_health,
 
@@ -104,7 +104,7 @@ draw_start_bg u_draw_start_bg (
     .rst,
     .states,
     .who_won,
-    .current_player,
+    .player_selected,
 
     .vga_start_bg_in(vga_lever),
     .vga_start_bg_out(vga_start_bg)

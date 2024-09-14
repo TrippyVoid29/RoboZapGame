@@ -15,7 +15,7 @@
     input  logic rst,
     input  logic [1:0] states,
     input  logic [1:0] who_won,
-    input  logic current_player,
+    input  logic player_selected,
 
     vga_if.out vga_start_bg_out,
     vga_if.in vga_start_bg_in
@@ -319,7 +319,7 @@ always_comb begin : bg_comb_blk
 
             else if(states == 2'b01)   //player1
             begin
-                if(current_player == 1'b1)
+                if(player_selected == 1'b1)
                 begin  
                 // letter - P
                 if (vga_start_bg_in.hcount >= start_posit_x + horizontal_fix && 
@@ -380,7 +380,7 @@ always_comb begin : bg_comb_blk
 
 //----------------------- BG 2: PLAYER_0 --------------------------
 
-                else if(current_player == 1'b0)//player0
+                else if(player_selected == 1'b0)//player0
                 begin  
                 // letter - P
                 if (vga_start_bg_in.hcount >= start_posit_x + horizontal_fix && 

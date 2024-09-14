@@ -40,7 +40,7 @@ wire [3:0] r, g, b;
 logic [1:0] states; 
 logic [2:0] position;
 logic [1:0] player0_health, player1_health;
-logic current_player;
+logic player_selected;
 logic [7:0]lever_used_in;
 logic [1:0] who_won;
 
@@ -71,7 +71,7 @@ top_vga dut (
     .position(position),
     .player0_health(player0_health), 
     .player1_health(player1_health),
-    .current_player(current_player),
+    .player_selected(player_selected),
     .lever_left_in(lever_used_in),
     .who_won(who_won)
 );
@@ -104,7 +104,7 @@ initial begin
     position = 3'b010;
     player0_health = 2'b11;
     player1_health = 2'b10;
-    current_player = 1'b1;
+    player_selected = 1'b0;
 
     $display("If simulation ends before the testbench");
     $display("completes, use the menu option to run all.");

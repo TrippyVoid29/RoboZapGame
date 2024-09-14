@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Łukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Decode message from uart.
@@ -55,7 +55,7 @@ module uart_receiver (
                 begin
                     lever_used <= 1'b0;
                     usability <= 2'b00;
-                    position <= 3'b000;
+                    position <= uart_code[3:1];
                     target <= 1'b0;
                     turn <= 1'b0;
                     data_received <= 1'b0;

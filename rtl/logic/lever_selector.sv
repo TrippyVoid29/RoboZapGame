@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Łukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Inforamtion about current lever.
@@ -17,7 +17,7 @@ module lever_selector (
     input wire buttonL,
     input wire buttonR,
     input wire player_selected,
-    input wire turn_uart,
+    input wire turn,
     input wire [2:0] position_uart,
 
     input wire [1:0] game_state_in,
@@ -45,10 +45,10 @@ always_ff@(posedge clk)
     else
         begin
             state <= state_next;
-            if(turn_uart == player_selected)
-                position <= position_uart;
-            else
+            if(turn == player_selected)
                 position <= position_next;
+            else
+                position <= position_uart;
         end
 
 always_comb

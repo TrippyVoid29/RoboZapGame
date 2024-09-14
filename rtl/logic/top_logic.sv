@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Łukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Top logic module.
@@ -15,6 +15,7 @@ module top_logic (
     input wire rst,
     input wire buttonD, buttonU, buttonR, buttonL,
     input wire [7:0] uart_in, //new
+    input wire tx_done,
 
     output logic turn,
     output logic [1:0] winner,
@@ -23,15 +24,17 @@ module top_logic (
     output logic [7:0] lever_left,
     output logic [2:0] position,
     output logic [1:0] state_output,
+    output logic player_selected,
 
-    output logic [7:0] uart_out // new
+    output logic [7:0] uart_out,
+    output logic tx_start
 
 );
 
     wire start_game, end_game, new_game;
     wire target_wire, lever_used, turn_flag;
     wire [1:0] lever_info, usability_uart;
-    wire player_selected, turn_uart, lever_used_uart, target_uart;
+    wire turn_uart, lever_used_uart, target_uart;
     wire [2:0] position_uart;
     
     wire buttonD_P, buttonU_P, buttonR_P, buttonL_P;
@@ -93,7 +96,7 @@ lever_selector u_lever_selector(
     .game_state_in(state_output),
     .player_selected,
     .position_uart,
-    .turn_uart,
+    .turn,
 
     .position(position)
 );
@@ -187,8 +190,10 @@ uart_transmiter u_uart_transmiter(
     .target(target_wire),
     .turn(turn),
     .usability(lever_info),
+    .tx_done,
 
-    .uart_code(uart_out)
+    .uart_code(uart_out),
+    .tx_start
 );
 
 turn_handler u_turn_handler(

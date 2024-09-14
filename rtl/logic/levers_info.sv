@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Łukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Holds information about currently selected lever.
@@ -46,17 +46,16 @@ always_ff@(posedge clk)
             if(turn_uart == player_selected)
             begin
                 lever_left <= lever_left_next;
-                is_lethal <= usability_uart[0];
-                is_usable <= usability_uart[1];
-                lever_info <= usability_uart;
-                
+                is_lethal <= is_lethal_next;
+                is_usable <= is_usable_next;
+                lever_info <= lever_info_next;            
             end
             else 
             begin
                 lever_left <= lever_left_next;
-                is_lethal <= is_lethal_next;
-                is_usable <= is_usable_next;
-                lever_info <= lever_info_next;
+                is_lethal <= usability_uart[0];
+                is_usable <= usability_uart[1];
+                lever_info <= usability_uart;  
             end
         end
 

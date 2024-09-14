@@ -16,10 +16,10 @@ module buttons_handler (
     input wire buttonD, //DOWN button
     input wire buttonL, //LEFT button
     input wire buttonR, //RIGHT button
-
+    input wire mouse_left,
+    input wire mouse_right,
 
     output logic buttonL_pressed, buttonR_pressed, buttonD_pressed, buttonU_pressed
-
     );
     
     logic buttonL_pressed_next, buttonR_pressed_next, buttonD_pressed_next, buttonU_pressed_next;
@@ -64,12 +64,12 @@ module buttons_handler (
                     buttonD_pressed_next = buttonD_pressed;
                     buttonU_pressed_next = buttonU_pressed;
 
-                    if(buttonR == 1'b1 && buttonL == 1'b0 && buttonU == 1'b0 && buttonD == 1'b0)
+                    if((buttonR == 1'b1 && buttonL == 1'b0 && buttonU == 1'b0 && buttonD == 1'b0) || mouse_right == 1'b1)
                         begin
                             buttonR_pressed_next = 1'b1;
                             state_next = RIGHT;
                         end
-                    else if(buttonR == 1'b0 && buttonL == 1'b1 && buttonU == 1'b0 && buttonD == 1'b0)
+                    else if((buttonR == 1'b0 && buttonL == 1'b1 && buttonU == 1'b0 && buttonD == 1'b0) || mouse_left == 1'b1)
                         begin
                             buttonL_pressed_next = 1'b1;
                             state_next = LEFT;

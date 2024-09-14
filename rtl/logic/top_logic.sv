@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: �?ukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Top logic module.
@@ -16,6 +16,8 @@ module top_logic (
     input wire buttonD, buttonU, buttonR, buttonL,
     input wire [7:0] uart_in, //new
     input wire tx_done,
+    input wire mouse_left,
+    input wire mouse_right,
 
     output logic turn,
     output logic [1:0] winner,
@@ -61,6 +63,8 @@ buttons_handler u_buttons_handler(
     .buttonL,
     .clk,
     .rst,
+    .mouse_left,
+    .mouse_right,
 
     .buttonD_pressed(buttonD_P),
     .buttonL_pressed(buttonL_P),

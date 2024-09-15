@@ -91,7 +91,7 @@ module buttons_handler (
                 LEFT:
                     begin
                     buttonL_pressed_next = 1'b0;
-                    if(buttonL == 1'b0) 
+                    if(buttonL == 1'b0 && mouse_left == 1'b0) 
                         begin
                             state_next = IDLE;
                         end 
@@ -102,7 +102,7 @@ module buttons_handler (
                 RIGHT:
                     begin
                     buttonR_pressed_next = 1'b0;
-                    if(buttonR == 1'b0)
+                    if(buttonR == 1'b0 && mouse_right == 1'b0)
                         begin
                             state_next = IDLE;
                         end 

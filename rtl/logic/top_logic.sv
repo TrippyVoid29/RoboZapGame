@@ -121,7 +121,7 @@ levers_info u_levers_info(
     .game_state_in(state_output),
     .levers_lethality(levers_lethality),
     .player_selected,
-    .turn_uart,
+    .turn_in(turn),
     .lever_used_uart,
     .position_uart,
     .usability_uart,
@@ -192,7 +192,7 @@ uart_transmiter u_uart_transmiter(
     .lever_used(lever_used),
     .position(position),
     .target(target_wire),
-    .turn(turn),
+    .turn(turn_flag),
     .usability(lever_info),
     .tx_done,
 

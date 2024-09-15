@@ -1,7 +1,7 @@
 /**
  * 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: �?ukasz Perczyński & Tymon Ryś
+ * Author: �?ukasz Perczyński & Tymon Ryś
  *
  * Description:
  * Holds information about currently selected lever.
@@ -18,7 +18,7 @@ module levers_info (
     input wire [1:0] game_state_in,
     input wire [7:0] levers_lethality,
     input wire player_selected,
-    input wire turn_uart,
+    input wire turn_in,
     input wire lever_used_uart,
     input wire [2:0] position_uart,
     input wire [1:0] usability_uart,
@@ -43,7 +43,7 @@ always_ff@(posedge clk)
         end
     else 
         begin
-            if(turn_uart == player_selected)
+            if(turn_in == player_selected)
             begin
                 lever_left <= lever_left_next;
                 is_lethal <= is_lethal_next;
@@ -55,7 +55,7 @@ always_ff@(posedge clk)
                 lever_left <= lever_left_next;
                 is_lethal <= usability_uart[0];
                 is_usable <= usability_uart[1];
-                lever_info <= usability_uart;  
+                lever_info <= {usability_uart[0], usability_uart[1]};  
             end
         end
 
